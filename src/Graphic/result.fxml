@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Graphic.result">
+    <children>
+        <Label fx:id="input1" alignment="CENTER" layoutY="173.0" prefHeight="54.0" prefWidth="600.0" text="Label">
+         <font>
+            <Font size="36.0" />
+         </font></Label>
+    </children>
+</AnchorPane>
