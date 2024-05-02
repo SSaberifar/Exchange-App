@@ -46,26 +46,23 @@
                   <Font name="Roboto Light" size="14.0" />
                </font>
             </Button>
-            <Text layoutX="54.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Captcha">
-               <font>
-                  <Font name="MontserratSubrayada-Bold" size="14.0" />
-               </font>
-            </Text>
-            <Button layoutX="118.0" layoutY="373.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="132.0" style="-fx-background-color: #FFEE58;" text="Sign Up">
+            <Button layoutX="118.0" layoutY="404.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="132.0" style="-fx-background-color: #FFEE58;" text="Sign Up">
                <font>
                   <Font name="Roboto Light" size="14.0" />
                </font>
             </Button>
-            <Text layoutX="76.0" layoutY="455.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Have Account ?">
+            <Text layoutX="59.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Have Account ?">
                <font>
                   <Font name="Roboto Light" size="14.0" />
                </font>
             </Text>
-            <Button fx:id="LoginBtn" layoutX="184.0" layoutY="435.0" mnemonicParsing="false" onAction="#LoginPage" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: #FBC02D;" text="Login">
+            <Button fx:id="LoginBtn" layoutX="209.0" layoutY="450.0" mnemonicParsing="false" onAction="#LoginPage" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: #FBC02D;" text="Login">
                <font>
                   <Font name="Roboto Light" size="14.0" />
                </font>
             </Button>
+            <ImageView fitHeight="28.0" fitWidth="131.0" layoutX="24.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true" />
+            <TextField layoutX="184.0" layoutY="344.0" promptText="Enter Captcha" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
          </children>
       </AnchorPane>
    </right>

@@ -5,7 +5,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -21,8 +20,6 @@ public class SignUp {
     }
 
     public void LoginPage(ActionEvent event) throws IOException {
-        //captcha
-
         root = new FXMLLoader(getClass().getResource("Login.fxml")).load();
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
