@@ -8,12 +8,13 @@ import javafx.scene.image.Image;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Graphic/Login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
         Scene loginPanel = new Scene(root);
         stage.setTitle("Exchange App");
-        Image icon = new Image("Graphic/icon.png");
+        Image icon = new Image("icon.png");
         stage.setScene(loginPanel);
         stage.getIcons().add(icon);
+        stage.setResizable(false);
         stage.show();
     }
 
