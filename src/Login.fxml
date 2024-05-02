@@ -12,18 +12,18 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login">
     <left>
-        <AnchorPane prefHeight="500.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="500.0" prefWidth="270.0" BorderPane.alignment="CENTER">
             <children>
-                <AnchorPane prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #FFEE58;">
+                <AnchorPane prefHeight="500.0" prefWidth="270.0" style="-fx-background-color: #FFEE58;">
                     <children>
-                        <ImageView fitHeight="82.0" fitWidth="82.0" layoutX="133.0" layoutY="28.0">
+                        <ImageView fitHeight="82.0" fitWidth="82.0" layoutX="84.0" layoutY="34.0">
                             <image>
                                 <Image url="@icon.png" />
                             </image>
                         </ImageView>
-                        <Text fontSmoothingType="LCD" layoutX="27.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exchange APP" textAlignment="CENTER">
+                        <Text fontSmoothingType="LCD" layoutX="27.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exchange APP" textAlignment="CENTER">
                             <font>
-                                <Font name="MontserratSubrayada-Bold" size="36.0" />
+                                <Font name="MontserratSubrayada-Bold" size="24.0" />
                             </font>
                         </Text>
                     </children>
@@ -32,45 +32,47 @@
         </AnchorPane>
     </left>
     <right>
-        <AnchorPane prefHeight="500.0" prefWidth="350.0" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="500.0" prefWidth="430.0" BorderPane.alignment="CENTER">
             <children>
-                <Text fill="RED" fontSmoothingType="LCD" layoutX="129.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+                <Text fill="RED" fontSmoothingType="LCD" layoutX="169.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
                     <font>
                         <Font name="Roboto Bold" size="36.0" />
                     </font>
                 </Text>
-                <TextField layoutX="144.0" layoutY="106.0" promptText="Username" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
-                <PasswordField layoutX="144.0" layoutY="171.0" promptText="Userpass" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
-                <Text layoutX="44.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
+                <TextField layoutX="194.0" layoutY="119.0" promptText="Username" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
+                <PasswordField layoutX="194.0" layoutY="184.0" promptText="Userpass" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
+                <Text layoutX="84.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
                     <font>
                         <Font name="Roboto Medium" size="15.0" />
                     </font>
                 </Text>
-                <Text layoutX="45.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
+                <Text layoutX="85.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
                     <font>
                         <Font name="Roboto Medium" size="15.0" />
                     </font>
                 </Text>
-                <Button layoutX="25.0" layoutY="343.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="132.0" style="-fx-background-color: #FFEE58;" text="Login">
+                <Button layoutX="70.0" layoutY="348.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="132.0" style="-fx-background-color: #FFEE58;" text="Login">
                     <font>
                         <Font name="Roboto Light" size="14.0" />
                     </font>
                 </Button>
-                <Text layoutX="98.0" layoutY="446.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New User ?">
+                <Text layoutX="32.0" layoutY="461.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New User ?">
                     <font>
                         <Font name="Roboto Light" size="14.0" />
                     </font>
                 </Text>
-                <Button layoutX="199.0" layoutY="343.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="125.0" style="-fx-background-color: #FFEE58;" text="Forgot Password">
+                <Button fx:id="SignUpBtn" layoutX="116.0" layoutY="440.0" mnemonicParsing="false" onAction="#signUpPage" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: #FBC02D;" text="Sign Up" textFill="WHITE">
                     <font>
                         <Font name="Roboto Light" size="14.0" />
                     </font>
                 </Button>
-                <Button fx:id="SignUpBtn" layoutX="172.0" layoutY="425.0" mnemonicParsing="false" onAction="#signUpPage" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: #FBC02D;" text="Sign Up">
-                    <font>
-                        <Font name="Roboto Light" size="14.0" />
-                    </font>
-                </Button>
+            <Button layoutX="228.0" layoutY="348.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="132.0" style="-fx-background-color: #FFEE58;" text="Forgot Password?">
+               <font>
+                  <Font name="Roboto Light" size="14.0" />
+               </font>
+            </Button>
+            <PasswordField layoutX="139.0" layoutY="289.0" promptText="Enter Captcha" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
+            <ImageView fitHeight="42.0" fitWidth="101.0" layoutX="164.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true" />
             </children>
         </AnchorPane>
     </right>
