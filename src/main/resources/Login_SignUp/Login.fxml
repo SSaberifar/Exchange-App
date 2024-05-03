@@ -39,8 +39,8 @@
                         <Font name="Roboto Bold" size="36.0" />
                     </font>
                 </Text>
-                <TextField layoutX="194.0" layoutY="119.0" promptText="Username" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
-                <PasswordField layoutX="194.0" layoutY="184.0" promptText="Userpass" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
+                <TextField fx:id="LoginName" layoutX="194.0" layoutY="119.0" promptText="Username" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
+                <PasswordField fx:id="LoginPass" layoutX="194.0" layoutY="184.0" promptText="Userpass" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
                 <Text layoutX="84.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
                     <font>
                         <Font name="Roboto Medium" size="15.0" />
@@ -51,7 +51,7 @@
                         <Font name="Roboto Medium" size="15.0" />
                     </font>
                 </Text>
-                <Button layoutX="70.0" layoutY="348.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="132.0" style="-fx-background-color: #FFEE58;" text="Login">
+                <Button fx:id="Loginbtn" layoutX="70.0" layoutY="348.0" mnemonicParsing="false" onAction="#LoginApp" prefHeight="30.0" prefWidth="132.0" style="-fx-background-color: #FFEE58;" text="Login">
                     <font>
                         <Font name="Roboto Light" size="14.0" />
                     </font>

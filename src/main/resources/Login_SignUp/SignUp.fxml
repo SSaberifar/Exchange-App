@@ -35,13 +35,13 @@
                   <Font name="Roboto Bold" size="36.0" />
                </font>
             </Text>
-            <TextField layoutX="14.0" layoutY="100.0" prefHeight="27.0" prefWidth="120.0" promptText="Username" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
-            <Button fx:id="ImageUp" layoutX="285.0" layoutY="204.0" mnemonicParsing="false" onAction="#FileChoose" prefHeight="30.0" prefWidth="132.0" style="-fx-background-color: #FFEE58;" text="Profile Image">
+            <TextField fx:id="SignName" layoutX="14.0" layoutY="100.0" prefHeight="27.0" prefWidth="120.0" promptText="Username" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
+            <Button fx:id="SignImg" layoutX="285.0" layoutY="204.0" mnemonicParsing="false" onAction="#FileChoose" prefHeight="30.0" prefWidth="132.0" style="-fx-background-color: #FFEE58;" text="Profile Image">
                <font>
                   <Font name="Roboto Light" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="146.0" layoutY="367.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="132.0" style="-fx-background-color: #FFEE58;" text="Sign Up">
+            <Button fx:id="Signbtn" layoutX="146.0" layoutY="367.0" mnemonicParsing="false" onAction="#SignUpApp" prefHeight="30.0" prefWidth="132.0" style="-fx-background-color: #FFEE58;" text="Sign Up">
                <font>
                   <Font name="Roboto Light" size="14.0" />
                </font>
@@ -58,12 +58,12 @@
             </Button>
             <ImageView fitHeight="28.0" fitWidth="131.0" layoutX="52.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true" />
             <TextField layoutX="215.0" layoutY="290.0" promptText="Enter Captcha" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
-            <TextField layoutX="152.0" layoutY="100.0" prefHeight="27.0" prefWidth="120.0" promptText="Firstname" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
-            <TextField layoutX="291.0" layoutY="100.0" prefHeight="27.0" prefWidth="120.0" promptText="Lastname" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
-            <TextField layoutX="14.0" layoutY="153.0" prefHeight="27.0" prefWidth="201.0" promptText="Email" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
-            <TextField layoutX="291.0" layoutY="153.0" prefHeight="27.0" prefWidth="120.0" promptText="Phone number" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
-            <PasswordField layoutX="14.0" layoutY="207.0" prefHeight="27.0" prefWidth="120.0" promptText="Password" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
-            <PasswordField layoutX="152.0" layoutY="206.0" prefHeight="27.0" prefWidth="120.0" promptText="Repeat Password" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
+            <TextField fx:id="SignFName" layoutX="152.0" layoutY="100.0" prefHeight="27.0" prefWidth="120.0" promptText="Firstname" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
+            <TextField fx:id="SignLName" layoutX="291.0" layoutY="100.0" prefHeight="27.0" prefWidth="120.0" promptText="Lastname" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
+            <TextField fx:id="SignEmail" layoutX="14.0" layoutY="153.0" prefHeight="27.0" prefWidth="201.0" promptText="Email" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
+            <TextField fx:id="SignPhone" layoutX="291.0" layoutY="153.0" prefHeight="27.0" prefWidth="120.0" promptText="Phone number" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
+            <PasswordField fx:id="SignPass" layoutX="14.0" layoutY="207.0" prefHeight="27.0" prefWidth="120.0" promptText="Password" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
+            <PasswordField fx:id="SignRepass" layoutX="152.0" layoutY="206.0" prefHeight="27.0" prefWidth="120.0" promptText="Repeat Password" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
          </children>
       </AnchorPane>
    </right>

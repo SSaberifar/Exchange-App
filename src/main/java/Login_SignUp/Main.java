@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene loginPanel = new Scene(root);
         stage.setTitle("Exchange App");
         stage.setScene(loginPanel);
