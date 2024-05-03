@@ -1,3 +1,5 @@
+package Login_SignUp;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,9 +13,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
         Scene loginPanel = new Scene(root);
         stage.setTitle("Exchange App");
-        Image icon = new Image("icon.png");
         stage.setScene(loginPanel);
-        stage.getIcons().add(icon);
         stage.setResizable(false);
         stage.show();
     }
