@@ -48,7 +48,7 @@ public class SignUp {
     }
     public void SignUpApp(ActionEvent event) throws IOException {
         validator.createCheck().withMethod(c -> {
-            if (!Pattern.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$", c.get("password")) || c.get("password").equals(null) || !c.get("password").equals(c.get("repassword"))) {
+            if (!Pattern.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$", c.get("password")) || c.get("password").equals(null) || !c.get("password").equals(c.get("repassword"))) {
                 c.error("please enter valid password!");
             }
         }).dependsOn("password", SignPass.textProperty()).dependsOn("repassword", SignRepass.textProperty()).decorates(SignPass).decorates(SignRepass).immediate();

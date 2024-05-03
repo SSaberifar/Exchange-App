@@ -11,22 +11,6 @@
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login_SignUp.SignUp">
-   <left>
-      <AnchorPane prefHeight="500.0" prefWidth="270.0" style="-fx-background-color: #FFEE58;" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="82.0" fitWidth="82.0" layoutX="94.0" layoutY="35.0">
-               <image>
-                  <Image url="@icon.png" />
-               </image>
-            </ImageView>
-            <Text fontSmoothingType="LCD" layoutX="34.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exchange APP" textAlignment="CENTER" wrappingWidth="201.53604125976562">
-               <font>
-                  <Font name="MontserratSubrayada-Bold" size="24.0" />
-               </font>
-            </Text>
-         </children>
-      </AnchorPane>
-   </left>
    <right>
       <AnchorPane prefHeight="500.0" prefWidth="430.0" BorderPane.alignment="CENTER">
          <children>
@@ -67,4 +51,20 @@
          </children>
       </AnchorPane>
    </right>
+   <left>
+      <AnchorPane prefHeight="500.0" prefWidth="270.0" style="-fx-background-color: #FFEE58;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="82.0" fitWidth="82.0" layoutX="84.0" layoutY="34.0">
+               <image>
+                  <Image url="@icon.png" />
+               </image>
+            </ImageView>
+            <Text fontSmoothingType="LCD" layoutX="27.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exchange APP" textAlignment="CENTER">
+               <font>
+                  <Font name="MontserratSubrayada-Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </left>
 </BorderPane>

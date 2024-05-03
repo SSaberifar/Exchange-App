@@ -34,7 +34,7 @@ public class Login {
 
     public void LoginApp(ActionEvent event) throws IOException {
         validator.createCheck().withMethod(c -> {
-            if (!Pattern.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$", c.get("password")) || c.get("password").equals(null)) {
+            if (!Pattern.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$", c.get("password")) || c.get("password").equals(null)) {
                 c.error("please enter valid password!");
             }
         }).dependsOn("password", LoginPass.textProperty()).decorates(LoginPass).immediate();
@@ -57,6 +57,13 @@ public class Login {
 
 
         root = new FXMLLoader(getClass().getResource("SignUp.fxml")).load();
+        scene = new Scene(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void EmailPage(ActionEvent event) throws IOException {
+        root = new FXMLLoader(getClass().getResource("SendEmail.fxml")).load();
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
