@@ -1,4 +1,4 @@
-package Login_SignUp;
+package ExchangeApp.UserAccount;
 
 import com.mewebstudio.captcha.Captcha;
 import com.mewebstudio.captcha.Config;
@@ -26,8 +26,6 @@ import java.util.regex.Pattern;
 
 public class SignUp {
 
-
-
     @FXML
     TextField SignName;
     @FXML
@@ -47,15 +45,14 @@ public class SignUp {
     @FXML
     ImageView SignCap;
 
-    private Parent root;
     private Stage stage;
-    private Scene scene;
-    private Validator validator = new Validator();
-    Config customConfig = new Config();
-    Captcha captcha = new Captcha(customConfig);
-    String captchaCode;
-    FileChooser fileChooser = new FileChooser();
-    public void GenerateCaptcha(ActionEvent event) {
+    private final Validator validator = new Validator();
+    private final Config customConfig = new Config();
+    private final Captcha captcha = new Captcha(customConfig);
+    private String captchaCode;
+    private final FileChooser fileChooser = new FileChooser();
+
+    public void GenerateCaptcha() {
         customConfig.setWidth(100);
         customConfig.setHeight(40);
         GeneratedCaptcha generatedCaptcha = captcha.generate();
@@ -64,40 +61,40 @@ public class SignUp {
         Image captchaImg = SwingFXUtils.toFXImage(captchaImage, null);
         SignCap.setImage(captchaImg);
     }
-    public void FileChoose(ActionEvent event){
+    public void FileChoose(){
         File selectedFile = fileChooser.showOpenDialog(stage);
     }
-    public void SignUpApp(ActionEvent event){
+    public void SignUpApp(){
         validator.createCheck().withMethod(c -> {
-            if (!Pattern.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$", c.get("password")) || c.get("password").equals(null) || !c.get("password").equals(c.get("repassword"))) {
+            if (!Pattern.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$", c.get("password")) || c.get("password") == null || !c.get("password").equals(c.get("repeat password"))) {
                 c.error("please enter valid password!");
             }
-        }).dependsOn("password", SignPass.textProperty()).dependsOn("repassword", SignRepass.textProperty()).decorates(SignPass).decorates(SignRepass).immediate();
+        }).dependsOn("password", SignPass.textProperty()).dependsOn("repeat password", SignRepass.textProperty()).decorates(SignPass).decorates(SignRepass).immediate();
         validator.createCheck().withMethod(c -> {
-            if (!Pattern.matches("^[a-z0-9_-]{3,15}$", c.get("username")) || c.get("username").equals(null)) {
+            if (!Pattern.matches("^[a-z0-9_-]{3,15}$", c.get("username")) || c.get("username") == null) {
                 c.error("please enter valid username!");
             }
         }).dependsOn("username", SignName.textProperty()).decorates(SignName).immediate();
         validator.createCheck().withMethod(c -> {
-            if (!Pattern.matches("^([A-Za-z])+$", c.get("firstname")) || c.get("firstname").equals(null)) {
+            if (!Pattern.matches("^([A-Za-z])+$", c.get("firstname")) || c.get("firstname") == null) {
                 c.error("please enter valid firstname!");
             }
         }).dependsOn("firstname", SignFName.textProperty()).decorates(SignFName).immediate();
         validator.createCheck().withMethod(c -> {
-            if (!Pattern.matches("^([A-Za-z])+$", c.get("lastname")) || c.get("lastname").equals(null)) {
+            if (!Pattern.matches("^([A-Za-z])+$", c.get("lastname")) || c.get("lastname") == null) {
                 c.error("please enter valid lastname!");
             }
         }).dependsOn("lastname", SignLName.textProperty()).decorates(SignLName).immediate();
         validator.createCheck().withMethod(c -> {
-            if (!Pattern.matches("[^@ \\t\\r\\n]+@[^@ \\t\\r\\n]+\\.[^@ \\t\\r\\n]+", c.get("email")) || c.get("email").equals(null)) {
+            if (!Pattern.matches("[^@ \\t\\r\\n]+@[^@ \\t\\r\\n]+\\.[^@ \\t\\r\\n]+", c.get("email")) || c.get("email") == null) {
                 c.error("please enter valid email!");
             }
         }).dependsOn("email", SignEmail.textProperty()).decorates(SignEmail).immediate();
         validator.createCheck().withMethod(c -> {
-            if (!Pattern.matches("^(?:(?:\\\\+?|00)(98)|(0))?((?:90|91|92|93|99)[0-9]{8})$", c.get("phonenumber")) || c.get("phonenumber").equals(null)) {
-                c.error("please enter valid phonenumber!");
+            if (!Pattern.matches("^(?:(?:\\\\+?|00)(98)|(0))?((?:90|91|92|93|99)[0-9]{8})$", c.get("phone number")) || c.get("phone number") == null) {
+                c.error("please enter valid phone number!");
             }
-        }).dependsOn("phonenumber", SignPhone.textProperty()).decorates(SignPhone).immediate();
+        }).dependsOn("phone number", SignPhone.textProperty()).decorates(SignPhone).immediate();
 
         if (validator.validate() && CaptchaCode.getText().equals(captchaCode)) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -108,8 +105,8 @@ public class SignUp {
         }
     }
     public void LoginPage(ActionEvent event) throws IOException {
-        root = new FXMLLoader(getClass().getResource("Login.fxml")).load();
-        scene = new Scene(root);
+        Parent root = new FXMLLoader(getClass().getResource("Login.fxml")).load();
+        Scene scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();

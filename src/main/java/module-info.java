@@ -7,12 +7,14 @@ module Login_SignUp {
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
     requires org.kordamp.ikonli.javafx;
-    requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires java.desktop;
     requires javafx.swing;
     requires captcha;
 
-    opens Login_SignUp to javafx.fxml;
-    exports Login_SignUp;
+
+    opens ExchangeApp.UserAccount to javafx.fxml;
+    exports ExchangeApp.UserAccount;
+    opens ExchangeApp to javafx.fxml;
+    exports ExchangeApp;
 }

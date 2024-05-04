@@ -1,4 +1,4 @@
-package Login_SignUp;
+package ExchangeApp.UserAccount;
 
 
 import java.awt.image.BufferedImage;
@@ -32,22 +32,21 @@ public class Login {
     @FXML
     PasswordField LoginPass;
     @FXML
-    Button Loginbtn;
+    Button LoginBtn;
     @FXML
     TextField CaptchaCode;
     @FXML
     ImageView LoginCap;
 
-    private Validator validator = new Validator();
+    private final Validator validator = new Validator();
     private Parent root;
     private Stage stage;
     private Scene scene;
+    private Config customConfig = new Config();
+    private Captcha captcha = new Captcha(customConfig);
+    private String captchaCode;
 
-    Config customConfig = new Config();
-    Captcha captcha = new Captcha(customConfig);
-    String captchaCode;
-
-    public void GenerateCaptcha(ActionEvent event) {
+    public void GenerateCaptcha() {
         customConfig.setWidth(100);
         customConfig.setHeight(40);
         GeneratedCaptcha generatedCaptcha = captcha.generate();
@@ -57,14 +56,14 @@ public class Login {
         LoginCap.setImage(captchaImg);
     }
 
-    public void LoginApp(ActionEvent event) {
+    public void LoginApp() {
         validator.createCheck().withMethod(c -> {
-            if (!Pattern.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$", c.get("password")) || c.get("password").equals(null)) {
+            if (!Pattern.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$", c.get("password")) || c.get("password") == null) {
                 c.error("please enter valid password!");
             }
         }).dependsOn("password", LoginPass.textProperty()).decorates(LoginPass).immediate();
         validator.createCheck().withMethod(c -> {
-            if (!Pattern.matches("^[a-z0-9_-]{3,15}$", c.get("username")) || c.get("username").equals(null)) {
+            if (!Pattern.matches("^[a-z0-9_-]{3,15}$", c.get("username")) || c.get("username") == null) {
                 c.error("please enter valid username!");
             }
         }).dependsOn("username", LoginName.textProperty()).decorates(LoginName).immediate();
