@@ -11,7 +11,23 @@
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login_SignUp.SignUp">
-   <right>
+   <left>
+      <AnchorPane prefHeight="500.0" prefWidth="270.0" style="-fx-background-color: #FFEE58;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="82.0" fitWidth="82.0" layoutX="84.0" layoutY="34.0">
+               <image>
+                  <Image url="@icon.png" />
+               </image>
+            </ImageView>
+            <Text fontSmoothingType="LCD" layoutX="27.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exchange APP" textAlignment="CENTER">
+               <font>
+                  <Font name="MontserratSubrayada-Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
       <AnchorPane prefHeight="500.0" prefWidth="430.0" BorderPane.alignment="CENTER">
          <children>
             <Text fill="RED" fontSmoothingType="LCD" layoutX="146.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
@@ -40,31 +56,21 @@
                   <Font name="Roboto Light" size="14.0" />
                </font>
             </Button>
-            <ImageView fitHeight="28.0" fitWidth="131.0" layoutX="52.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true" />
-            <TextField layoutX="215.0" layoutY="290.0" promptText="Enter Captcha" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
+            <TextField fx:id="SignCaptcha" layoutX="229.0" layoutY="290.0" promptText="Enter Captcha" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
             <TextField fx:id="SignFName" layoutX="152.0" layoutY="100.0" prefHeight="27.0" prefWidth="120.0" promptText="Firstname" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
             <TextField fx:id="SignLName" layoutX="291.0" layoutY="100.0" prefHeight="27.0" prefWidth="120.0" promptText="Lastname" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
             <TextField fx:id="SignEmail" layoutX="14.0" layoutY="153.0" prefHeight="27.0" prefWidth="201.0" promptText="Email" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
             <TextField fx:id="SignPhone" layoutX="291.0" layoutY="153.0" prefHeight="27.0" prefWidth="120.0" promptText="Phone number" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
             <PasswordField fx:id="SignPass" layoutX="14.0" layoutY="207.0" prefHeight="27.0" prefWidth="120.0" promptText="Password" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
+            <ImageView fx:id="SignCaptchaImage" fitHeight="50.0" fitWidth="152.0" layoutX="70.0" layoutY="279.0" pickOnBounds="true" preserveRatio="true" />
             <PasswordField fx:id="SignRepass" layoutX="152.0" layoutY="206.0" prefHeight="27.0" prefWidth="120.0" promptText="Repeat Password" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
-         </children>
-      </AnchorPane>
-   </right>
-   <left>
-      <AnchorPane prefHeight="500.0" prefWidth="270.0" style="-fx-background-color: #FFEE58;" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="82.0" fitWidth="82.0" layoutX="84.0" layoutY="34.0">
+            <Button fx:id="SignReloadbtn" contentDisplay="CENTER" layoutX="25.0" layoutY="290.0" mnemonicParsing="false" onAction="#SignReloadCaptcha" prefHeight="28.0" prefWidth="27.0" />
+            <ImageView fitHeight="53.0" fitWidth="27.0" layoutX="25.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@icon.png" />
+                  <Image url="@reloading.png" />
                </image>
             </ImageView>
-            <Text fontSmoothingType="LCD" layoutX="27.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exchange APP" textAlignment="CENTER">
-               <font>
-                  <Font name="MontserratSubrayada-Bold" size="24.0" />
-               </font>
-            </Text>
          </children>
       </AnchorPane>
-   </left>
+   </center>
 </BorderPane>

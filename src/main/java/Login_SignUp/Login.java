@@ -1,7 +1,9 @@
 package Login_SignUp;
 
+import java.awt.image.BufferedImage;
 import java.util.regex.*;
 import javafx.beans.binding.StringBinding;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -11,9 +13,15 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import net.synedra.validatorfx.Validator;
+import nl.captcha.Captcha;
+import nl.captcha.backgrounds.GradiatedBackgroundProducer;
+import nl.captcha.noise.CurvedLineNoiseProducer;
+
 import java.io.IOException;
 
 public class Login {
@@ -54,6 +62,14 @@ public class Login {
 
     public void signUpPage(ActionEvent event) throws IOException {
         //captcha
+        Captcha captcha = new Captcha.Builder(152,60)
+                .addText()
+                .addNoise()
+                .addBackground(new GradiatedBackgroundProducer())
+                .addNoise(new CurvedLineNoiseProducer())
+                .build();
+        BufferedImage bufferedImage = captcha.getImage();
+        Image image = SwingFXUtils.toFXImage(bufferedImage, null);
 
 
         root = new FXMLLoader(getClass().getResource("SignUp.fxml")).load();
@@ -61,6 +77,7 @@ public class Login {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+
     }
     public void EmailPage(ActionEvent event) throws IOException {
         root = new FXMLLoader(getClass().getResource("SendEmail.fxml")).load();
