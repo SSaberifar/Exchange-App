@@ -39,19 +39,19 @@
                         <Font name="Roboto Bold" size="36.0" />
                     </font>
                 </Text>
-                <TextField fx:id="LoginName" layoutX="194.0" layoutY="119.0" promptText="Username" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
-                <PasswordField fx:id="LoginPass" layoutX="194.0" layoutY="184.0" promptText="Userpass" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
-                <Text layoutX="84.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
+                <TextField fx:id="LoginName" layoutX="194.0" layoutY="110.0" promptText="Username" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
+                <PasswordField fx:id="LoginPass" layoutX="194.0" layoutY="175.0" promptText="Userpass" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
+                <Text layoutX="84.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
                     <font>
                         <Font name="Roboto Medium" size="15.0" />
                     </font>
                 </Text>
-                <Text layoutX="85.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
+                <Text layoutX="85.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
                     <font>
                         <Font name="Roboto Medium" size="15.0" />
                     </font>
                 </Text>
-                <Button fx:id="Loginbtn" layoutX="70.0" layoutY="348.0" mnemonicParsing="false" onAction="#LoginApp" prefHeight="30.0" prefWidth="132.0" style="-fx-background-color: #FFEE58;" text="Login">
+                <Button fx:id="Loginbtn" layoutX="70.0" layoutY="369.0" mnemonicParsing="false" onAction="#LoginApp" prefHeight="30.0" prefWidth="132.0" style="-fx-background-color: #FFEE58;" text="Login">
                     <font>
                         <Font name="Roboto Light" size="14.0" />
                     </font>
@@ -66,13 +66,18 @@
                         <Font name="Roboto Light" size="14.0" />
                     </font>
                 </Button>
-            <Button fx:id="Emailbtn" layoutX="228.0" layoutY="348.0" mnemonicParsing="false" onAction="#EmailPage" prefHeight="30.0" prefWidth="132.0" style="-fx-background-color: #FFEE58;" text="Forgot Password?">
+            <Button fx:id="Emailbtn" layoutX="228.0" layoutY="369.0" mnemonicParsing="false" onAction="#EmailPage" prefHeight="30.0" prefWidth="132.0" style="-fx-background-color: #FFEE58;" text="Forgot Password?">
                <font>
                   <Font name="Roboto Light" size="14.0" />
                </font>
             </Button>
-            <PasswordField layoutX="139.0" layoutY="289.0" promptText="Enter Captcha" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
-            <ImageView fitHeight="42.0" fitWidth="101.0" layoutX="164.0" layoutY="240.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="LoginCap" fitHeight="40.0" fitWidth="100.0" layoutX="117.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" />
+            <TextField fx:id="CaptchaCode" layoutX="139.0" layoutY="311.0" onAction="#LoginApp" promptText="Captcha Code" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" />
+            <Button fx:id="CaptchaGen" layoutX="229.0" layoutY="255.0" mnemonicParsing="false" onAction="#GenerateCaptcha" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: #FBC02D;" text="Genrate" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Light" size="14.0" />
+               </font>
+            </Button>
             </children>
         </AnchorPane>
     </right>

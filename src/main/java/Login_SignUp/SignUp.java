@@ -1,6 +1,8 @@
 package Login_SignUp;
 
-import javafx.beans.binding.StringBinding;
+import com.mewebstudio.captcha.Captcha;
+import com.mewebstudio.captcha.Config;
+import com.mewebstudio.captcha.GeneratedCaptcha;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,18 +11,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import net.synedra.validatorfx.Validator;
-import nl.captcha.Captcha;
-import nl.captcha.backgrounds.GradiatedBackgroundProducer;
-import nl.captcha.noise.CurvedLineNoiseProducer;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -46,47 +43,31 @@ public class SignUp {
     @FXML
     PasswordField SignRepass;
     @FXML
-    TextField SignCaptcha;
+    TextField CaptchaCode;
     @FXML
-    public ImageView SignCaptchaImage;
-
-
-
-
+    ImageView SignCap;
 
     private Parent root;
     private Stage stage;
     private Scene scene;
     private Validator validator = new Validator();
-    private StringBinding problemsText;
-
-    private Captcha captcha;
-
-
+    Config customConfig = new Config();
+    Captcha captcha = new Captcha(customConfig);
+    String captchaCode;
     FileChooser fileChooser = new FileChooser();
-
-
-    public void SignReloadCaptcha(ActionEvent event) throws IOException  {
-
-        captcha  = new Captcha.Builder(152,60)
-                .addText()
-                .addNoise()
-                .addBackground(new GradiatedBackgroundProducer())
-                .addNoise(new CurvedLineNoiseProducer())
-                .build();
-        BufferedImage bufferedImage = captcha.getImage();
-        Image image = SwingFXUtils.toFXImage(bufferedImage, null);
-
-        SignCaptchaImage.setImage(image);
-
+    public void GenerateCaptcha(ActionEvent event) {
+        customConfig.setWidth(100);
+        customConfig.setHeight(40);
+        GeneratedCaptcha generatedCaptcha = captcha.generate();
+        BufferedImage captchaImage = generatedCaptcha.getImage();
+        captchaCode = generatedCaptcha.getCode();
+        Image captchaImg = SwingFXUtils.toFXImage(captchaImage, null);
+        SignCap.setImage(captchaImg);
     }
     public void FileChoose(ActionEvent event){
         File selectedFile = fileChooser.showOpenDialog(stage);
     }
-    public void SignUpApp(ActionEvent event) throws IOException {
-
-
-
+    public void SignUpApp(ActionEvent event){
         validator.createCheck().withMethod(c -> {
             if (!Pattern.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$", c.get("password")) || c.get("password").equals(null) || !c.get("password").equals(c.get("repassword"))) {
                 c.error("please enter valid password!");
@@ -113,17 +94,12 @@ public class SignUp {
             }
         }).dependsOn("email", SignEmail.textProperty()).decorates(SignEmail).immediate();
         validator.createCheck().withMethod(c -> {
-            if (!Pattern.matches("^(?:(?:(?:\\\\+?|00)(98))|(0))?((?:90|91|92|93|99)[0-9]{8})$", c.get("phonenumber")) || c.get("phonenumber").equals(null)) {
+            if (!Pattern.matches("^(?:(?:\\\\+?|00)(98)|(0))?((?:90|91|92|93|99)[0-9]{8})$", c.get("phonenumber")) || c.get("phonenumber").equals(null)) {
                 c.error("please enter valid phonenumber!");
             }
         }).dependsOn("phonenumber", SignPhone.textProperty()).decorates(SignPhone).immediate();
-        validator.createCheck().withMethod(c -> {
-            if (SignCaptcha.getText() != captcha.getAnswer()) {
-                c.error("please enter captcha code");
-            }
-        }).dependsOn("enter captcha",SignCaptcha.textProperty()).decorates(SignCaptcha).immediate();
 
-        if (validator.validate()) {
+        if (validator.validate() && CaptchaCode.getText().equals(captchaCode)) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Sign up complete");
             alert.setHeaderText(null);
@@ -132,7 +108,6 @@ public class SignUp {
         }
     }
     public void LoginPage(ActionEvent event) throws IOException {
-
         root = new FXMLLoader(getClass().getResource("Login.fxml")).load();
         scene = new Scene(root);
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

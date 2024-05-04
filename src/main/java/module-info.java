@@ -9,9 +9,9 @@ module Login_SignUp {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
-    requires simplecaptcha;
     requires java.desktop;
     requires javafx.swing;
+    requires captcha;
 
     opens Login_SignUp to javafx.fxml;
     exports Login_SignUp;
