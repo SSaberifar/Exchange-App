@@ -2,6 +2,8 @@ package ExchangeApp.UserAccount;
 
 
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.regex.*;
 
 import com.mewebstudio.captcha.Captcha;
