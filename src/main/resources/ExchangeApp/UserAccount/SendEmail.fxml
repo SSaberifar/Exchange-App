@@ -17,10 +17,10 @@
       <AnchorPane prefHeight="500.0" prefWidth="430.0" BorderPane.alignment="CENTER">
          <Text fill="RED" layoutX="31.0" layoutY="72.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.5" style="-fx-line-spacing: 10px;" text="Enter your account email address and we send your password to login" textAlignment="CENTER" wrappingWidth="367.42301177978516">
             <font>
-               <Font name="Roboto Bold" size="18.0" />
+               <Font name="Roboto" size="18.0" />
             </font>
          </Text>
-         <TextField fx:id="Email" layoutX="127.0" layoutY="191.0" prefHeight="27.0" prefWidth="175.0" promptText="Email Address" />
+         <TextField fx:id="Email" layoutX="127.0" layoutY="191.0" prefHeight="27.0" prefWidth="175.0" promptText="Email Address" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-style: dotted;" />
          <Button layoutX="137.0" layoutY="242.0" mnemonicParsing="false" onAction="#SignUpApp" prefHeight="30.0" prefWidth="154.0" style="-fx-background-color: linear-gradient(to right, #ffb75e, #ed8f03); -fx-background-radius: 20;" text="Send Code" textFill="WHITE">
             <font>
                <Font name="Roboto Light" size="14.0" />
@@ -30,35 +30,33 @@
    </right>
    <left>
       <AnchorPane prefHeight="500.0" prefWidth="270.0" style="-fx-background-color: #FFEE58;" BorderPane.alignment="CENTER">
-         <AnchorPane prefHeight="500.0" prefWidth="270.0" style="-fx-background-color: linear-gradient(to right, #ffb75e, #ed8f03);">
-            <children>
-               <ImageView fitHeight="82.0" fitWidth="82.0" layoutX="94.0" layoutY="34.0">
-                  <image>
-                     <Image url="@../../icon.png" />
-                  </image>
-               </ImageView>
-               <Text fill="WHITE" layoutX="37.0" layoutY="163.0" smooth="false" strokeType="OUTSIDE" strokeWidth="2.0" text="Exchange APP">
-                  <font>
-                     <Font name="MontserratSubrayada-Bold" size="24.0" />
-                  </font>
-                  <stroke>
-                     <LinearGradient endX="1.0" endY="1.0">
-                        <stops>
-                           <Stop>
-                              <color>
-                                 <Color red="1.0" green="0.014814814552664757" blue="0.014814814552664757" />
-                              </color>
-                           </Stop>
-                           <Stop offset="1.0">
-                              <color>
-                                 <Color red="0.458089679479599" green="0.49473685026168823" blue="0.05497075989842415" />
-                              </color>
-                           </Stop>
-                        </stops>
-                     </LinearGradient>
-                  </stroke>
-               </Text>
-            </children>
+         <AnchorPane prefHeight="500.0" prefWidth="270.0"
+                     style="-fx-background-color: linear-gradient(to right, #ffb75e, #ed8f03);">
+            <ImageView fitHeight="82.0" fitWidth="82.0" layoutX="94.0" layoutY="40.0">
+               <Image url="@../images/icon.png"/>
+            </ImageView>
+            <Text fill="WHITE" layoutX="43.0" layoutY="166.0" smooth="false" strokeType="OUTSIDE" strokeWidth="2.0"
+                  text="Exchange APP" textAlignment="CENTER">
+               <font>
+                  <Font name="Montserrat Bold" size="24.0"/>
+               </font>
+               <stroke>
+                  <LinearGradient>
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="0.014814814552664757" blue="0.014814814552664757"/>
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.458089679479599" green="0.49473685026168823" blue="0.05497075989842415"/>
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Text>
          </AnchorPane>
       </AnchorPane>
    </left>

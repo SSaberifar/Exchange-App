@@ -1,9 +1,6 @@
 package ExchangeApp.UserAccount;
 
-
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.regex.*;
 
 import com.mewebstudio.captcha.Captcha;
@@ -76,7 +73,7 @@ public class Login {
         }).dependsOn("captcha", CaptchaCode.textProperty()).decorates(CaptchaCode).immediate();
         if (validator.validate()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Login complete");
+            alert.setTitle("ExchangeApp.UserAccount.Login complete");
             alert.setHeaderText(null);
             alert.setContentText("You successfully Logged in!!!");
             alert.showAndWait();
