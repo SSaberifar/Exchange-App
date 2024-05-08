@@ -17,7 +17,7 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ExchangeApp.UserAccount.SignUp">
    <center>
       <AnchorPane prefHeight="500.0" prefWidth="430.0" BorderPane.alignment="CENTER">
-         <TextField fx:id="SignName" layoutX="14.0" layoutY="100.0" prefHeight="27.0" prefWidth="120.0" promptText="Username" />
+         <TextField fx:id="SignName" layoutX="14.0" layoutY="100.0" prefHeight="27.0" prefWidth="120.0" promptText="Username" style="-fx-border-style: dashed; -fx-border-radius: 20; -fx-background-radius: 20;" />
          <Button layoutX="285.0" layoutY="204.0" mnemonicParsing="false" onAction="#FileChoose" prefHeight="30.0" prefWidth="132.0" style="-fx-background-color: linear-gradient(to right, #ffb75e, #ed8f03); -fx-background-radius: 20;" text="Profile Image" textFill="WHITE">
             <font>
                <Font name="Roboto Light" size="14.0" />
@@ -38,14 +38,14 @@
                <Font name="Roboto Light" size="14.0" />
             </font>
          </Button>
-         <TextField fx:id="CaptchaCode" layoutX="134.0" layoutY="321.0" promptText="Enter Captcha" />
-         <TextField fx:id="SignFName" layoutX="152.0" layoutY="100.0" prefHeight="27.0" prefWidth="120.0" promptText="Firstname" />
-         <TextField fx:id="SignLName" layoutX="291.0" layoutY="100.0" prefHeight="27.0" prefWidth="120.0" promptText="Lastname" />
-         <TextField fx:id="SignEmail" layoutX="14.0" layoutY="153.0" prefHeight="27.0" prefWidth="201.0" promptText="Email" />
-         <TextField fx:id="SignPhone" layoutX="291.0" layoutY="153.0" prefHeight="27.0" prefWidth="120.0" promptText="Phone number" />
-         <PasswordField fx:id="SignPass" layoutX="14.0" layoutY="207.0" prefHeight="27.0" prefWidth="120.0" promptText="Password" />
-         <ImageView fx:id="SignCap" fitHeight="40.0" fitWidth="100.0" layoutX="130.0" layoutY="279.0" pickOnBounds="true" preserveRatio="true" />
-         <PasswordField fx:id="SignRepass" layoutX="152.0" layoutY="206.0" prefHeight="27.0" prefWidth="120.0" promptText="Repeat Password" />
+         <TextField fx:id="CaptchaCode" layoutX="134.0" layoutY="321.0" promptText="Enter Captcha" style="-fx-border-style: dashed; -fx-border-radius: 20; -fx-background-radius: 20;" />
+         <TextField fx:id="SignFName" layoutX="152.0" layoutY="100.0" prefHeight="27.0" prefWidth="120.0" promptText="Firstname" style="-fx-border-style: dashed; -fx-border-radius: 20; -fx-background-radius: 20;" />
+         <TextField fx:id="SignLName" layoutX="291.0" layoutY="100.0" prefHeight="27.0" prefWidth="120.0" promptText="Lastname" style="-fx-border-style: dashed; -fx-border-radius: 20; -fx-background-radius: 20;" />
+         <TextField fx:id="SignEmail" layoutX="14.0" layoutY="153.0" prefHeight="27.0" prefWidth="201.0" promptText="Email" style="-fx-border-style: dashed; -fx-border-radius: 20; -fx-background-radius: 20;" />
+         <TextField fx:id="SignPhone" layoutX="291.0" layoutY="153.0" prefHeight="27.0" prefWidth="120.0" promptText="Phone number" style="-fx-border-style: dashed; -fx-border-radius: 20; -fx-background-radius: 20;" />
+         <PasswordField fx:id="SignPass" layoutX="14.0" layoutY="207.0" prefHeight="27.0" prefWidth="120.0" promptText="Password" style="-fx-border-style: dashed; -fx-border-radius: 20; -fx-background-radius: 20;" />
+         <ImageView fx:id="SignCap" fitHeight="40.0" fitWidth="100.0" layoutX="130.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true" />
+         <PasswordField fx:id="SignRepass" layoutX="152.0" layoutY="206.0" prefHeight="27.0" prefWidth="120.0" promptText="Repeat Password" style="-fx-border-style: dashed; -fx-border-radius: 20; -fx-background-radius: 20;" />
          <Text fill="RED" layoutX="149.0" layoutY="64.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" text="Sign Up" textAlignment="CENTER">
             <font>
                <Font name="Roboto Bold" size="36.0" />

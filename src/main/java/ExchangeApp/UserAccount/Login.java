@@ -69,7 +69,12 @@ public class Login {
                 c.error("please enter valid username!");
             }
         }).dependsOn("username", LoginName.textProperty()).decorates(LoginName).immediate();
-        if (validator.validate() && CaptchaCode.getText().equals(captchaCode)) {
+        validator.createCheck().withMethod(c -> {
+            if (!c.get("captcha").equals(captchaCode)) {
+                c.error("please enter valid captcha!");
+            }
+        }).dependsOn("captcha", CaptchaCode.textProperty()).decorates(CaptchaCode).immediate();
+        if (validator.validate()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Login complete");
             alert.setHeaderText(null);
