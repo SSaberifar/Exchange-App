@@ -18,6 +18,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import net.synedra.validatorfx.Validator;
@@ -86,7 +87,6 @@ public class Login {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
-
     }
 
     public void EmailPage(ActionEvent event) throws IOException {

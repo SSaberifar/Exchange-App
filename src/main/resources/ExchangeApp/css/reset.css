@@ -1,0 +1,32 @@
+@font-face {
+    font-family: Montserrat-Bold;
+    src: url("../font/Montserrat-Bold.ttf");
+}
+
+@font-face {
+    font-family: Roboto-Bold;
+    src: url("../font/Roboto-Bold.ttf");
+}
+
+@font-face {
+    font-family: Roboto-Light;
+    src: url("../font/Roboto-Light.ttf");
+}
+
+.logo {
+    -fx-font-family: Montserrat-Bold;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+
+.text-bold {
+    -fx-font-family: Roboto-Bold;
+    -fx-font-weight: bold;
+    -fx-font-size: 36px;
+}
+
+.text-light {
+    -fx-font-family: Roboto-Light;
+    -fx-font-weight: normal;
+    -fx-font-size: 14px;
+}
