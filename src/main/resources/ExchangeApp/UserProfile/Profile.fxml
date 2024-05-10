@@ -1,14 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ExchangeApp.UserProfile.Profile"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ExchangeApp.UserProfile.Profile">
+   <children>
+      <AnchorPane layoutY="42.0" prefHeight="458.0" prefWidth="690.0" AnchorPane.leftAnchor="0.0" />
+      <ImageView fx:id="menubtn" fitHeight="42.0" fitWidth="52.0" layoutX="715.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/hamburger-menu.png" />
+         </image>
+      </ImageView>
+      <AnchorPane prefHeight="41.0" prefWidth="718.0">
+         <children>
+            <TextField disable="true" editable="false" focusTraversable="false" layoutX="65.0" layoutY="8.0" mouseTransparent="true" opacity="0.8" prefHeight="27.0" prefWidth="136.0" promptText="username" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-style: dashed;" />
+            <Label layoutX="628.0" layoutY="3.0" prefHeight="34.0" prefWidth="75.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" text="  Profile" textFill="#f5c400">
+               <font>
+                  <Font name="Roboto Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField disable="true" layoutX="520.0" layoutY="8.0" prefHeight="26.0" prefWidth="94.0" />
+            <ImageView fitHeight="34.0" fitWidth="36.0" layoutX="16.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/user.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <VBox fx:id="menubar" layoutX="697.0" layoutY="42.0" prefHeight="458.0" prefWidth="60.0" AnchorPane.rightAnchor="0.39999999999997726">
+         <children>
+            <ImageView fx:id="homepagebtn" fitHeight="45.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/homeicon.png" />
+               </image>
+            </ImageView>
+            <Separator prefWidth="200.0" />
+            <ImageView fx:id="exchangepagebtn" fitHeight="45.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/exchangeicon.png" />
+               </image>
+            </ImageView>
+            <Separator prefWidth="200.0" />
+            <ImageView fx:id="swappagebtn" fitHeight="45.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/swap.png" />
+               </image>
+            </ImageView>
+            <Separator prefWidth="200.0" />
+            <ImageView fx:id="historypagebtn" fitHeight="45.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/history.png" />
+               </image>
+            </ImageView>
+            <Separator prefWidth="200.0" />
+            <ImageView fx:id="transferpagebtn" fitHeight="45.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/transfer.png" />
+               </image>
+            </ImageView>
+            <Separator prefWidth="200.0" />
+            <ImageView fx:id="walletpagebtn" fitHeight="45.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/wallet.png" />
+               </image>
+            </ImageView>
+            <Separator prefWidth="200.0" />
+            <ImageView fx:id="profilepagebtn" fitHeight="45.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/profile.png" />
+               </image>
+            </ImageView>
+            <Separator prefWidth="200.0" />
+            <ImageView fx:id="exitbtn" fitHeight="45.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </VBox>
+      <Separator layoutY="39.0" prefHeight="1.0" prefWidth="758.0">
+         <padding>
+            <Insets bottom="1.0" top="1.0" />
+         </padding>
+      </Separator>
+   </children>
 </AnchorPane>
