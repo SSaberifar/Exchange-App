@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,97 +14,150 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="ExchangeApp.Profile">
+<AnchorPane prefHeight="500.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ExchangeApp.Profile">
+   <stylesheets>
+      <URL value="@css/reset.css" />
+   </stylesheets>
    <BorderPane prefHeight="500.0" prefWidth="809.0">
       <top>
-         <AnchorPane prefHeight="34.0" prefWidth="942.0" BorderPane.alignment="CENTER">
-            <Label layoutX="376.0" layoutY="4.0" prefHeight="34.0" prefWidth="120.0"
-                   style="-fx-background-radius: 15; -fx-border-radius: 15;" text="پروفایل کاربری"
-                   textFill="#f5c400">
+         <AnchorPane prefHeight="34.0" prefWidth="942.0" style="-fx-background-color: linear-gradient(to right, #ffb75e, #ed8f03);" BorderPane.alignment="CENTER">
+            <Label layoutX="345.0" layoutY="9.0" prefHeight="34.0" prefWidth="120.0" style="-fx-background-radius: 15; -fx-border-radius: 15;" text="پروفایل کاربری" textFill="RED">
                <font>
-                  <Font name="Roboto Bold" size="20.0"/>
+                  <Font name="Roboto Bold" size="20.0" />
                </font>
             </Label>
-            <ImageView fitHeight="34.0" fitWidth="36.0" layoutX="14.0" layoutY="3.0" pickOnBounds="true"
-                       preserveRatio="true">
-               <Image url="@images/user.png"/>
+            <ImageView fitHeight="34.0" fitWidth="36.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@images/user.png" />
             </ImageView>
-            <ImageView fx:id="menubtn" fitHeight="42.0" fitWidth="52.0" layoutX="785.0" pickOnBounds="true"
-                       preserveRatio="true">
-               <Image url="@images/hamburger-menu.png"/>
-            </ImageView>
-            <Text layoutX="712.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ساعت"/>
-            <Text layoutX="61.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="نام کاربری"/>
+            <Text layoutX="705.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-light" text="ساعت" />
+            <Text layoutX="61.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-light" text="نام کاربری" />
+            <Button fx:id="menubtn" layoutX="751.0" layoutY="1.0" mnemonicParsing="false" onAction="#menu" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fitHeight="42.0" fitWidth="52.0" layoutX="785.0" pickOnBounds="true" preserveRatio="true">
+                     <Image url="@images/hamburger-menu.png" />
+                  </ImageView>
+               </graphic>
+            </Button>
          </AnchorPane>
       </top>
       <right>
-         <GridPane alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="458.0" prefWidth="120.0"
-                   BorderPane.alignment="CENTER">
+         <GridPane fx:id="menu" alignment="CENTER_RIGHT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="458.0" prefWidth="140.0" style="-fx-background-color: linear-gradient(to right, #fceabb, #f8b500);">
             <columnConstraints>
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.60003662109375" minWidth="10.0"
-                                  prefWidth="101.60003662109375"/>
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="98.39996337890625" minWidth="10.0"
-                                  prefWidth="98.39996337890625"/>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.60003662109375" minWidth="10.0" percentWidth="100" prefWidth="101.60003662109375" />
             </columnConstraints>
             <rowConstraints>
-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <BorderPane.margin>
-               <Insets/>
+               <Insets />
             </BorderPane.margin>
-            <ImageView fx:id="homepagebtn" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true"
-                       GridPane.halignment="CENTER">
-               <Image url="@images/homeicon.png"/>
-            </ImageView>
-            <Text nodeOrientation="RIGHT_TO_LEFT" strokeType="OUTSIDE" strokeWidth="0.0" text="خانه"
-                  textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER"/>
-            <ImageView fx:id="exchangepagebtn" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true"
-                       preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-               <Image url="@images/exchangeicon.png"/>
-            </ImageView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="تبادل" GridPane.columnIndex="1"
-                  GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="خرید" GridPane.columnIndex="1"
-                  GridPane.halignment="CENTER" GridPane.rowIndex="2"/>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="سوابق" GridPane.columnIndex="1"
-                  GridPane.halignment="CENTER" GridPane.rowIndex="3"/>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="واریز" GridPane.columnIndex="1"
-                  GridPane.halignment="CENTER" GridPane.rowIndex="4"/>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="کیف پول" GridPane.columnIndex="1"
-                  GridPane.halignment="CENTER" GridPane.rowIndex="5"/>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="خروج" GridPane.columnIndex="1"
-                  GridPane.halignment="CENTER" GridPane.rowIndex="6"/>
-            <ImageView fx:id="profilepagebtn" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true"
-                       preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="6">
-               <Image url="@images/profile.png"/>
-            </ImageView>
-            <ImageView fx:id="walletpagebtn" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true"
-                       preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="5">
-               <Image url="@images/wallet.png"/>
-            </ImageView>
-            <ImageView fx:id="transferpagebtn" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true"
-                       preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="4">
-               <Image url="@images/transfer.png"/>
-            </ImageView>
-            <ImageView fx:id="historypagebtn" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true"
-                       preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-               <Image url="@images/history.png"/>
-            </ImageView>
-            <ImageView fx:id="swappagebtn" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true"
-                       GridPane.halignment="CENTER" GridPane.rowIndex="2">
-               <Image url="@images/swap.png"/>
-            </ImageView>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" style="-fx-border-width: 0 0 1 0; -fx-border-style: solid; -fx-background-color: transparent;" styleClass="text-light" text="ارزها" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ExchangeApp/images/homeicon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" style="-fx-border-width: 0 0 1 0; -fx-border-style: solid; -fx-background-color: transparent;" styleClass="text-light" text="خرید" textAlignment="CENTER" GridPane.rowIndex="2">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ExchangeApp/images/exchangeicon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" style="-fx-border-width: 0 0 1 0; -fx-border-style: solid; -fx-background-color: transparent;" styleClass="text-light" text="تبادل" textAlignment="CENTER" GridPane.rowIndex="1">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ExchangeApp/images/swap.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" style="-fx-border-width: 0 0 1 0; -fx-border-style: solid; -fx-background-color: transparent;" styleClass="text-light" text="تاریخچه" textAlignment="CENTER" GridPane.rowIndex="3">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ExchangeApp/images/history.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" style="-fx-border-width: 0 0 1 0; -fx-border-style: solid; -fx-background-color: transparent;" styleClass="text-light" text="انتقال" textAlignment="CENTER" GridPane.rowIndex="4">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ExchangeApp/images/transfer.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" style="-fx-border-width: 0 0 1 0; -fx-border-style: solid; -fx-background-color: transparent;" styleClass="text-light" text="کیف پول" textAlignment="CENTER" GridPane.rowIndex="5">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ExchangeApp/images/wallet.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" style="-fx-border-width: 0 0 1 0; -fx-border-style: solid; -fx-background-color: transparent;" styleClass="text-light" text="پروفایل" textAlignment="CENTER" GridPane.rowIndex="6">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ExchangeApp/images/user.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" style="-fx-background-color: transparent;" styleClass="text-light" text="خروج" textAlignment="CENTER" GridPane.rowIndex="7">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ExchangeApp/images/lock.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
          </GridPane>
       </right>
       <center>
-         <AnchorPane prefHeight="455.0" prefWidth="766.0" BorderPane.alignment="CENTER"/>
+         <AnchorPane prefHeight="458.0" prefWidth="674.0" BorderPane.alignment="CENTER" />
       </center>
    </BorderPane>
 </AnchorPane>

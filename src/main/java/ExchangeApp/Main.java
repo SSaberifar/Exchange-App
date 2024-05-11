@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Profile.fxml"));
         Scene loginPanel = new Scene(root);
         stage.setTitle("Fum coin exchange");
         stage.setScene(loginPanel);
