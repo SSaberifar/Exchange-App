@@ -21,10 +21,19 @@
    <left>
       <AnchorPane prefHeight="500.0" prefWidth="430.0" BorderPane.alignment="CENTER">
          <TextField fx:id="SignName" alignment="CENTER_RIGHT" layoutX="21.0" layoutY="107.0" prefHeight="30.0" prefWidth="120.0" promptText="نام کاربری" style="-fx-border-style: dotted; -fx-background-color: transparent; -fx-border-width: 0 0 1 0;" />
-         <Button layoutX="21.0" layoutY="218.0" mnemonicParsing="false" onAction="#FileChoose" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right, #ffb75e, #ed8f03); -fx-background-radius: 20;" styleClass="text-light" text="آپلود عکس" textFill="WHITE" />
-         <Button layoutX="140.0" layoutY="385.0" mnemonicParsing="false" onAction="#SignUpApp" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right, #ffb75e, #ed8f03); -fx-background-radius: 20;" styleClass="text-light" text="ثبت نام" textFill="WHITE" />
-         <Text layoutX="322.0" layoutY="471.0" smooth="false" stroke="RED" strokeType="OUTSIDE" strokeWidth="0.3" styleClass="text-light" text="حساب دارید؟" />
-         <Button layoutX="21.0" layoutY="446.0" mnemonicParsing="false" onAction="#LoginPage" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(to right, #fceabb, #f8b500); -fx-background-radius: 20;" styleClass="text-light" text="ورود" textFill="WHITE" />
+         <Button layoutX="21.0" layoutY="218.0" mnemonicParsing="false" onAction="#FileChoose" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right, #ffb75e, #ed8f03); -fx-background-radius: 20;" styleClass="text-light" text="آپلود عکس" textFill="WHITE">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></Button>
+         <Button layoutX="140.0" layoutY="385.0" mnemonicParsing="false" onAction="#SignUpApp" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right, #ffb75e, #ed8f03); -fx-background-radius: 20;" styleClass="text-light" text="ثبت نام" textFill="WHITE">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></Button>
+         <Text layoutX="324.0" layoutY="471.0" smooth="false" stroke="RED" strokeType="OUTSIDE" strokeWidth="0.3" styleClass="text-light" text="حساب دارید؟" />
+         <Button layoutX="21.0" layoutY="446.0" mnemonicParsing="false" onAction="#LoginPage" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(to right, #fceabb, #f8b500); -fx-background-radius: 20;" styleClass="text-light" text="ورود" textFill="WHITE">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></Button>
          <TextField fx:id="CaptchaCode" alignment="CENTER_RIGHT" layoutX="155.0" layoutY="329.0" prefHeight="30.0" prefWidth="120.0" promptText="کد کپچا" style="-fx-border-style: dotted; -fx-background-color: transparent; -fx-border-width: 0 0 1 0;" />
          <TextField fx:id="SignFName" alignment="CENTER_RIGHT" layoutX="290.0" layoutY="107.0" prefHeight="30.0" prefWidth="120.0" promptText="نام" style="-fx-border-style: dotted; -fx-background-color: transparent; -fx-border-width: 0 0 1 0;" />
          <TextField fx:id="SignLName" alignment="CENTER_RIGHT" layoutX="155.0" layoutY="107.0" prefHeight="30.0" prefWidth="120.0" promptText="نام خانوادگی" style="-fx-border-style: dotted; -fx-background-color: transparent; -fx-border-width: 0 0 1 0;" />
@@ -38,14 +47,15 @@
                <Cursor fx:constant="DEFAULT" />
             </cursor>
          </Text>
-         <ImageView fx:id="captchabtn" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="249.0" layoutY="276.0" onMouseClicked="#GenerateCaptcha" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@images/retry.png" />
-            </image>
+         <ImageView accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="249.0" layoutY="276.0" onMouseClicked="#GenerateCaptcha" pickOnBounds="true" preserveRatio="true">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+            <Image url="@images/retry.png" />
          </ImageView>
       </AnchorPane>
    </left>
-   <center>
+   <right>
       <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="500.0" prefWidth="270.0" style="-fx-background-color: linear-gradient(to right, #ffb75e, #ed8f03);" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="82.0" fitWidth="82.0" layoutX="94.0" layoutY="40.0">
@@ -53,7 +63,7 @@
                   <Image url="@images/icon.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" layoutX="61.0" layoutY="182.0" smooth="false" strokeType="OUTSIDE" strokeWidth="2.0" styleClass="logo" text="فام کوین" textAlignment="CENTER">
+            <Text fill="WHITE" layoutX="46.0" layoutY="182.0" smooth="false" strokeType="OUTSIDE" strokeWidth="2.0" styleClass="logo" text="Fum Coin" textAlignment="CENTER">
                <stroke>
                   <LinearGradient>
                      <stops>
@@ -73,5 +83,5 @@
             </Text>
          </children>
       </AnchorPane>
-   </center>
+   </right>
 </BorderPane>
