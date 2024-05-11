@@ -1,4 +1,4 @@
-package ExchangeApp.UserAccount;
+package ExchangeApp;
 
 import java.awt.image.BufferedImage;
 import java.util.regex.*;
@@ -9,6 +9,7 @@ import com.mewebstudio.captcha.GeneratedCaptcha;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.NodeOrientation;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,7 +19,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import net.synedra.validatorfx.Validator;
@@ -56,7 +56,7 @@ public class Login {
         LoginCap.setImage(captchaImg);
     }
 
-    public void LoginApp() {
+    public void LoginApp(ActionEvent event) throws IOException {
         validator.createCheck().withMethod(c -> {
             if (!Pattern.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$", c.get("password")) || c.get("password") == null) {
                 c.error("please enter valid password!");
@@ -74,11 +74,21 @@ public class Login {
         }).dependsOn("captcha", CaptchaCode.textProperty()).decorates(CaptchaCode).immediate();
         if (validator.validate()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("ExchangeApp.UserAccount.Login complete");
+            alert.getDialogPane().setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+            alert.setTitle("ورود کاربر");
             alert.setHeaderText(null);
-            alert.setContentText("You successfully Logged in!!!");
+            alert.setContentText("با موفقیت وارد شدید!");
             alert.showAndWait();
+            profilePage(event);
         }
+    }
+
+    public void profilePage(ActionEvent event) throws IOException{
+        root = new FXMLLoader(getClass().getResource("Profile.fxml")).load();
+        scene = new Scene(root);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void signUpPage(ActionEvent event) throws IOException {

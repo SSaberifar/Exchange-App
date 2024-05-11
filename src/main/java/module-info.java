@@ -15,6 +15,4 @@ module Login_SignUp {
 
     opens ExchangeApp to javafx.fxml;
     exports ExchangeApp;
-    opens ExchangeApp.UserAccount to javafx.fxml;
-    exports ExchangeApp.UserAccount;
 }

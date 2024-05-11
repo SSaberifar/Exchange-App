@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ExchangeApp.SignUp">
+   <stylesheets>
+      <URL value="@css/reset.css" />
+   </stylesheets>
+   <left>
+      <AnchorPane prefHeight="500.0" prefWidth="430.0" BorderPane.alignment="CENTER">
+         <TextField fx:id="SignName" alignment="CENTER_RIGHT" layoutX="21.0" layoutY="107.0" prefHeight="30.0" prefWidth="120.0" promptText="نام کاربری" style="-fx-border-style: dotted; -fx-background-color: transparent; -fx-border-width: 0 0 1 0;" />
+         <Button layoutX="21.0" layoutY="218.0" mnemonicParsing="false" onAction="#FileChoose" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right, #ffb75e, #ed8f03); -fx-background-radius: 20;" styleClass="text-light" text="آپلود عکس" textFill="WHITE" />
+         <Button layoutX="140.0" layoutY="385.0" mnemonicParsing="false" onAction="#SignUpApp" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right, #ffb75e, #ed8f03); -fx-background-radius: 20;" styleClass="text-light" text="ثبت نام" textFill="WHITE" />
+         <Text layoutX="322.0" layoutY="471.0" smooth="false" stroke="RED" strokeType="OUTSIDE" strokeWidth="0.3" styleClass="text-light" text="حساب دارید؟" />
+         <Button layoutX="21.0" layoutY="446.0" mnemonicParsing="false" onAction="#LoginPage" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(to right, #fceabb, #f8b500); -fx-background-radius: 20;" styleClass="text-light" text="ورود" textFill="WHITE" />
+         <TextField fx:id="CaptchaCode" alignment="CENTER_RIGHT" layoutX="155.0" layoutY="329.0" prefHeight="30.0" prefWidth="120.0" promptText="کد کپچا" style="-fx-border-style: dotted; -fx-background-color: transparent; -fx-border-width: 0 0 1 0;" />
+         <TextField fx:id="SignFName" alignment="CENTER_RIGHT" layoutX="290.0" layoutY="107.0" prefHeight="30.0" prefWidth="120.0" promptText="نام" style="-fx-border-style: dotted; -fx-background-color: transparent; -fx-border-width: 0 0 1 0;" />
+         <TextField fx:id="SignLName" alignment="CENTER_RIGHT" layoutX="155.0" layoutY="107.0" prefHeight="30.0" prefWidth="120.0" promptText="نام خانوادگی" style="-fx-border-style: dotted; -fx-background-color: transparent; -fx-border-width: 0 0 1 0;" />
+         <TextField fx:id="SignEmail" alignment="CENTER_RIGHT" layoutX="211.0" layoutY="223.0" prefHeight="30.0" prefWidth="200.0" promptText="ایمیل" style="-fx-border-style: dotted; -fx-background-color: transparent; -fx-border-width: 0 0 1 0;" />
+         <TextField fx:id="SignPhone" alignment="CENTER_RIGHT" layoutX="21.0" layoutY="165.0" prefHeight="30.0" prefWidth="120.0" promptText="شماره تلفن" style="-fx-border-style: dotted; -fx-background-color: transparent; -fx-border-width: 0 0 1 0;" />
+         <PasswordField fx:id="SignPass" alignment="CENTER_RIGHT" layoutX="290.0" layoutY="165.0" prefHeight="30.0" prefWidth="120.0" promptText="رمز عبور" style="-fx-border-style: dotted; -fx-background-color: transparent; -fx-border-width: 0 0 1 0;" />
+         <ImageView fx:id="SignCap" fitHeight="45.0" fitWidth="100.0" layoutX="149.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true" />
+         <PasswordField fx:id="SignRepass" alignment="CENTER_RIGHT" layoutX="155.0" layoutY="165.0" prefHeight="30.0" prefWidth="120.0" promptText="تکرار رمز عبور" style="-fx-border-style: dotted; -fx-background-color: transparent; -fx-border-width: 0 0 1 0;" />
+         <Text fill="RED" layoutX="161.0" layoutY="53.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" styleClass="text-bold" text="ثبت نام" textAlignment="CENTER">
+            <cursor>
+               <Cursor fx:constant="DEFAULT" />
+            </cursor>
+         </Text>
+         <ImageView fx:id="captchabtn" accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="249.0" layoutY="276.0" onMouseClicked="#GenerateCaptcha" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@images/retry.png" />
+            </image>
+         </ImageView>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="500.0" prefWidth="270.0" style="-fx-background-color: linear-gradient(to right, #ffb75e, #ed8f03);" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="82.0" fitWidth="82.0" layoutX="94.0" layoutY="40.0">
+               <image>
+                  <Image url="@images/icon.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="61.0" layoutY="182.0" smooth="false" strokeType="OUTSIDE" strokeWidth="2.0" styleClass="logo" text="فام کوین" textAlignment="CENTER">
+               <stroke>
+                  <LinearGradient>
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="0.014814814552664757" blue="0.014814814552664757" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.458089679479599" green="0.49473685026168823" blue="0.05497075989842415" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke>
+            </Text>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

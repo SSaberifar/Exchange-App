@@ -1,8 +1,9 @@
-package ExchangeApp.UserAccount;
+package ExchangeApp;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.NodeOrientation;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -30,9 +31,10 @@ public class SendEmail {
 
         if (validator.validate()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Send Email");
+            alert.getDialogPane().setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+            alert.setTitle("بازیابی رمز عبور");
             alert.setHeaderText(null);
-            alert.setContentText("Recovery Email Sent!");
+            alert.setContentText("ایمیل بازیابی ارسال شد!");
             alert.showAndWait();
 
             Parent root = new FXMLLoader(getClass().getResource("Login.fxml")).load();

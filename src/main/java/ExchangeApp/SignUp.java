@@ -1,4 +1,4 @@
-package ExchangeApp.UserAccount;
+package ExchangeApp;
 
 import com.mewebstudio.captcha.Captcha;
 import com.mewebstudio.captcha.Config;
@@ -7,6 +7,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.NodeOrientation;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -61,10 +62,12 @@ public class SignUp {
         Image captchaImg = SwingFXUtils.toFXImage(captchaImage, null);
         SignCap.setImage(captchaImg);
     }
-    public void FileChoose(){
+
+    public void FileChoose() {
         File selectedFile = fileChooser.showOpenDialog(stage);
     }
-    public void SignUpApp(){
+
+    public void SignUpApp() {
         validator.createCheck().withMethod(c -> {
             if (!Pattern.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$", c.get("password")) || c.get("password") == null || !c.get("password").equals(c.get("repeat password"))) {
                 c.error("please enter valid password!");
@@ -76,12 +79,12 @@ public class SignUp {
             }
         }).dependsOn("username", SignName.textProperty()).decorates(SignName).immediate();
         validator.createCheck().withMethod(c -> {
-            if (!Pattern.matches("^([A-Za-z])+$", c.get("firstname")) || c.get("firstname") == null) {
+            if (!Pattern.matches("^([\\u0600-\\u06FF\\s])+$", c.get("firstname")) || c.get("firstname") == null) {
                 c.error("please enter valid firstname!");
             }
         }).dependsOn("firstname", SignFName.textProperty()).decorates(SignFName).immediate();
         validator.createCheck().withMethod(c -> {
-            if (!Pattern.matches("^([A-Za-z])+$", c.get("lastname")) || c.get("lastname") == null) {
+            if (!Pattern.matches("^([\\u0600-\\u06FF\\s])+$", c.get("lastname")) || c.get("lastname") == null) {
                 c.error("please enter valid lastname!");
             }
         }).dependsOn("lastname", SignLName.textProperty()).decorates(SignLName).immediate();
@@ -103,12 +106,14 @@ public class SignUp {
 
         if (validator.validate()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Sign up complete");
+            alert.getDialogPane().setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+            alert.setTitle("ثبت نام کاربر");
             alert.setHeaderText(null);
-            alert.setContentText("You successfully Signed Up!!!");
+            alert.setContentText("ثبت نام با موفقیت انجام شد!");
             alert.showAndWait();
         }
     }
+
     public void LoginPage(ActionEvent event) throws IOException {
         Parent root = new FXMLLoader(getClass().getResource("Login.fxml")).load();
         Scene scene = new Scene(root);

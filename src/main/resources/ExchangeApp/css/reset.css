@@ -1,32 +1,36 @@
 @font-face {
-    font-family: Montserrat-Bold;
-    src: url("../font/Montserrat-Bold.ttf");
+    font-family: iranyekan-Bold;
+    src: url("../font/IRANYEKAN-Bold.ttf");
 }
 
 @font-face {
-    font-family: Roboto-Bold;
-    src: url("../font/Roboto-Bold.ttf");
+    font-family: iranyekan-Light;
+    src: url("../font/IRANYEKAN-Regular.ttf");
 }
 
 @font-face {
-    font-family: Roboto-Light;
-    src: url("../font/Roboto-Light.ttf");
+    font-family: vazir-Bold;
+    src: url("../font/Vazirmatn-Bold.ttf");
+}
+@font-face {
+    font-family: vazir-Light;
+    src: url("../font/Vazirmatn-Regular.ttf");
 }
 
 .logo {
-    -fx-font-family: Montserrat-Bold;
-    -fx-font-size: 30px;
+    -fx-font-family: iranyekan-Bold;
+    -fx-font-size: 40px;
     -fx-font-weight: bold;
 }
 
 .text-bold {
-    -fx-font-family: Roboto-Bold;
+    -fx-font-family: vazir-Bold;
     -fx-font-weight: bold;
     -fx-font-size: 36px;
 }
 
 .text-light {
-    -fx-font-family: Roboto-Light;
+    -fx-font-family: vazir-Light;
     -fx-font-weight: normal;
-    -fx-font-size: 14px;
+    -fx-font-size: 16px;
 }

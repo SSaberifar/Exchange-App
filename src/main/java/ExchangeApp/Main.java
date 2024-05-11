@@ -5,16 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("UserAccount/Login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Scene loginPanel = new Scene(root);
-        stage.setTitle("Exchange App");
-        stage.getIcons().add(new Image("ExchangeApp/images/icon.png"));
+        stage.setTitle("Fum coin exchange");
         stage.setScene(loginPanel);
         stage.setResizable(false);
         stage.show();
