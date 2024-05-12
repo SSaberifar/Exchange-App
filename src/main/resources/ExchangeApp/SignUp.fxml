@@ -21,11 +21,11 @@
    <left>
       <AnchorPane prefHeight="500.0" prefWidth="430.0" BorderPane.alignment="CENTER">
          <TextField fx:id="SignName" alignment="CENTER_RIGHT" layoutX="21.0" layoutY="107.0" prefHeight="30.0" prefWidth="120.0" promptText="نام کاربری" style="-fx-border-style: dotted; -fx-background-color: transparent; -fx-border-width: 0 0 1 0;" />
-         <Button layoutX="21.0" layoutY="218.0" mnemonicParsing="false" onAction="#FileChoose" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right, #ffb75e, #ed8f03); -fx-background-radius: 20;" styleClass="text-light" text="آپلود عکس" textFill="WHITE">
+         <Button layoutX="21.0" layoutY="218.0" mnemonicParsing="false" onAction="#FileChoose" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right bottom, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 20;" styleClass="text-light" text="آپلود عکس" textFill="WHITE">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor></Button>
-         <Button layoutX="140.0" layoutY="385.0" mnemonicParsing="false" onAction="#SignUpApp" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right, #ffb75e, #ed8f03); -fx-background-radius: 20;" styleClass="text-light" text="ثبت نام" textFill="WHITE">
+         <Button layoutX="140.0" layoutY="385.0" mnemonicParsing="false" onAction="#SignUpApp" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right bottom, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 20;" styleClass="text-light" text="ثبت نام" textFill="WHITE">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor></Button>
@@ -56,32 +56,31 @@
       </AnchorPane>
    </left>
    <right>
-      <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="500.0" prefWidth="270.0" style="-fx-background-color: linear-gradient(to right, #ffb75e, #ed8f03);" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="82.0" fitWidth="82.0" layoutX="94.0" layoutY="40.0">
-               <image>
-                  <Image url="@images/icon.png" />
-               </image>
-            </ImageView>
-            <Text fill="WHITE" layoutX="46.0" layoutY="182.0" smooth="false" strokeType="OUTSIDE" strokeWidth="2.0" styleClass="logo" text="Fum Coin" textAlignment="CENTER">
-               <stroke>
-                  <LinearGradient>
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="1.0" green="0.014814814552664757" blue="0.014814814552664757" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="0.458089679479599" green="0.49473685026168823" blue="0.05497075989842415" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </stroke>
-            </Text>
-         </children>
+      <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="500.0" prefWidth="270.0"
+                  style="-fx-background-color: linear-gradient(to bottom , #00d2ff 0%, #3a47d5 100%);"
+                  BorderPane.alignment="CENTER">
+         <ImageView fitHeight="82.0" fitWidth="82.0" layoutX="94.0" layoutY="40.0">
+            <Image url="@images/icon.png"/>
+         </ImageView>
+         <Text fill="#ffe500" layoutX="46.0" layoutY="182.0" smooth="false" strokeType="OUTSIDE" strokeWidth="2.0"
+               styleClass="logo" text="Fum Coin" textAlignment="CENTER">
+            <stroke>
+               <LinearGradient>
+                  <stops>
+                     <Stop>
+                        <color>
+                           <Color red="1.0" green="0.014814814552664757" blue="0.014814814552664757"/>
+                        </color>
+                     </Stop>
+                     <Stop offset="1.0">
+                        <color>
+                           <Color red="0.458089679479599" green="0.49473685026168823" blue="0.05497075989842415"/>
+                        </color>
+                     </Stop>
+                  </stops>
+               </LinearGradient>
+            </stroke>
+         </Text>
       </AnchorPane>
    </right>
 </BorderPane>

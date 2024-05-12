@@ -33,7 +33,7 @@
                     </font>
                 </TextField>
                 <PasswordField fx:id="LoginPass" alignment="CENTER_RIGHT" layoutX="113.0" layoutY="171.0" prefHeight="30.0" prefWidth="150.0" promptText="رمز عبور" style="-fx-border-style: dotted; -fx-background-color: transparent; -fx-border-width: 0 0 1 0;" />
-                <Button fx:id="LoginBtn" graphicTextGap="0.0" layoutX="221.0" layoutY="368.0" mnemonicParsing="false" onAction="#LoginApp" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right, #ffb75e, #ed8f03); -fx-background-radius: 20;" styleClass="text-light" text="ورود" textFill="WHITE">
+                <Button fx:id="LoginBtn" graphicTextGap="0.0" layoutX="221.0" layoutY="368.0" mnemonicParsing="false" onAction="#LoginApp" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right bottom, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 20;" styleClass="text-light" text="ورود" textFill="WHITE">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
@@ -44,7 +44,7 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button layoutX="58.0" layoutY="368.0" mnemonicParsing="false" onAction="#EmailPage" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right, #ffb75e, #ed8f03); -fx-background-radius: 20;" styleClass="text-light" text="فراموشی رمز عبور؟" textFill="WHITE">
+                <Button layoutX="58.0" layoutY="368.0" mnemonicParsing="false" onAction="#EmailPage" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right bottom, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 20;" styleClass="text-light" text="فراموشی رمز عبور؟" textFill="WHITE">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
@@ -67,11 +67,11 @@
         </AnchorPane>
     </left>
     <right>
-        <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="500.0" prefWidth="270.0" style="-fx-background-color: linear-gradient(to right, #ffb75e, #ed8f03);" BorderPane.alignment="CENTER">
+        <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="500.0" prefWidth="270.0" style="-fx-background-color: linear-gradient(to bottom , #00d2ff 0%, #3a47d5 100%);" BorderPane.alignment="CENTER">
             <ImageView fitHeight="82.0" fitWidth="82.0" layoutX="94.0" layoutY="40.0">
                 <Image url="@images/icon.png" />
             </ImageView>
-            <Text fill="WHITE" layoutX="46.0" layoutY="182.0" smooth="false" strokeType="OUTSIDE" strokeWidth="2.0" styleClass="logo" text="Fum Coin" textAlignment="CENTER">
+            <Text fill="#ffe500" layoutX="46.0" layoutY="182.0" smooth="false" strokeType="OUTSIDE" strokeWidth="2.0" styleClass="logo" text="Fum Coin" textAlignment="CENTER">
                 <stroke>
                     <LinearGradient>
                         <stops>

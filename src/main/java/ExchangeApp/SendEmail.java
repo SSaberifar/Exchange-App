@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 public class SendEmail {
 
     @FXML
-    TextField Email;
+    private TextField Email;
 
     private final Validator validator = new Validator();
 

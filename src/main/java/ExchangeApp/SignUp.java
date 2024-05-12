@@ -6,11 +6,7 @@ import com.mewebstudio.captcha.GeneratedCaptcha;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.NodeOrientation;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -28,23 +24,23 @@ import java.util.regex.Pattern;
 public class SignUp {
 
     @FXML
-    TextField SignName;
+    private TextField SignName;
     @FXML
-    TextField SignFName;
+    private TextField SignFName;
     @FXML
-    TextField SignLName;
+    private TextField SignLName;
     @FXML
-    TextField SignEmail;
+    private TextField SignEmail;
     @FXML
-    TextField SignPhone;
+    private TextField SignPhone;
     @FXML
-    PasswordField SignPass;
+    private PasswordField SignPass;
     @FXML
-    PasswordField SignRepass;
+    private PasswordField SignRepass;
     @FXML
-    TextField CaptchaCode;
+    private TextField CaptchaCode;
     @FXML
-    ImageView SignCap;
+    private ImageView SignCap;
 
     private Stage stage;
     private final Validator validator = new Validator();
@@ -62,11 +58,9 @@ public class SignUp {
         Image captchaImg = SwingFXUtils.toFXImage(captchaImage, null);
         SignCap.setImage(captchaImg);
     }
-
     public void FileChoose() {
         File selectedFile = fileChooser.showOpenDialog(stage);
     }
-
     public void SignUpApp() {
         validator.createCheck().withMethod(c -> {
             if (!Pattern.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$", c.get("password")) || c.get("password") == null || !c.get("password").equals(c.get("repeat password"))) {
@@ -113,12 +107,7 @@ public class SignUp {
             alert.showAndWait();
         }
     }
-
     public void LoginPage(ActionEvent event) throws IOException {
-        Parent root = new FXMLLoader(getClass().getResource("Login.fxml")).load();
-        Scene scene = new Scene(root);
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        Main.stageChanger(stage,event,"Login.fxml");
     }
 }

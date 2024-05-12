@@ -11,6 +11,7 @@ module Login_SignUp {
     requires java.desktop;
     requires javafx.swing;
     requires captcha;
+    requires java.mail;
 
 
     opens ExchangeApp to javafx.fxml;

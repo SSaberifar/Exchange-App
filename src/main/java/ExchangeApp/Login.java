@@ -2,19 +2,13 @@ package ExchangeApp;
 
 import java.awt.image.BufferedImage;
 import java.util.regex.*;
-
 import com.mewebstudio.captcha.Captcha;
 import com.mewebstudio.captcha.Config;
 import com.mewebstudio.captcha.GeneratedCaptcha;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.NodeOrientation;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -22,28 +16,23 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import net.synedra.validatorfx.Validator;
-
 import java.io.IOException;
 
 public class Login {
 
     @FXML
-    TextField LoginName;
+    private TextField LoginName;
     @FXML
-    PasswordField LoginPass;
+    private PasswordField LoginPass;
     @FXML
-    Button LoginBtn;
+    private TextField CaptchaCode;
     @FXML
-    TextField CaptchaCode;
-    @FXML
-    ImageView LoginCap;
+    private ImageView LoginCap;
 
     private final Validator validator = new Validator();
-    private Parent root;
     private Stage stage;
-    private Scene scene;
-    private Config customConfig = new Config();
-    private Captcha captcha = new Captcha(customConfig);
+    private final Config customConfig = new Config();
+    private final Captcha captcha = new Captcha(customConfig);
     private String captchaCode;
 
     public void GenerateCaptcha() {
@@ -79,31 +68,15 @@ public class Login {
             alert.setHeaderText(null);
             alert.setContentText("با موفقیت وارد شدید!");
             alert.showAndWait();
-            profilePage(event);
+            Main.stageChanger(stage,event,"Profile.fxml");
         }
     }
 
-    public void profilePage(ActionEvent event) throws IOException{
-        root = new FXMLLoader(getClass().getResource("Profile.fxml")).load();
-        scene = new Scene(root);
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
-
     public void signUpPage(ActionEvent event) throws IOException {
-        root = new FXMLLoader(getClass().getResource("SignUp.fxml")).load();
-        scene = new Scene(root);
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        Main.stageChanger(stage,event,"SignUp.fxml");
     }
 
     public void EmailPage(ActionEvent event) throws IOException {
-        root = new FXMLLoader(getClass().getResource("SendEmail.fxml")).load();
-        scene = new Scene(root);
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        Main.stageChanger(stage,event,"SendEmail.fxml");
     }
 }

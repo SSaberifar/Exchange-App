@@ -2,53 +2,42 @@ package ExchangeApp;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import net.synedra.validatorfx.Validator;
-
 import java.io.IOException;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
-public class Profile {
+public class Profile implements Initializable {
 
     private final Validator validator = new Validator();
+    @FXML
+    private Button editbtn;
+    @FXML
+    private TextField SignFName;
+    @FXML
+    private TextField SignLName;
+    @FXML
+    private TextField SignPhone;
+    @FXML
+    private TextField SignEmail;
+    @FXML
+    private PasswordField SignPass;
+    @FXML
+    private Text clock;
+    private int editSw=1;
+    private Stage stage;
 
-    @FXML
-    Button menubtn;
-    @FXML
-    GridPane menu;
-    @FXML
-    Button editbtn;
-    @FXML
-    TextField SignFName;
-    @FXML
-    TextField SignLName;
-    @FXML
-    TextField SignPhone;
-    @FXML
-    TextField SignEmail;
-    @FXML
-    PasswordField SignPass;
-    int menuSw=1;
-    int editSw=1;
-
-    public void menu(){
-        menu.setVisible(menuSw != 1);
-        menuSw*=-1;
-    }
     public void exit(ActionEvent event)throws IOException {
-        Parent root = new FXMLLoader(getClass().getResource("Login.fxml")).load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        Main.stageChanger(stage,event,"Login.fxml");
     }
     public void editInfo(){
         validator.createCheck().withMethod(c -> {
@@ -95,5 +84,18 @@ public class Profile {
         }
         editSw*=-1;
     }
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        final SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss a");
+        new Thread(() -> {
+            while (true) {
+                clock.setText(format.format(new Date()));
+                try {
+                    Thread.sleep(1000);//60 seconds interval
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
 }
