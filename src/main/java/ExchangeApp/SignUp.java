@@ -15,7 +15,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import net.synedra.validatorfx.Validator;
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;

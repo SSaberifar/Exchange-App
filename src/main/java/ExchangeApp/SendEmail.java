@@ -41,17 +41,6 @@ public class SendEmail {
         }).dependsOn("email", Email.textProperty()).decorates(Email).immediate();
 
         if (validator.validate()) {
-            Email.setDisable(true);
-            sendbtn.setDisable(true);
-            recoverbtn.setDisable(false);
-            recovercode.setDisable(false);
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.getDialogPane().setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
-            alert.setTitle("بازیابی رمز عبور");
-            alert.setHeaderText(null);
-            alert.setContentText("ایمیل بازیابی ارسال شد!");
-            alert.showAndWait();
 
             code = String.valueOf(rand.nextInt(9000) + 1000);
 
@@ -83,9 +72,21 @@ public class SendEmail {
                 message.setText("با سلام و عرض ادب کد بازیابی حساب کاربری شما:" + " " + code);
                 message.addHeader("FumCoin", "Recovery Email");
                 Transport.send(message);
-            } catch (MessagingException e) {
-                throw new RuntimeException(e);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+
+            Email.setDisable(true);
+            sendbtn.setDisable(true);
+            recoverbtn.setDisable(false);
+            recovercode.setDisable(false);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.getDialogPane().setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+            alert.setTitle("بازیابی رمز عبور");
+            alert.setHeaderText(null);
+            alert.setContentText("ایمیل بازیابی ارسال شد!");
+            alert.showAndWait();
         }
     }
 
