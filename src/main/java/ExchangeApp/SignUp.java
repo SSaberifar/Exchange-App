@@ -107,6 +107,6 @@ public class SignUp {
         }
     }
     public void LoginPage(ActionEvent event) throws IOException {
-        Main.stageChanger(stage,event,"Login.fxml");
+        Main.stageChanger(event,"Login.fxml");
     }
 }

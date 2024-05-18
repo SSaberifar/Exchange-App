@@ -18,16 +18,16 @@ public class Menu implements Initializable {
 
     private Stage stage;
     public void exit(ActionEvent event) throws IOException {
-        Main.stageChanger(stage, event, "Login.fxml");
+        Main.stageChanger(event, "Login.fxml");
     }
     public void wallet(ActionEvent event) throws IOException{
-        Main.stageChanger(stage,event,"Wallet.fxml");
+        Main.stageChanger(event,"Wallet.fxml");
     }
     public void profile(ActionEvent event) throws IOException{
-        Main.stageChanger(stage,event,"Profile.fxml");
+        Main.stageChanger(event,"Profile.fxml");
     }
     public void mainPage(ActionEvent event) throws IOException{
-        Main.stageChanger(stage,event,"MainPage.fxml");
+        Main.stageChanger(event,"MainPage.fxml");
     }
 
     @Override

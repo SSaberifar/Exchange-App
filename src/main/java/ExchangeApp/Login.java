@@ -68,15 +68,15 @@ public class Login {
             alert.setHeaderText(null);
             alert.setContentText("با موفقیت وارد شدید!");
             alert.showAndWait();
-            Main.stageChanger(stage,event,"Profile.fxml");
+            Main.stageChanger(event,"Profile.fxml");
         }
     }
 
     public void signUpPage(ActionEvent event) throws IOException {
-        Main.stageChanger(stage,event,"SignUp.fxml");
+        Main.stageChanger(event,"SignUp.fxml");
     }
 
     public void EmailPage(ActionEvent event) throws IOException {
-        Main.stageChanger(stage,event,"SendEmail.fxml");
+        Main.stageChanger(event,"SendEmail.fxml");
     }
 }

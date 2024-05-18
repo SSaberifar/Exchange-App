@@ -12,10 +12,6 @@
     font-family: vazir-Bold;
     src: url("../font/Vazirmatn-Bold.ttf");
 }
-@font-face {
-    font-family: vazir-Light;
-    src: url("../font/Vazirmatn-Regular.ttf");
-}
 
 .logo {
     -fx-font-family: iranyekan-Bold;
@@ -30,8 +26,7 @@
 }
 
 .text-light {
-    -fx-font-family: vazir-Light;
-    -fx-font-weight: normal;
+    -fx-font-family: iranyekan-Light;
     -fx-font-size: 16px;
-    -fx-font-weight: 300;
+    -fx-font-weight: normal;
 }
