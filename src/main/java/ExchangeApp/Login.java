@@ -2,13 +2,12 @@ package ExchangeApp;
 
 import java.awt.image.BufferedImage;
 import java.util.regex.*;
+
 import com.mewebstudio.captcha.Captcha;
 import com.mewebstudio.captcha.Config;
 import com.mewebstudio.captcha.GeneratedCaptcha;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
-import javafx.geometry.NodeOrientation;
-import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -16,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import net.synedra.validatorfx.Validator;
+
 import java.io.IOException;
 
 public class Login {
@@ -62,21 +62,15 @@ public class Login {
             }
         }).dependsOn("captcha", CaptchaCode.textProperty()).decorates(CaptchaCode).immediate();
         if (validator.validate()) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.getDialogPane().setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
-            alert.setTitle("ورود کاربر");
-            alert.setHeaderText(null);
-            alert.setContentText("با موفقیت وارد شدید!");
-            alert.showAndWait();
-            Main.stageChanger(event,"Profile.fxml");
+            Database.LoginDB(event, LoginName.getText(), LoginPass.getText());
         }
     }
 
     public void signUpPage(ActionEvent event) throws IOException {
-        Main.stageChanger(event,"SignUp.fxml");
+        Main.stageChanger(event, "SignUp.fxml");
     }
 
     public void EmailPage(ActionEvent event) throws IOException {
-        Main.stageChanger(event,"SendEmail.fxml");
+        Main.stageChanger(event, "SendEmail.fxml");
     }
 }

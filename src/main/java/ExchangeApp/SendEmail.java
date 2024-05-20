@@ -97,7 +97,7 @@ public class SendEmail {
             }
         }).dependsOn("recovery", recovercode.textProperty()).decorates(recovercode).immediate();
         if (validator.validate()) {
-            Main.stageChanger(event, "Profile.fxml");
+            Database.EmailLogin(event,Email.getText());
         }
     }
 }

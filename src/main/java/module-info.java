@@ -12,6 +12,7 @@ module Login_SignUp {
     requires javafx.swing;
     requires captcha;
     requires java.mail;
+    requires java.sql;
 
     opens ExchangeApp to javafx.fxml;
     exports ExchangeApp;

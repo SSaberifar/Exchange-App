@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import net.synedra.validatorfx.Validator;
+
 import java.util.regex.Pattern;
 
 public class Profile extends Menu {

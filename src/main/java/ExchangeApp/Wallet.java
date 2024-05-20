@@ -1,6 +1,6 @@
 package ExchangeApp;
 
 
-public class Wallet extends Menu{
+public class Wallet extends Menu {
 
 }
