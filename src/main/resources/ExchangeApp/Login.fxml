@@ -27,13 +27,13 @@
                         <Cursor fx:constant="DEFAULT" />
                     </cursor>
                 </Text>
-                <TextField fx:id="LoginName" alignment="CENTER_RIGHT" layoutX="114.0" layoutY="103.0" prefHeight="30.0" prefWidth="150.0" promptText="نام کاربری" style="-fx-border-style: dotted; -fx-background-color: transparent; -fx-border-width: 0 0 1 0;">
+                <TextField fx:id="loginName" alignment="CENTER_RIGHT" layoutX="114.0" layoutY="103.0" prefHeight="30.0" prefWidth="150.0" promptText="نام کاربری" style="-fx-border-style: dotted; -fx-background-color: transparent; -fx-border-width: 0 0 1 0;">
                     <font>
                         <Font name="IRANYekanXFaNum Regular" size="12.0" />
                     </font>
                 </TextField>
-                <PasswordField fx:id="LoginPass" alignment="CENTER_RIGHT" layoutX="113.0" layoutY="171.0" prefHeight="30.0" prefWidth="150.0" promptText="رمز عبور" style="-fx-border-style: dotted; -fx-background-color: transparent; -fx-border-width: 0 0 1 0;" />
-                <Button graphicTextGap="0.0" layoutX="221.0" layoutY="368.0" mnemonicParsing="false" onAction="#LoginApp" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right bottom, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 20;" styleClass="text-light" text="ورود" textFill="WHITE">
+                <PasswordField fx:id="loginPass" alignment="CENTER_RIGHT" layoutX="113.0" layoutY="171.0" prefHeight="30.0" prefWidth="150.0" promptText="رمز عبور" style="-fx-border-style: dotted; -fx-background-color: transparent; -fx-border-width: 0 0 1 0;" />
+                <Button graphicTextGap="0.0" layoutX="221.0" layoutY="368.0" mnemonicParsing="false" onAction="#loginApp" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right bottom, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 20;" styleClass="text-light" text="ورود" textFill="WHITE">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
@@ -44,20 +44,20 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button layoutX="58.0" layoutY="368.0" mnemonicParsing="false" onAction="#EmailPage" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right bottom, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 20;" styleClass="text-light" text="فراموشی رمز عبور؟" textFill="WHITE">
+                <Button layoutX="58.0" layoutY="368.0" mnemonicParsing="false" onAction="#emailPage" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right bottom, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 20;" styleClass="text-light" text="فراموشی رمز عبور؟" textFill="WHITE">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <ImageView fx:id="LoginCap" fitHeight="45.0" fitWidth="100.0" layoutX="140.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true" />
-                <TextField fx:id="CaptchaCode" alignment="CENTER_RIGHT" layoutX="140.0" layoutY="304.0" onAction="#LoginApp" prefHeight="30.0" prefWidth="150.0" promptText="کد کپجا" style="-fx-border-style: dotted; -fx-background-color: transparent; -fx-border-width: 0 0 1 0;" />
+                <ImageView fx:id="loginCap" fitHeight="45.0" fitWidth="100.0" layoutX="140.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true" />
+                <TextField fx:id="captchaCode" alignment="CENTER_RIGHT" layoutX="140.0" layoutY="304.0" onAction="#loginApp" prefHeight="30.0" prefWidth="150.0" promptText="کد کپجا" style="-fx-border-style: dotted; -fx-background-color: transparent; -fx-border-width: 0 0 1 0;" />
                 <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="276.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
                     <Image url="@images/user.png" />
                 </ImageView>
                 <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="277.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
                     <Image url="@images/lock.png" />
                 </ImageView>
-                <ImageView accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="243.0" layoutY="250.0" onMouseClicked="#GenerateCaptcha" pickOnBounds="true" preserveRatio="true">
+                <ImageView accessibleRole="BUTTON" fitHeight="45.0" fitWidth="45.0" layoutX="243.0" layoutY="250.0" onMouseClicked="#generateCaptcha" pickOnBounds="true" preserveRatio="true">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>

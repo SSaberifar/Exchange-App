@@ -1,7 +1,7 @@
 package ExchangeApp;
 
 import java.awt.image.BufferedImage;
-import java.util.regex.*;
+import java.util.regex.Pattern;
 
 import com.mewebstudio.captcha.Captcha;
 import com.mewebstudio.captcha.Config;
@@ -21,56 +21,75 @@ import java.io.IOException;
 public class Login {
 
     @FXML
-    private TextField LoginName;
+    private TextField loginName;
     @FXML
-    private PasswordField LoginPass;
+    private PasswordField loginPass;
     @FXML
-    private TextField CaptchaCode;
+    private TextField captchaCode;
     @FXML
-    private ImageView LoginCap;
+    private ImageView loginCap;
 
     private final Validator validator = new Validator();
     private Stage stage;
     private final Config customConfig = new Config();
     private final Captcha captcha = new Captcha(customConfig);
-    private String captchaCode;
+    private String captchacode;
 
-    public void GenerateCaptcha() {
+    public void initialize() {
+        // Generate a captcha on initialization
+        generateCaptcha();
+    }
+
+    @FXML
+    public void generateCaptcha() {
         customConfig.setWidth(100);
         customConfig.setHeight(40);
         GeneratedCaptcha generatedCaptcha = captcha.generate();
         BufferedImage captchaImage = generatedCaptcha.getImage();
-        captchaCode = generatedCaptcha.getCode();
+        captchacode = generatedCaptcha.getCode();
         Image captchaImg = SwingFXUtils.toFXImage(captchaImage, null);
-        LoginCap.setImage(captchaImg);
+        loginCap.setImage(captchaImg);
     }
 
-    public void LoginApp(ActionEvent event) throws IOException {
+    @FXML
+    public void loginApp(ActionEvent event) throws IOException {
+        // Username validation
         validator.createCheck().withMethod(c -> {
-            if (!Pattern.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$", c.get("password")) || c.get("password") == null) {
-                c.error("please enter valid password!");
+            String username = c.get("username");
+            if (username == null || !Pattern.matches("^[a-z0-9_-]{3,15}$", username)) {
+                c.error("Please enter a valid username!");
             }
-        }).dependsOn("password", LoginPass.textProperty()).decorates(LoginPass).immediate();
+        }).dependsOn("username", loginName.textProperty()).decorates(loginName).immediate();
+
+        // Password validation
         validator.createCheck().withMethod(c -> {
-            if (!Pattern.matches("^[a-z0-9_-]{3,15}$", c.get("username")) || c.get("username") == null) {
-                c.error("please enter valid username!");
+            String password = c.get("password");
+            if (password == null || !Pattern.matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$", password)) {
+                c.error("Please enter a valid password!");
             }
-        }).dependsOn("username", LoginName.textProperty()).decorates(LoginName).immediate();
+        }).dependsOn("password", loginPass.textProperty()).decorates(loginPass).immediate();
+
+        // Captcha validation
         validator.createCheck().withMethod(c -> {
-            if (!c.get("captcha").equals(captchaCode)) {
-                c.error("please enter valid captcha!");
+            String captchaInput = c.get("captcha");
+            if (!captchaInput.equals(captchaCode)) {
+                c.error("Please enter the correct captcha!");
             }
-        }).dependsOn("captcha", CaptchaCode.textProperty()).decorates(CaptchaCode).immediate();
+        }).dependsOn("captcha", captchaCode.textProperty()).decorates(captchaCode).immediate();
+
+        // If validation is successful, proceed with login
         if (validator.validate()) {
-            Database.LoginDB(event, LoginName.getText(), LoginPass.getText());
+            Database.loginDB(event, loginName.getText(), loginPass.getText());
         }
     }
 
+    @FXML
     public void signUpPage(ActionEvent event) throws IOException {
         Main.stageChanger(event, "SignUp.fxml");
     }
 
-    public void EmailPage(ActionEvent event) throws IOException {
+    @FXML
+    public void emailPage(ActionEvent event) throws IOException {
         Main.stageChanger(event, "SendEmail.fxml");
     }
 }
