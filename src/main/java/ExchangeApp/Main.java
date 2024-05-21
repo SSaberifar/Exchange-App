@@ -31,7 +31,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         // Load the initial scene (Login screen)
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Login.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Exchange.fxml")));
         Scene loginPanel = new Scene(root);
 
         // Set application window properties
