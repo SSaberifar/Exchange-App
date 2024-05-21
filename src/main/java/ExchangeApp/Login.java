@@ -1,6 +1,8 @@
 package ExchangeApp;
 
 import java.awt.image.BufferedImage;
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 import com.mewebstudio.captcha.Captcha;
@@ -8,6 +10,7 @@ import com.mewebstudio.captcha.Config;
 import com.mewebstudio.captcha.GeneratedCaptcha;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -18,7 +21,7 @@ import net.synedra.validatorfx.Validator;
 
 import java.io.IOException;
 
-public class Login {
+public class Login implements Initializable {
 
     @FXML
     private TextField loginName;
@@ -34,11 +37,6 @@ public class Login {
     private final Config customConfig = new Config();
     private final Captcha captcha = new Captcha(customConfig);
     private String captchacode;
-
-    public void initialize() {
-        // Generate a captcha on initialization
-        generateCaptcha();
-    }
 
     @FXML
     public void generateCaptcha() {
@@ -72,7 +70,7 @@ public class Login {
         // Captcha validation
         validator.createCheck().withMethod(c -> {
             String captchaInput = c.get("captcha");
-            if (!captchaInput.equals(captchaCode)) {
+            if (!captchaInput.equals(captchacode)) {
                 c.error("Please enter the correct captcha!");
             }
         }).dependsOn("captcha", captchaCode.textProperty()).decorates(captchaCode).immediate();
@@ -91,5 +89,11 @@ public class Login {
     @FXML
     public void emailPage(ActionEvent event) throws IOException {
         Main.stageChanger(event, "SendEmail.fxml");
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Generate a captcha on initialization
+        generateCaptcha();
     }
 }

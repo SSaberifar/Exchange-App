@@ -6,6 +6,7 @@ import com.mewebstudio.captcha.GeneratedCaptcha;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -13,12 +14,15 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import net.synedra.validatorfx.Validator;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
-public class SignUp {
+public class SignUp implements Initializable {
 
     @FXML
     private TextField SignName;
@@ -145,5 +149,11 @@ public class SignUp {
                 c.error("please enter a valid captcha!");
             }
         }).dependsOn("captcha", CaptchaCode.textProperty()).decorates(CaptchaCode).immediate();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Generate a captcha on initialization
+        GenerateCaptcha();
     }
 }
