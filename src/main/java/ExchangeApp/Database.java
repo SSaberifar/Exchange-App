@@ -3,12 +3,17 @@ package ExchangeApp;
 import javafx.event.ActionEvent;
 import javafx.geometry.NodeOrientation;
 import javafx.scene.control.Alert;
+
 import java.io.IOException;
 import java.sql.*;
 
 public class Database {
-    static Connection connection;
     static String usershow;
+    static String userfirstName;
+    static String userLastName;
+    static String userPassword;
+    static String userEmail;
+    static String userPhone;
 
     private static Connection getConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/fumcoin", "root", "");
@@ -57,6 +62,11 @@ public class Database {
             ResultSet result = psmt.executeQuery();
             if (result.next()) {
                 usershow = uname;
+                userfirstName = psmt.getResultSet().getString(1);
+                userLastName = psmt.getResultSet().getString(2);
+                userPassword = psmt.getResultSet().getString(4);
+                userEmail = psmt.getResultSet().getString(5);
+                userPhone = psmt.getResultSet().getString(6);
                 showAlert(Alert.AlertType.INFORMATION, "ورود کاربر", "با موفقیت وارد شدید!");
                 Main.stageChanger(event, "Profile.fxml");
             } else {
@@ -77,6 +87,11 @@ public class Database {
             ResultSet result = psmt.executeQuery();
             if (result.next()) {
                 usershow = result.getString("user_name");
+                userfirstName = psmt.getResultSet().getString(2);
+                userLastName = psmt.getResultSet().getString(3);
+                userPassword = psmt.getResultSet().getString(5);
+                userEmail = psmt.getResultSet().getString(6);
+                userPhone = psmt.getResultSet().getString(7);
                 Main.stageChanger(event, "Profile.fxml");
             } else {
                 showAlert(Alert.AlertType.INFORMATION, "ورود کاربر", "کاربری با این ایمیل حساب کاربری ندارد!");
@@ -93,5 +108,27 @@ public class Database {
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    public static void update(String fname, String lname, String uname, String upass, String uemail, String uphone) {
+        String updateSql = "UPDATE users SET first_name=?,last_name=?,password=?,email=?,phone_number=? WHERE user_name=?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement psmt = connection.prepareStatement(updateSql)) {
+
+            psmt.setString(1, fname);
+            psmt.setString(2, lname);
+            psmt.setString(3, upass);
+            psmt.setString(4, uemail);
+            psmt.setString(5, uphone);
+            psmt.setString(6, uname);
+
+            int result = psmt.executeUpdate();
+            if (result > 0) {
+                showAlert(Alert.AlertType.INFORMATION, "اطلاعات کاربر", "اطلاعات کاربر با موفقیت بروزرسانی شد!");
+            }
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در بروزرسانی رخ داد: " + e.getMessage());
+        }
     }
 }

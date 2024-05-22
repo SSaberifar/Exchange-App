@@ -1,14 +1,18 @@
 package ExchangeApp;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import net.synedra.validatorfx.Validator;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
-public class Profile extends Menu {
+public class Profile extends Menu implements Initializable {
 
     @FXML
     private Button editbtn;
@@ -35,6 +39,7 @@ public class Profile extends Menu {
             editbtn.setText("ثبت اطلاعات کاربری");
         } else {
             if (validator.validate()) {
+                Database.update(SignFName.getText(), SignLName.getText(), usershow.getText(), SignPass.getText(), SignEmail.getText(), SignPhone.getText());
                 enableEditing(false);
                 // Save updated information to the database or perform any required actions here
                 editbtn.setText("ویرایش اطلاعات کاربری");
@@ -102,5 +107,15 @@ public class Profile extends Menu {
         SignEmail.setDisable(!enable);
         SignPass.setDisable(!enable);
         SignPhone.setDisable(!enable);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        super.initialize(url, resourceBundle);
+        SignFName.setText(Database.userfirstName);
+        SignLName.setText(Database.userLastName);
+        SignPass.setText(Database.userPassword);
+        SignEmail.setText(Database.userEmail);
+        SignPhone.setText(Database.userPhone);
     }
 }

@@ -17,7 +17,7 @@ public class Menu implements Initializable {
     @FXML
     private Text clock;
     @FXML
-    private Button usershow;
+    protected Button usershow;
 
     private Stage stage;
 
