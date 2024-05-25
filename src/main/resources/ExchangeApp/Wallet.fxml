@@ -32,11 +32,6 @@
          </Label>
          <Text fx:id="clock" fill="WHITE" layoutX="598.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-light" text="ساعت" />
          <Button fx:id="usershow" alignment="CENTER" mnemonicParsing="false" onAction="#profile" style="-fx-background-color: transparent;" styleClass="text-light" text="نام کاربری" textAlignment="CENTER" textFill="WHITE">
-            <graphic>
-               <ImageView fx:id="profileimg" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@images/user.png" />
-               </ImageView>
-            </graphic>
             <font>
                <Font size="20.0" />
             </font>
@@ -74,7 +69,7 @@
                <Cursor fx:constant="HAND" />
             </cursor>
          </Button>
-         <Button alignment="CENTER" graphicTextGap="5.0" onAction="#Exchange" mnemonicParsing="false" prefHeight="42.0" prefWidth="102.4" style="-fx-background-color: transparent;" styleClass="text-light" text="خرید" textAlignment="CENTER" textFill="#ffe500" GridPane.rowIndex="2">
+         <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#Exchange" prefHeight="42.0" prefWidth="102.4" style="-fx-background-color: transparent;" styleClass="text-light" text="خرید" textAlignment="CENTER" textFill="#ffe500" GridPane.rowIndex="2">
             <graphic>
                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                   <Image url="@images/exchange-icon.png" />

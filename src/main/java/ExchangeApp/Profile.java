@@ -5,9 +5,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import net.synedra.validatorfx.Validator;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
@@ -25,6 +28,8 @@ public class Profile extends Menu implements Initializable {
     private TextField SignEmail;
     @FXML
     private PasswordField SignPass;
+    @FXML
+    private ImageView ProfileImage;
 
     private final Validator validator = new Validator();
     private boolean isEditing = false;
@@ -111,6 +116,7 @@ public class Profile extends Menu implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
+        ProfileImage.setImage(new Image("file:" + Database.userImage));
         SignFName.setText(Database.userFirstName);
         SignLName.setText(Database.userLastName);
         SignPass.setText(Database.userPassword);

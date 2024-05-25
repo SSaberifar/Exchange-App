@@ -49,6 +49,8 @@ public class SignUp implements Initializable {
     private final Captcha captcha = new Captcha(customConfig);
     private String captchaCode;
     private final FileChooser fileChooser = new FileChooser();
+    File selectedFile;
+    private String path;
 
     /**
      * Generates a new captcha image and displays it in the ImageView.
@@ -67,10 +69,8 @@ public class SignUp implements Initializable {
      * Opens a file chooser dialog for selecting a file.
      */
     public void FileChoose() {
-        File selectedFile = fileChooser.showOpenDialog(stage);
-        if (selectedFile != null) {
-            // Handle the file selection
-        }
+        selectedFile = fileChooser.showOpenDialog(stage);
+        path = selectedFile.getAbsolutePath();
     }
 
     /**
@@ -82,7 +82,7 @@ public class SignUp implements Initializable {
     public void SignUpApp(ActionEvent event) throws IOException {
         setupValidators();
         if (validator.validate()) {
-            Database.SignUpDB(event, SignFName.getText(), SignLName.getText(), SignName.getText(), SignPass.getText(), SignEmail.getText(), SignPhone.getText());
+            Database.SignUpDB(event, SignFName.getText(), SignLName.getText(), SignName.getText(), SignPass.getText(), SignEmail.getText(), SignPhone.getText(),path);
         }
     }
 

@@ -66,13 +66,6 @@
             </Label>
             <Text fx:id="clock" fill="WHITE" layoutX="598.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-light" text="ساعت" />
             <Button fx:id="usershow" alignment="CENTER" mnemonicParsing="false" onAction="#profile" style="-fx-background-color: transparent;" styleClass="text-light" text="نام کاربری" textAlignment="CENTER" textFill="WHITE">
-               <graphic>
-                  <ImageView fx:id="profileimg" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/user.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
                <font>
                   <Font size="20.0" />
                </font>

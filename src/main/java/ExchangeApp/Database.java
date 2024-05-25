@@ -14,14 +14,15 @@ public class Database {
     static String userPassword;
     static String userEmail;
     static String userPhone;
+    static String userImage;
 
     private static Connection getConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/fumcoin", "root", "");
     }
 
-    public static void SignUpDB(ActionEvent event, String fname, String lname, String uname, String upass, String uemail, String uphone) throws IOException {
+    public static void SignUpDB(ActionEvent event, String fname, String lname, String uname, String upass, String uemail, String uphone,String imgPath) throws IOException {
         String checkSQL = "SELECT * FROM users WHERE user_name = ? OR email = ? OR phone_number = ?";
-        String insertSQL = "INSERT INTO users (first_name, last_name, user_name, password, email, phone_number) VALUES (?, ?, ?, ?, ?, ?)";
+        String insertSQL = "INSERT INTO users (first_name, last_name, user_name, password, email, phone_number,imagePath) VALUES (?, ?, ?, ?, ?, ?,?)";
 
         try (Connection connection = getConnection();
              PreparedStatement checkStmt = connection.prepareStatement(checkSQL);
@@ -41,6 +42,7 @@ public class Database {
                 insertStmt.setString(4, upass);
                 insertStmt.setString(5, uemail);
                 insertStmt.setString(6, uphone);
+                insertStmt.setString(7, imgPath);
                 insertStmt.executeUpdate();
 
                 showAlert(Alert.AlertType.INFORMATION, "ثبت نام کاربر", "ثبت نام با موفقیت انجام شد!");
@@ -67,6 +69,7 @@ public class Database {
                 userPassword = psmt.getResultSet().getString(4);
                 userEmail = psmt.getResultSet().getString(5);
                 userPhone = psmt.getResultSet().getString(6);
+                userImage = psmt.getResultSet().getString(7);
                 showAlert(Alert.AlertType.INFORMATION, "ورود کاربر", "با موفقیت وارد شدید!");
                 Main.stageChanger(event, "Profile.fxml");
             } else {
