@@ -13,6 +13,7 @@ module Login_SignUp {
     requires captcha;
     requires java.mail;
     requires java.sql;
+    requires java.compiler;
 
     opens ExchangeApp to javafx.fxml;
     exports ExchangeApp;
