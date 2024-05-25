@@ -1,6 +1,5 @@
 package ExchangeApp;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -112,7 +111,7 @@ public class Profile extends Menu implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
-        SignFName.setText(Database.userfirstName);
+        SignFName.setText(Database.userFirstName);
         SignLName.setText(Database.userLastName);
         SignPass.setText(Database.userPassword);
         SignEmail.setText(Database.userEmail);

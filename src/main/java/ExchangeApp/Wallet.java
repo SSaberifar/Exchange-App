@@ -35,6 +35,7 @@ public class Wallet extends Menu implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        super.initialize(url, resourceBundle);
         Coins.setCellValueFactory(new PropertyValueFactory<>("name"));
         Count.setCellValueFactory(new PropertyValueFactory<>("Count"));
         Price.setCellValueFactory(new PropertyValueFactory<>("value"));

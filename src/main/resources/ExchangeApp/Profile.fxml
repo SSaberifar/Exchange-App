@@ -114,7 +114,7 @@
                <Cursor fx:constant="HAND" />
             </cursor>
          </Button>
-         <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="102.4" style="-fx-background-color: transparent;" styleClass="text-light" text="خرید" textAlignment="CENTER" textFill="#ffe500" GridPane.rowIndex="2">
+         <Button alignment="CENTER" graphicTextGap="5.0" onAction="#Exchange" mnemonicParsing="false" prefHeight="42.0" prefWidth="102.4" style="-fx-background-color: transparent;" styleClass="text-light" text="خرید" textAlignment="CENTER" textFill="#ffe500" GridPane.rowIndex="2">
             <graphic>
                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                   <Image url="@images/exchange-icon.png" />

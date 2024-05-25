@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.sql.*;
 
 public class Database {
-    static String usershow;
-    static String userfirstName;
+    static String userShow;
+    static String userFirstName;
     static String userLastName;
     static String userPassword;
     static String userEmail;
@@ -61,8 +61,8 @@ public class Database {
             psmt.setString(2, upass);
             ResultSet result = psmt.executeQuery();
             if (result.next()) {
-                usershow = uname;
-                userfirstName = psmt.getResultSet().getString(1);
+                userShow = uname;
+                userFirstName = psmt.getResultSet().getString(1);
                 userLastName = psmt.getResultSet().getString(2);
                 userPassword = psmt.getResultSet().getString(4);
                 userEmail = psmt.getResultSet().getString(5);
@@ -86,8 +86,8 @@ public class Database {
             psmt.setString(1, email);
             ResultSet result = psmt.executeQuery();
             if (result.next()) {
-                usershow = result.getString("user_name");
-                userfirstName = psmt.getResultSet().getString(2);
+                userShow = result.getString("user_name");
+                userFirstName = psmt.getResultSet().getString(2);
                 userLastName = psmt.getResultSet().getString(3);
                 userPassword = psmt.getResultSet().getString(5);
                 userEmail = psmt.getResultSet().getString(6);

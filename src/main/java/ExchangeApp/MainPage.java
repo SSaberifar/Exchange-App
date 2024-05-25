@@ -37,6 +37,7 @@ public class MainPage extends Menu implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        super.initialize(url, resourceBundle);
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         value.setCellValueFactory(new PropertyValueFactory<>("value"));
         changes.setCellValueFactory(new PropertyValueFactory<>("changes"));

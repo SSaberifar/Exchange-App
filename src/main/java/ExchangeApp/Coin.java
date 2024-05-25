@@ -4,16 +4,16 @@ public class Coin {
     private String name;
     private double value;
     private String changes;
-    private double max_value;
-    private double min_value;
-    private int Count;
+    private double maxValue;
+    private double minValue;
+    private int count;
 
-    public Coin(String name, double value, String changes, double max_value, double min_value, int count) {
+    public Coin(String name, double value, String changes, double maxValue, double minValue, int count) {
         this.setName(name);
         this.setValue(value);
         this.setChanges(changes);
-        this.setMax_value(max_value);
-        this.setMin_value(min_value);
+        this.setMax_value(maxValue);
+        this.setMin_value(minValue);
         this.setCount(count);
     }
 
@@ -42,26 +42,26 @@ public class Coin {
     }
 
     public double getMax_value() {
-        return max_value;
+        return maxValue;
     }
 
     public void setMax_value(double max_value) {
-        this.max_value = max_value;
+        this.maxValue = max_value;
     }
 
     public double getMin_value() {
-        return min_value;
+        return minValue;
     }
 
     public void setMin_value(double min_value) {
-        this.min_value = min_value;
+        this.minValue = min_value;
     }
 
     public int getCount() {
-        return Count;
+        return count;
     }
 
     public void setCount(int count) {
-        Count = count;
+        this.count = count;
     }
 }

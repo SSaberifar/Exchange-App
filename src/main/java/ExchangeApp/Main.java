@@ -13,13 +13,6 @@ import java.util.Objects;
 
 public class Main extends Application {
 
-    /**
-     * Changes the stage to a new FXML scene.
-     *
-     * @param event    the action event that triggered the stage change.
-     * @param fxmlFile the FXML file to load for the new scene.
-     * @throws IOException if the FXML file cannot be loaded.
-     */
     public static void stageChanger(ActionEvent event, String fxmlFile) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource(fxmlFile)));
         Scene scene = new Scene(root);
@@ -30,18 +23,15 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        // Load the initial scene (Login screen)
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Login.fxml")));
         Scene loginPanel = new Scene(root);
 
-        // Set application window properties
         stage.setTitle("Fum Coin Exchange");
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/icon.png"))));
         stage.setScene(loginPanel);
         stage.setResizable(false);
         stage.show();
 
-        // Ensure the application exits when the window is closed
         stage.setOnCloseRequest(t -> System.exit(0));
     }
 

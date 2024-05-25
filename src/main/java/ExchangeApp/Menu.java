@@ -32,6 +32,16 @@ public class Menu implements Initializable {
     }
 
     /**
+     * Switches to the Exchange scene.
+     *
+     * @param event the action event that triggered the method.
+     * @throws IOException if the FXML file cannot be loaded.
+     */
+    public void Exchange(ActionEvent event) throws IOException {
+        Main.stageChanger(event, "Exchange.fxml");
+    }
+
+    /**
      * Switches to the Wallet scene.
      *
      * @param event the action event that triggered the method.
@@ -64,7 +74,7 @@ public class Menu implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Set the user show button text
-        usershow.setText(Database.usershow);
+        usershow.setText(Database.userShow);
 
         // Start the clock update thread
         startClock();
