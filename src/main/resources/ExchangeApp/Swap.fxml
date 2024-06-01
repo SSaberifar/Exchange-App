@@ -5,12 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,50 +16,19 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ExchangeApp.Exchange">
-    <stylesheets>
-        <URL value="@css/reset.css" />
-    </stylesheets>
-   <center>
-      <AnchorPane fx:id="Transcmbx" BorderPane.alignment="CENTER">
-         <children>
-            <TableView editable="true" layoutX="7.0" layoutY="46.0" prefHeight="406.0" prefWidth="294.0" styleClass="text-light">
-              <columns>
-                <TableColumn prefWidth="75.0" text="قیمت" />
-                <TableColumn prefWidth="75.0" text="تعداد" />
-                  <TableColumn prefWidth="75.0" text="نام ارز" />
-              </columns>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
-            </TableView>
-            <ComboBox fx:id="recordscmbx" layoutX="7.0" layoutY="8.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="26.0" prefWidth="155.0" promptText="نام ارز" styleClass="text-light" />
-            <TextField alignment="CENTER_RIGHT" layoutX="349.0" layoutY="46.0" prefHeight="38.0" prefWidth="202.0" promptText="تعداد" style="-fx-border-radius: 20;" styleClass="text-light" />
-            <TextField alignment="CENTER_RIGHT" layoutX="349.0" layoutY="103.0" prefHeight="38.0" prefWidth="201.0" promptText="قیمت" style="-fx-border-radius: 20;" styleClass="text-light" />
-            <Label layoutX="519.0" layoutY="242.0" prefHeight="32.0" prefWidth="46.0" text=": USDT" />
-            <Separator layoutX="301.0" layoutY="229.0" prefHeight="3.0" prefWidth="292.0" />
-            <Label layoutX="519.0" layoutY="289.0" prefHeight="32.0" prefWidth="46.0" text=": Bitcoin" />
-            <Text fx:id="clock1" fill="#b4b0b0" layoutX="333.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-light" text="قیمت" wrappingWidth="170.22183227539062" />
-            <Text fx:id="clock11" fill="#b4b0b0" layoutX="333.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-light" text="قیمت" wrappingWidth="170.22183227539062" />
-            <Separator layoutX="303.0" layoutY="341.0" prefHeight="3.0" prefWidth="292.0" />
-            <Button layoutX="397.0" layoutY="368.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="102.0" styleClass="text-light" text="ثبت " />
-            <ToggleButton layoutX="390.0" layoutY="171.0" mnemonicParsing="false" styleClass="text-light" text="فروش">
-               <toggleGroup>
-                  <ToggleGroup fx:id="buyToggle" />
-               </toggleGroup>
-            </ToggleButton>
-            <ToggleButton layoutX="452.0" layoutY="171.0" mnemonicParsing="false" selected="true" styleClass="text-light" text="خرید" toggleGroup="$buyToggle" />
-         </children></AnchorPane>
-   </center>
+<BorderPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ExchangeApp.Swap">
+   <stylesheets>
+      <URL value="@css/reset.css" />
+   </stylesheets>
    <top>
       <AnchorPane style="-fx-background-color: linear-gradient(to right, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 0 0 0 20;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="296.0" layoutY="6.0" text="خرید و فروش" textFill="#ffe500">
+            <Label layoutX="310.0" layoutY="6.0" text="تبادل ارز" textFill="#ffe500">
                <font>
                   <Font name="Roboto Bold" size="20.0" />
                </font>
             </Label>
-            <Text fx:id="clock" fill="WHITE" layoutX="600.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-light" text="ساعت" />
+            <Text fx:id="clock" fill="WHITE" layoutX="598.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-light" text="ساعت" />
             <Button fx:id="usershow" alignment="CENTER" mnemonicParsing="false" onAction="#profile" style="-fx-background-color: transparent;" styleClass="text-light" text="نام کاربری" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
@@ -170,4 +134,29 @@
          </children>
       </GridPane>
    </right>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ComboBox layoutX="91.0" layoutY="167.0" prefWidth="150.0" promptText="Bitcoin" />
+            <ComboBox layoutX="356.0" layoutY="167.0" prefWidth="150.0" promptText="Notcoin" />
+            <ImageView fitHeight="50.0" fitWidth="100.0" layoutX="274.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/exchange.png" />
+               </image>
+            </ImageView>
+            <TextField layoutX="91.0" layoutY="233.0" promptText="مقدار تبدیلی" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-style: solid; -fx-border-radius: 5;" />
+            <TextField disable="true" layoutX="356.0" layoutY="233.0" promptText="0" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-style: solid; -fx-border-radius: 5;" />
+            <Button graphicTextGap="0.0" layoutX="224.0" layoutY="332.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right bottom, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 20;" styleClass="text-light" text="تبدیل" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Text fill="RED" layoutX="107.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ارز مبدا و مقصد خود را انتخاب و مقدار مورد نظر برای تبدیل را در کادر مقدار تبدیلی وارد کنید." textAlignment="CENTER" wrappingWidth="383.7811584472656">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </center>
 </BorderPane>

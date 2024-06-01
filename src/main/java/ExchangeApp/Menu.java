@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -29,6 +30,16 @@ public class Menu implements Initializable {
      */
     public void exit(ActionEvent event) throws IOException {
         Main.stageChanger(event, "Login.fxml");
+    }
+
+    /**
+     * Switches to the swap scene.
+     *
+     * @param event the action event that triggered the method.
+     * @throws IOException if the FXML file cannot be loaded.
+     */
+    public void Swap(ActionEvent event) throws IOException {
+        Main.stageChanger(event, "Swap.fxml");
     }
 
     /**

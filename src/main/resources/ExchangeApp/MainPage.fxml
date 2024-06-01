@@ -22,12 +22,12 @@
     </stylesheets>
    <top>
       <AnchorPane style="-fx-background-color: linear-gradient(to right, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 0 0 0 20;" BorderPane.alignment="CENTER">
-         <Label layoutX="297.0" layoutY="10.0" text="صفحه اصلی" textFill="#ffe500">
+         <Label layoutX="297.0" layoutY="6.0" text="صفحه اصلی" textFill="#ffe500">
             <font>
                <Font name="Roboto Bold" size="20.0" />
             </font>
          </Label>
-         <Text fx:id="clock" fill="WHITE" layoutX="598.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-light" text="ساعت" />
+         <Text fx:id="clock" fill="WHITE" layoutX="598.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-light" text="ساعت" />
          <Button fx:id="usershow" alignment="CENTER" mnemonicParsing="false" onAction="#profile" style="-fx-background-color: transparent;" styleClass="text-light" text="نام کاربری" textAlignment="CENTER" textFill="WHITE">
             <font>
                <Font size="20.0" />
@@ -79,7 +79,7 @@
                <Cursor fx:constant="HAND" />
             </cursor>
          </Button>
-         <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="102.4" style="-fx-background-color: transparent;" styleClass="text-light" text="تبادل" textAlignment="CENTER" textFill="#ffe500" GridPane.rowIndex="1">
+         <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#Swap" prefHeight="42.0" prefWidth="102.4" style="-fx-background-color: transparent;" styleClass="text-light" text="تبادل" textAlignment="CENTER" textFill="#ffe500" GridPane.rowIndex="1">
             <graphic>
                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                   <Image url="@images/swap.png" />
