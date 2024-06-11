@@ -6,9 +6,9 @@ public class Coin {
     private String changes;
     private double maxValue;
     private double minValue;
-    private int count;
+    private Double count;
 
-    public Coin(String name, double value, String changes, double maxValue, double minValue, int count) {
+    public Coin(String name, double value, String changes, double maxValue, double minValue, Double count) {
         this.setName(name);
         this.setValue(value);
         this.setChanges(changes);
@@ -57,11 +57,11 @@ public class Coin {
         this.minValue = min_value;
     }
 
-    public int getCount() {
+    public Double getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(Double count) {
         this.count = count;
     }
 }

@@ -82,6 +82,16 @@ public class Menu implements Initializable {
         Main.stageChanger(event, "MainPage.fxml");
     }
 
+    /**
+     * Switches to the transfer scene.
+     *
+     * @param event the action event that triggered the method.
+     * @throws IOException if the FXML file cannot be loaded.
+     */
+    public void transfer(ActionEvent event) throws IOException {
+        Main.stageChanger(event, "transfer.fxml");
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Set the user show button text

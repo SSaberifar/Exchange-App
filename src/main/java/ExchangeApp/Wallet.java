@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -25,12 +26,16 @@ public class Wallet extends Menu implements Initializable {
 
     @FXML
     private TableView<Coin> walletCoins;
+    @FXML
+    private Label profit_d;
+    @FXML
+    private Label profit_b;
 
     ObservableList<Coin> walletCoin = FXCollections.observableArrayList(
-            new Coin("بیت کوین", 2465907360.0, null, 0, 0, 20),
-            new Coin("دوج کوین", 4525.0, null, 0, 0, 10),
-            new Coin("دش", 1633184.0, null, 0, 0, 30),
-            new Coin("لایت کوین", 3693200.0, null, 0, 0, 100)
+            new Coin("اتریوم(ETH)", Database.lastValue(1), null, 0, 0, Database.eth),
+            new Coin("دوج کوین(DOGE)", Database.lastValue(2), null, 0, 0, Database.dog),
+            new Coin("نات کوین(NOT)", Database.lastValue(3), null, 0, 0, Database.not),
+            new Coin("همستر(HAM)", Database.lastValue(4), null, 0, 0, Database.ham)
     );
 
     @Override
@@ -39,7 +44,8 @@ public class Wallet extends Menu implements Initializable {
         Coins.setCellValueFactory(new PropertyValueFactory<>("name"));
         Count.setCellValueFactory(new PropertyValueFactory<>("Count"));
         Price.setCellValueFactory(new PropertyValueFactory<>("value"));
-
+        profit_d.setText(Database.pD + " USD");
+        profit_b.setText(Database.pB + " BTC");
         walletCoins.setItems(walletCoin);
     }
 

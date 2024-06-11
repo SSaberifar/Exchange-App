@@ -22,7 +22,7 @@
     </stylesheets>
     <top>
         <AnchorPane style="-fx-background-color: linear-gradient(to right, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 0 0 0 20;" BorderPane.alignment="CENTER">
-            <Label layoutX="292.0" layoutY="6.0" text="پروفایل کاربری" textFill="#ffe500">
+            <Label layoutX="326.0" layoutY="6.0" text="انتقال" textFill="#ffe500">
                 <font>
                     <Font name="Roboto Bold" size="20.0" />
                 </font>
@@ -41,20 +41,16 @@
     <center>
         <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="51.0" layoutY="81.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="108.0" style="-fx-background-radius: 20;" text="انتقال" />
-            <TextField layoutX="219.0" layoutY="85.0" prefHeight="42.0" prefWidth="167.0" promptText="تعداد" style="-fx-background-radius: 20;" />
-            <ComboBox layoutX="406.0" layoutY="93.0" prefHeight="26.0" prefWidth="160.0" promptText="نوع ارز" style="-fx-background-radius: 20;" />
-            <AnchorPane layoutX="11.0" layoutY="151.0" prefHeight="280.0" prefWidth="574.0" style="-fx-border-radius: 20; -fx-border-color: #00004d;">
-               <children>
-                  <Text fx:id="clock1" layoutX="378.0" layoutY="80.0" opacity="0.65" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-light" text="USD" wrappingWidth="58.221893310546875" />
-                  <TextField disable="true" editable="false" focusTraversable="false" layoutX="98.0" layoutY="53.0" prefHeight="42.0" prefWidth="174.0" promptText="USD" style="-fx-background-radius: 20;" />
-                  <Text fx:id="clock11" layoutX="377.0" layoutY="158.0" opacity="0.65" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-light" text="Bitcoin" wrappingWidth="58.221893310546875" />
-                  <TextField disable="true" editable="false" focusTraversable="false" layoutX="103.0" layoutY="130.0" prefHeight="42.0" prefWidth="174.0" promptText="Bitcoin" style="-fx-background-radius: 20;" />
-                  <Label layoutX="249.0" layoutY="13.0" text="دارایی فعلی" />
-               </children>
-            </AnchorPane>
-            <TextField layoutX="219.0" layoutY="22.0" prefHeight="42.0" prefWidth="167.0" promptText="شماره حساب مقصد" style="-fx-background-radius: 20;" />
-            <Label layoutX="446.0" layoutY="34.0" text="شماره حساب مقصد :" />
+            <TextField layoutX="174.0" layoutY="137.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="250.0" promptText="حجم ارز" style="-fx-background-radius: 10; -fx-border-style: dashed; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-width: 1; -fx-border-color: black;" styleClass="text-light" />
+            <ComboBox fx:id="tokens" layoutX="174.0" layoutY="137.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="91.0" promptText="ارز" style="-fx-background-radius: 10;" styleClass="text-light" />
+            <TextField layoutX="174.0" layoutY="67.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="250.0" promptText="کیف پول مقصد" style="-fx-background-radius: 10; -fx-border-style: dashed; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-width: 1; -fx-border-color: black;" styleClass="text-light" />
+            <Button layoutX="224.0" layoutY="277.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right bottom, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 20;" styleClass="text-light" text="انتقال" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <TextField layoutX="174.0" layoutY="204.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="250.0" promptText="پیام" style="-fx-background-radius: 10; -fx-border-style: dashed; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-width: 1; -fx-border-color: black;" styleClass="text-light" />
+            <Text fill="RED" layoutX="140.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-light" text="*پیام: به صورت دیفالت نام کاربری شما می باشد!" />
          </children>
         </AnchorPane>
     </center>
@@ -112,7 +108,7 @@
                     <Cursor fx:constant="HAND" />
                 </cursor>
             </Button>
-            <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="102.4" style="-fx-background-color: transparent;" styleClass="text-light" text="انتقال" textAlignment="CENTER" textFill="#ffe500" GridPane.rowIndex="3">
+            <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#transfer" prefHeight="42.0" prefWidth="102.4" style="-fx-background-color: transparent;" styleClass="text-light" text="انتقال" textAlignment="CENTER" textFill="#ffe500" GridPane.rowIndex="3">
                 <graphic>
                     <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                         <Image url="@../ExchangeApp/images/transfer.png" />

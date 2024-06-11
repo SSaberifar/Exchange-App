@@ -28,10 +28,10 @@ public class MainPage extends Menu implements Initializable {
     private TableColumn<Coin, Double> min_value;
 
     ObservableList<Coin> coinList = FXCollections.observableArrayList(
-            new Coin("بیت کوین (BTC)", 2465907360.0, "+1.31%", 2465907360.0, 2430400560.0, 0),
-            new Coin("دوج کوین (DOGE)", 4525.0, "+2.22%", 4525.0, 44010., 0),
-            new Coin("دش (DASH)", 1633184.0, "+4.83%", 1633184.0, 1552157.0, 0),
-            new Coin("لایت کوین (LTC)", 3693200.0, "+3.27%", 3693200.0, 3567760.0, 0)
+            new Coin("اتریوم (ETH)", 0.865, "-3.888888889%", 1.149, 0.474, 0.0),
+            new Coin("دوج کوین (DOGE)", 83734.284, "+99.36734286%", 84934.622, 30027.455, 0.0),
+            new Coin("نات کوین (NOT)", 142.541, "+29.58272727%", 154.823, 89.649, 0.0),
+            new Coin("همستر (HAM)", 0.973, "+21.625%", 1.127, 0.421, 0.0)
     );
 
 

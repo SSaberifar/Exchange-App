@@ -95,7 +95,7 @@
                <Cursor fx:constant="HAND" />
             </cursor>
          </Button>
-         <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="102.4" style="-fx-background-color: transparent;" styleClass="text-light" text="انتقال" textAlignment="CENTER" textFill="#ffe500" GridPane.rowIndex="3">
+         <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#transfer" prefHeight="42.0" prefWidth="102.4" style="-fx-background-color: transparent;" styleClass="text-light" text="انتقال" textAlignment="CENTER" textFill="#ffe500" GridPane.rowIndex="3">
             <graphic>
                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                   <Image url="@images/transfer.png" />
@@ -126,10 +126,10 @@
    <center>
       <AnchorPane BorderPane.alignment="CENTER">
          <AnchorPane layoutX="14.0" layoutY="12.0" prefHeight="202.0" prefWidth="274.0" style="-fx-background-color: #ffff66; -fx-background-radius: 20;" styleClass="text-light" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="309.2" AnchorPane.topAnchor="12.0">
-            <Label layoutX="200.0" layoutY="16.0" prefHeight="26.0" prefWidth="67.0" style="-fx-border-style: none;" text="دارایی کل" textAlignment="CENTER" />
-            <Label layoutX="22.0" layoutY="42.0" prefHeight="42.0" prefWidth="141.0" style="-fx-border-style: none;" text="23560 USD" textAlignment="CENTER" />
-            <Label layoutX="69.0" layoutY="101.0" prefHeight="26.0" prefWidth="198.0" style="-fx-border-style: none;" text="دارایی کل بر حسب بیت کوین" textAlignment="CENTER" />
-            <Label layoutX="22.0" layoutY="135.0" prefHeight="42.0" prefWidth="141.0" style="-fx-border-style: none;" text="7.692 BTC" textAlignment="CENTER" />
+            <Label layoutX="66.0" layoutY="16.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="26.0" prefWidth="201.0" style="-fx-border-style: none;" text="دارایی کل بر حسب دلار" textAlignment="CENTER" />
+            <Label fx:id="profit_d" layoutX="22.0" layoutY="42.0" prefHeight="42.0" prefWidth="141.0" style="-fx-border-style: none;" textAlignment="CENTER" />
+            <Label layoutX="69.0" layoutY="101.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="26.0" prefWidth="198.0" style="-fx-border-style: none;" text="دارایی کل بر حسب بیت کوین" textAlignment="CENTER" />
+            <Label fx:id="profit_b" layoutX="22.0" layoutY="135.0" prefHeight="42.0" prefWidth="141.0" style="-fx-border-style: none;" textAlignment="CENTER" />
          </AnchorPane>
          <TableView fx:id="walletCoins" editable="true" layoutX="305.0" layoutY="12.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="433.0" prefWidth="278.0" styleClass="text-light">
             <columns>
