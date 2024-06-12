@@ -10,7 +10,6 @@ import javafx.scene.image.ImageView;
 import net.synedra.validatorfx.Validator;
 
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
@@ -116,11 +115,11 @@ public class Profile extends Menu implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
-        ProfileImage.setImage(new Image("file:" + Database.userImage));
-        SignFName.setText(Database.userFirstName);
-        SignLName.setText(Database.userLastName);
-        SignPass.setText(Database.userPassword);
-        SignEmail.setText(Database.userEmail);
-        SignPhone.setText(Database.userPhone);
+        ProfileImage.setImage(new Image("file:" + User.user.getUserImage()));
+        SignFName.setText(User.user.getUserFirstName());
+        SignLName.setText(User.user.getUserLastName());
+        SignPass.setText(User.user.getUserPassword());
+        SignEmail.setText(User.user.getUserEmail());
+        SignPhone.setText(User.user.getUserPhone());
     }
 }

@@ -3,12 +3,12 @@ package ExchangeApp;
 public class Coin {
     private String name;
     private double value;
-    private String changes;
+    private double changes;
     private double maxValue;
     private double minValue;
-    private Double count;
+    private double count;
 
-    public Coin(String name, double value, String changes, double maxValue, double minValue, Double count) {
+    public Coin(String name, double value, double changes, double maxValue, double minValue, Double count) {
         this.setName(name);
         this.setValue(value);
         this.setChanges(changes);
@@ -33,11 +33,11 @@ public class Coin {
         this.name = name;
     }
 
-    public String getChanges() {
+    public double getChanges() {
         return changes;
     }
 
-    public void setChanges(String changes) {
+    public void setChanges(double changes) {
         this.changes = changes;
     }
 
@@ -57,7 +57,7 @@ public class Coin {
         this.minValue = min_value;
     }
 
-    public Double getCount() {
+    public double getCount() {
         return count;
     }
 

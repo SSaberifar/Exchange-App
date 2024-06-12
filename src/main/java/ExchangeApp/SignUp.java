@@ -82,7 +82,7 @@ public class SignUp implements Initializable {
     public void SignUpApp(ActionEvent event) throws IOException {
         setupValidators();
         if (validator.validate()) {
-            Database.SignUpDB(event, SignFName.getText(), SignLName.getText(), SignName.getText(), SignPass.getText(), SignEmail.getText(), SignPhone.getText(),path);
+            Database.SignUpDB(event, SignFName.getText(), SignLName.getText(), SignName.getText(), SignPass.getText(), SignEmail.getText(), SignPhone.getText(), path);
         }
     }
 

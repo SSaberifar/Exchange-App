@@ -95,7 +95,7 @@ public class Menu implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Set the user show button text
-        usershow.setText(Database.userShow);
+        usershow.setText(User.user.getUserShow());
 
         // Start the clock update thread
         startClock();

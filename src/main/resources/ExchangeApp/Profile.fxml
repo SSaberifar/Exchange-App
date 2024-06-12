@@ -79,6 +79,14 @@
                <Cursor fx:constant="HAND" />
             </cursor>
          </Button>
+         <Button alignment="CENTER" contentDisplay="RIGHT" layoutX="247.0" layoutY="389.0" mnemonicParsing="false" onAction="#wallet" prefHeight="50.0" prefWidth="120.0" style="-fx-background-color: transparent; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-width: 1; -fx-border-style: solid; -fx-border-color: red;" styleClass="text-light" text="اختلاس" textAlignment="CENTER" textFill="RED" visible="false">
+            <font>
+               <Font size="20.0" />
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
       </AnchorPane>
    </center>
    <right>

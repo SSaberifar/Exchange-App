@@ -8,19 +8,6 @@ import java.io.IOException;
 import java.sql.*;
 
 public class Database {
-    static String userShow;
-    static String userFirstName;
-    static String userLastName;
-    static String userPassword;
-    static String userEmail;
-    static String userPhone;
-    static String userImage;
-    static Double pD;
-    static Double pB;
-    static Double eth;
-    static Double dog;
-    static Double not;
-    static Double ham;
 
     private static Connection getConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/fumcoin", "root", "");
@@ -66,19 +53,7 @@ public class Database {
             psmt.setString(2, upass);
             ResultSet result = psmt.executeQuery();
             if (result.next()) {
-                userShow = uname;
-                userFirstName = psmt.getResultSet().getString(2);
-                userLastName = psmt.getResultSet().getString(3);
-                userPassword = psmt.getResultSet().getString(5);
-                userEmail = psmt.getResultSet().getString(6);
-                userPhone = psmt.getResultSet().getString(7);
-                userImage = psmt.getResultSet().getString(8);
-                pD = psmt.getResultSet().getDouble(9);
-                pB = psmt.getResultSet().getDouble(10);
-                eth = psmt.getResultSet().getDouble(11);
-                dog = psmt.getResultSet().getDouble(12);
-                not = psmt.getResultSet().getDouble(13);
-                ham = psmt.getResultSet().getDouble(14);
+                User.user = new User(uname, psmt.getResultSet().getString(2), psmt.getResultSet().getString(3), psmt.getResultSet().getString(5), psmt.getResultSet().getString(6), psmt.getResultSet().getString(7), psmt.getResultSet().getString(8), psmt.getResultSet().getString(9), psmt.getResultSet().getString(10), psmt.getResultSet().getString(11), psmt.getResultSet().getString(12), psmt.getResultSet().getString(13));
                 showAlert(Alert.AlertType.INFORMATION, "ورود کاربر", "با موفقیت وارد شدید!");
                 Main.stageChanger(event, "Profile.fxml");
             } else {
@@ -97,12 +72,7 @@ public class Database {
             psmt.setString(1, email);
             ResultSet result = psmt.executeQuery();
             if (result.next()) {
-                userShow = result.getString("user_name");
-                userFirstName = psmt.getResultSet().getString(2);
-                userLastName = psmt.getResultSet().getString(3);
-                userPassword = psmt.getResultSet().getString(5);
-                userEmail = psmt.getResultSet().getString(6);
-                userPhone = psmt.getResultSet().getString(7);
+                User.user = new User(result.getString("user_name"), psmt.getResultSet().getString(2), psmt.getResultSet().getString(3), psmt.getResultSet().getString(5), psmt.getResultSet().getString(6), psmt.getResultSet().getString(7), psmt.getResultSet().getString(8), psmt.getResultSet().getString(9), psmt.getResultSet().getString(10), psmt.getResultSet().getString(11), psmt.getResultSet().getString(12), psmt.getResultSet().getString(13));
                 Main.stageChanger(event, "Profile.fxml");
             } else {
                 showAlert(Alert.AlertType.INFORMATION, "ورود کاربر", "کاربری با این ایمیل حساب کاربری ندارد!");
@@ -170,6 +140,178 @@ public class Database {
         }
         return value;
     }
+
+    public static Double largeValue(int num) {
+        Double value = 0.0;
+        switch (num) {
+            case 1:
+                String query1 = "SELECT MAX(Ethereum) AS max_price FROM token_price";
+
+                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query1)) {
+
+                    ResultSet result = psmt.executeQuery();
+                    if (result.next()) {
+                        value = Double.valueOf(result.getString("max_price"));
+                    }
+                } catch (SQLException e) {
+                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
+                }
+                break;
+            case 2:
+                String query2 = "SELECT MAX(Dogecoin) AS max_price FROM token_price";
+
+                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query2)) {
+
+                    ResultSet result = psmt.executeQuery();
+                    if (result.next()) {
+                        value = Double.valueOf(result.getString("max_price"));
+                    }
+                } catch (SQLException e) {
+                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
+                }
+                break;
+            case 3:
+                String query3 = "SELECT MAX(Notcoin) AS max_price FROM token_price";
+
+                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query3)) {
+
+                    ResultSet result = psmt.executeQuery();
+                    if (result.next()) {
+                        value = Double.valueOf(result.getString("max_price"));
+                    }
+                } catch (SQLException e) {
+                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
+                }
+                break;
+            case 4:
+                String query4 = "SELECT MAX(Hamester) AS max_price FROM token_price";
+
+                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query4)) {
+
+                    ResultSet result = psmt.executeQuery();
+                    if (result.next()) {
+                        value = Double.valueOf(result.getString("max_price"));
+                    }
+                } catch (SQLException e) {
+                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
+                }
+                break;
+        }
+        return value;
+    }
+
+    public static Double smallValue(int num) {
+        Double value = 0.0;
+        switch (num) {
+            case 1:
+                String query1 = "SELECT MIN(Ethereum) AS min_price FROM token_price";
+
+                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query1)) {
+
+                    ResultSet result = psmt.executeQuery();
+                    if (result.next()) {
+                        value = Double.valueOf(result.getString("min_price"));
+                    }
+                } catch (SQLException e) {
+                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
+                }
+                break;
+            case 2:
+                String query2 = "SELECT MIN(Dogecoin) AS min_price FROM token_price";
+
+                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query2)) {
+
+                    ResultSet result = psmt.executeQuery();
+                    if (result.next()) {
+                        value = Double.valueOf(result.getString("min_price"));
+                    }
+                } catch (SQLException e) {
+                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
+                }
+                break;
+            case 3:
+                String query3 = "SELECT MIN(Notcoin) AS min_price FROM token_price";
+
+                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query3)) {
+
+                    ResultSet result = psmt.executeQuery();
+                    if (result.next()) {
+                        value = Double.valueOf(result.getString("min_price"));
+                    }
+                } catch (SQLException e) {
+                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
+                }
+                break;
+            case 4:
+                String query4 = "SELECT MIN(Hamester) AS min_price FROM token_price";
+
+                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query4)) {
+
+                    ResultSet result = psmt.executeQuery();
+                    if (result.next()) {
+                        value = Double.valueOf(result.getString("min_price"));
+                    }
+                } catch (SQLException e) {
+                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
+                }
+                break;
+        }
+        return value;
+    }
+
+    public static Double percent(int num) {
+        Double value = 0.0;
+        Double firstRow = 0.0;
+        Double lastRow = 0.0;
+        String column = "";
+
+        switch (num) {
+            case 1:
+                column = "Ethereum";
+                break;
+            case 2:
+                column = "Dogecoin";
+                break;
+            case 3:
+                column = "Notcoin";
+                break;
+            case 4:
+                column = "Hamester";
+                break;
+            default:
+                showAlert(Alert.AlertType.ERROR, "خطا", "نوع نامعتبر");
+                return null;
+        }
+
+        String query1 = "SELECT " + column + " FROM token_price ORDER BY " + "time" + " LIMIT 1";
+        String query2 = "SELECT " + column + " FROM token_price LIMIT 1 OFFSET 1439";
+
+        try (Connection connection = getConnection(); PreparedStatement stmt1 = connection.prepareStatement(query1); PreparedStatement stmt2 = connection.prepareStatement(query2)) {
+
+            ResultSet result1 = stmt1.executeQuery();
+            ResultSet result2 = stmt2.executeQuery();
+
+            if (result1.next()) {
+                firstRow = Double.valueOf(result1.getString(column));
+            }
+            if (result2.next()) {
+                lastRow = Double.valueOf(result2.getString(column));
+            }
+
+            System.out.println(firstRow);
+            System.out.println(lastRow);
+            if (firstRow != 0) {
+                value = ((lastRow - firstRow) / firstRow) * 100;
+            } else {
+                showAlert(Alert.AlertType.ERROR, "خطا", "مقدار اولیه صفر است");
+            }
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
+        }
+
+        return value;
+    }
+
 
     private static void showAlert(Alert.AlertType alertType, String title, String content) {
         Alert alert = new Alert(alertType);
