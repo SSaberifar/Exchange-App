@@ -16,6 +16,7 @@ public class User {
     private Double dog;
     private Double not;
     private Double ham;
+    private Double fee;
 
 
     public User(String userShow, String userFirstName, String userLastName, String userPassword, String userEmail, String userPhone, String userImage, String pD, String eth, String dog, String not, String ham) {
@@ -31,10 +32,19 @@ public class User {
         this.setDog(dog);
         this.setNot(not);
         this.setHam(ham);
+        this.setFee(0.0);
     }
 
     public String getUserShow() {
         return userShow;
+    }
+
+    public Double getFee() {
+        return fee;
+    }
+
+    public void setFee(Double fee) {
+        this.fee = fee;
     }
 
     public void setUserShow(String userShow) {

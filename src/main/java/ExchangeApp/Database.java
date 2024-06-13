@@ -82,10 +82,10 @@ public class Database {
         }
     }
 
-    public static Double lastValue(int num) {
+    public static Double lastValue(String type) {
         Double value = 0.0;
-        switch (num) {
-            case 1:
+        switch (type) {
+            case "Ethereum":
                 String query1 = "SELECT Ethereum FROM token_price LIMIT 1 OFFSET 1439";
 
                 try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query1)) {
@@ -98,7 +98,7 @@ public class Database {
                     showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
                 }
                 break;
-            case 2:
+            case "Dogecoin":
                 String query2 = "SELECT Dogecoin FROM token_price LIMIT 1 OFFSET 1439";
 
                 try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query2)) {
@@ -111,7 +111,7 @@ public class Database {
                     showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
                 }
                 break;
-            case 3:
+            case "Notcoin":
                 String query3 = "SELECT Notcoin FROM token_price LIMIT 1 OFFSET 1439";
 
                 try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query3)) {
@@ -124,7 +124,7 @@ public class Database {
                     showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
                 }
                 break;
-            case 4:
+            case "Hamester":
                 String query4 = "SELECT Hamester FROM token_price LIMIT 1 OFFSET 1439";
 
                 try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query4)) {
@@ -297,9 +297,6 @@ public class Database {
             if (result2.next()) {
                 lastRow = Double.valueOf(result2.getString(column));
             }
-
-            System.out.println(firstRow);
-            System.out.println(lastRow);
             if (firstRow != 0) {
                 value = ((lastRow - firstRow) / firstRow) * 100;
             } else {
@@ -313,7 +310,7 @@ public class Database {
     }
 
 
-    private static void showAlert(Alert.AlertType alertType, String title, String content) {
+    public static void showAlert(Alert.AlertType alertType, String title, String content) {
         Alert alert = new Alert(alertType);
         alert.getDialogPane().setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
         alert.setTitle(title);

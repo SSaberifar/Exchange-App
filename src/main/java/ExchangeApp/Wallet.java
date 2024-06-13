@@ -32,10 +32,10 @@ public class Wallet extends Menu implements Initializable {
     private Label profit_b;
 
     ObservableList<Coin> walletCoin = FXCollections.observableArrayList(
-            new Coin("اتریوم(ETH)", Database.lastValue(1), 0, 0, 0, User.user.getEth()),
-            new Coin("دوج کوین(DOGE)", Database.lastValue(2), 0, 0, 0, User.user.getDog()),
-            new Coin("نات کوین(NOT)", Database.lastValue(3), 0, 0, 0, User.user.getNot()),
-            new Coin("همستر(HAM)", Database.lastValue(4), 0, 0, 0, User.user.getHam())
+            new Coin("اتریوم(ETH)", Database.lastValue("Ethereum"), 0, 0, 0, User.user.getEth()),
+            new Coin("دوج کوین(DOGE)", Database.lastValue("Dogecoin"), 0, 0, 0, User.user.getDog()),
+            new Coin("نات کوین(NOT)", Database.lastValue("Notcoin"), 0, 0, 0, User.user.getNot()),
+            new Coin("همستر(HAM)", Database.lastValue("Hamester"), 0, 0, 0, User.user.getHam())
     );
 
     @Override
