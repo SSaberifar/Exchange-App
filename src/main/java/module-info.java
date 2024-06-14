@@ -14,6 +14,7 @@ module Login_SignUp {
     requires java.mail;
     requires java.sql;
     requires java.compiler;
+    requires commons.math3;
 
     opens ExchangeApp to javafx.fxml;
     exports ExchangeApp;
