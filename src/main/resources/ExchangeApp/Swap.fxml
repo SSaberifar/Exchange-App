@@ -144,9 +144,9 @@
                   <Image url="@images/exchange.png" />
                </image>
             </ImageView>
-            <TextField layoutX="91.0" layoutY="233.0" promptText="حجم ارز" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-style: solid; -fx-border-radius: 5;" />
-            <TextField disable="true" layoutX="356.0" layoutY="233.0" promptText="0" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-style: solid; -fx-border-radius: 5;" />
-            <Button graphicTextGap="0.0" layoutX="224.0" layoutY="332.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right bottom, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 20;" styleClass="text-light" text="تبدیل" textFill="WHITE">
+            <TextField fx:id="firstinput" layoutX="91.0" layoutY="233.0" promptText="حجم ارز" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-style: solid; -fx-border-radius: 5;" />
+            <TextField fx:id="secondinput" disable="true" layoutX="356.0" layoutY="233.0" promptText="0" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-style: solid; -fx-border-radius: 5;" />
+            <Button graphicTextGap="0.0" layoutX="224.0" layoutY="332.0" mnemonicParsing="false" onAction="#convert" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right bottom, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 20;" styleClass="text-light" text="تبدیل" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

@@ -15,7 +15,7 @@ public class Database {
 
     public static void SignUpDB(ActionEvent event, String fname, String lname, String uname, String upass, String uemail, String uphone, String imgPath) throws IOException {
         String checkSQL = "SELECT * FROM users WHERE user_name = ? OR email = ? OR phone_number = ?";
-        String insertSQL = "INSERT INTO users (first_name, last_name, user_name, password, email, phone_number,imagePath) VALUES (?, ?, ?, ?, ?, ?,?)";
+        String insertSQL = "INSERT INTO users (first_name, last_name, user_name, password, email, phone_number, imagePath) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = getConnection(); PreparedStatement checkStmt = connection.prepareStatement(checkSQL); PreparedStatement insertStmt = connection.prepareStatement(insertSQL)) {
 
@@ -53,7 +53,7 @@ public class Database {
             psmt.setString(2, upass);
             ResultSet result = psmt.executeQuery();
             if (result.next()) {
-                User.user = new User(uname, psmt.getResultSet().getString(2), psmt.getResultSet().getString(3), psmt.getResultSet().getString(5), psmt.getResultSet().getString(6), psmt.getResultSet().getString(7), psmt.getResultSet().getString(8), psmt.getResultSet().getString(9), psmt.getResultSet().getString(10), psmt.getResultSet().getString(11), psmt.getResultSet().getString(12), psmt.getResultSet().getString(13));
+                User.user = new User(result.getString("user_name"), result.getString("first_name"), result.getString("last_name"), result.getString("password"), result.getString("email"), result.getString("phone_number"), result.getString("imagePath"), result.getDouble("profit(USD)"), result.getString("Ethereum"), result.getString("Dogecoin"), result.getString("Notcoin"), result.getString("Hamester"));
                 showAlert(Alert.AlertType.INFORMATION, "ورود کاربر", "با موفقیت وارد شدید!");
                 Main.stageChanger(event, "Profile.fxml");
             } else {
@@ -72,7 +72,7 @@ public class Database {
             psmt.setString(1, email);
             ResultSet result = psmt.executeQuery();
             if (result.next()) {
-                User.user = new User(result.getString("user_name"), psmt.getResultSet().getString(2), psmt.getResultSet().getString(3), psmt.getResultSet().getString(5), psmt.getResultSet().getString(6), psmt.getResultSet().getString(7), psmt.getResultSet().getString(8), psmt.getResultSet().getString(9), psmt.getResultSet().getString(10), psmt.getResultSet().getString(11), psmt.getResultSet().getString(12), psmt.getResultSet().getString(13));
+                User.user = new User(result.getString("user_name"), result.getString("first_name"), result.getString("last_name"), result.getString("password"), result.getString("email"), result.getString("phone_number"), result.getString("imagePath"), result.getDouble("profit(USD)"), result.getString("Ethereum"), result.getString("Dogecoin"), result.getString("Notcoin"), result.getString("Hamester"));
                 Main.stageChanger(event, "Profile.fxml");
             } else {
                 showAlert(Alert.AlertType.INFORMATION, "ورود کاربر", "کاربری با این ایمیل حساب کاربری ندارد!");
@@ -82,179 +82,56 @@ public class Database {
         }
     }
 
-    public static Double lastValue(int num) {
+    public static Double lastValue(String type) {
         Double value = 0.0;
-        switch (num) {
-            case 1:
-                String query1 = "SELECT Ethereum FROM token_price LIMIT 1 OFFSET 1439";
+        String query = "SELECT " + type + " FROM token_price LIMIT 1 OFFSET 1439";
 
-                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query1)) {
+        try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query)) {
 
-                    ResultSet result = psmt.executeQuery();
-                    if (result.next()) {
-                        value = Double.valueOf(result.getString("Ethereum"));
-                    }
-                } catch (SQLException e) {
-                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
-                }
-                break;
-            case 2:
-                String query2 = "SELECT Dogecoin FROM token_price LIMIT 1 OFFSET 1439";
-
-                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query2)) {
-
-                    ResultSet result = psmt.executeQuery();
-                    if (result.next()) {
-                        value = Double.valueOf(result.getString("Dogecoin"));
-                    }
-                } catch (SQLException e) {
-                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
-                }
-                break;
-            case 3:
-                String query3 = "SELECT Notcoin FROM token_price LIMIT 1 OFFSET 1439";
-
-                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query3)) {
-
-                    ResultSet result = psmt.executeQuery();
-                    if (result.next()) {
-                        value = Double.valueOf(result.getString("Notcoin"));
-                    }
-                } catch (SQLException e) {
-                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
-                }
-                break;
-            case 4:
-                String query4 = "SELECT Hamester FROM token_price LIMIT 1 OFFSET 1439";
-
-                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query4)) {
-
-                    ResultSet result = psmt.executeQuery();
-                    if (result.next()) {
-                        value = Double.valueOf(result.getString("Hamester"));
-                    }
-                } catch (SQLException e) {
-                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
-                }
-                break;
+            ResultSet result = psmt.executeQuery();
+            if (result.next()) {
+                value = result.getDouble(type);
+            }
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
         }
         return value;
     }
 
     public static Double largeValue(int num) {
         Double value = 0.0;
-        switch (num) {
-            case 1:
-                String query1 = "SELECT MAX(Ethereum) AS max_price FROM token_price";
+        String column = getColumn(num);
+        if (column == null) return value;
 
-                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query1)) {
+        String query = "SELECT MAX(" + column + ") AS max_price FROM token_price";
 
-                    ResultSet result = psmt.executeQuery();
-                    if (result.next()) {
-                        value = Double.valueOf(result.getString("max_price"));
-                    }
-                } catch (SQLException e) {
-                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
-                }
-                break;
-            case 2:
-                String query2 = "SELECT MAX(Dogecoin) AS max_price FROM token_price";
+        try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query)) {
 
-                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query2)) {
-
-                    ResultSet result = psmt.executeQuery();
-                    if (result.next()) {
-                        value = Double.valueOf(result.getString("max_price"));
-                    }
-                } catch (SQLException e) {
-                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
-                }
-                break;
-            case 3:
-                String query3 = "SELECT MAX(Notcoin) AS max_price FROM token_price";
-
-                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query3)) {
-
-                    ResultSet result = psmt.executeQuery();
-                    if (result.next()) {
-                        value = Double.valueOf(result.getString("max_price"));
-                    }
-                } catch (SQLException e) {
-                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
-                }
-                break;
-            case 4:
-                String query4 = "SELECT MAX(Hamester) AS max_price FROM token_price";
-
-                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query4)) {
-
-                    ResultSet result = psmt.executeQuery();
-                    if (result.next()) {
-                        value = Double.valueOf(result.getString("max_price"));
-                    }
-                } catch (SQLException e) {
-                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
-                }
-                break;
+            ResultSet result = psmt.executeQuery();
+            if (result.next()) {
+                value = result.getDouble("max_price");
+            }
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
         }
         return value;
     }
 
     public static Double smallValue(int num) {
         Double value = 0.0;
-        switch (num) {
-            case 1:
-                String query1 = "SELECT MIN(Ethereum) AS min_price FROM token_price";
+        String column = getColumn(num);
+        if (column == null) return value;
 
-                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query1)) {
+        String query = "SELECT MIN(" + column + ") AS min_price FROM token_price";
 
-                    ResultSet result = psmt.executeQuery();
-                    if (result.next()) {
-                        value = Double.valueOf(result.getString("min_price"));
-                    }
-                } catch (SQLException e) {
-                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
-                }
-                break;
-            case 2:
-                String query2 = "SELECT MIN(Dogecoin) AS min_price FROM token_price";
+        try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query)) {
 
-                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query2)) {
-
-                    ResultSet result = psmt.executeQuery();
-                    if (result.next()) {
-                        value = Double.valueOf(result.getString("min_price"));
-                    }
-                } catch (SQLException e) {
-                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
-                }
-                break;
-            case 3:
-                String query3 = "SELECT MIN(Notcoin) AS min_price FROM token_price";
-
-                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query3)) {
-
-                    ResultSet result = psmt.executeQuery();
-                    if (result.next()) {
-                        value = Double.valueOf(result.getString("min_price"));
-                    }
-                } catch (SQLException e) {
-                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
-                }
-                break;
-            case 4:
-                String query4 = "SELECT MIN(Hamester) AS min_price FROM token_price";
-
-                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query4)) {
-
-                    ResultSet result = psmt.executeQuery();
-                    if (result.next()) {
-                        value = Double.valueOf(result.getString("min_price"));
-                    }
-                } catch (SQLException e) {
-                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
-                }
-                break;
+            ResultSet result = psmt.executeQuery();
+            if (result.next()) {
+                value = result.getDouble("min_price");
+            }
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در پیدا کردن مقدار: " + e.getMessage());
         }
         return value;
     }
@@ -263,27 +140,10 @@ public class Database {
         Double value = 0.0;
         Double firstRow = 0.0;
         Double lastRow = 0.0;
-        String column = "";
+        String column = getColumn(num);
+        if (column == null) return value;
 
-        switch (num) {
-            case 1:
-                column = "Ethereum";
-                break;
-            case 2:
-                column = "Dogecoin";
-                break;
-            case 3:
-                column = "Notcoin";
-                break;
-            case 4:
-                column = "Hamester";
-                break;
-            default:
-                showAlert(Alert.AlertType.ERROR, "خطا", "نوع نامعتبر");
-                return null;
-        }
-
-        String query1 = "SELECT " + column + " FROM token_price ORDER BY " + "time" + " LIMIT 1";
+        String query1 = "SELECT " + column + " FROM token_price ORDER BY time LIMIT 1";
         String query2 = "SELECT " + column + " FROM token_price LIMIT 1 OFFSET 1439";
 
         try (Connection connection = getConnection(); PreparedStatement stmt1 = connection.prepareStatement(query1); PreparedStatement stmt2 = connection.prepareStatement(query2)) {
@@ -292,14 +152,11 @@ public class Database {
             ResultSet result2 = stmt2.executeQuery();
 
             if (result1.next()) {
-                firstRow = Double.valueOf(result1.getString(column));
+                firstRow = result1.getDouble(column);
             }
             if (result2.next()) {
-                lastRow = Double.valueOf(result2.getString(column));
+                lastRow = result2.getDouble(column);
             }
-
-            System.out.println(firstRow);
-            System.out.println(lastRow);
             if (firstRow != 0) {
                 value = ((lastRow - firstRow) / firstRow) * 100;
             } else {
@@ -312,8 +169,18 @@ public class Database {
         return value;
     }
 
+    public static void update(String desUser, String token, String value) {
+        String query = "UPDATE users SET " + token + " = " + token + " + ? WHERE user_name = ?";
+        try (Connection connection = getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setDouble(1, Double.parseDouble(value));
+            stmt.setString(2, desUser);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "خطا", "خطا در آپدیت اطلاعات: " + e.getMessage());
+        }
+    }
 
-    private static void showAlert(Alert.AlertType alertType, String title, String content) {
+    public static void showAlert(Alert.AlertType alertType, String title, String content) {
         Alert alert = new Alert(alertType);
         alert.getDialogPane().setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
         alert.setTitle(title);
@@ -322,8 +189,8 @@ public class Database {
         alert.showAndWait();
     }
 
-    public static void update(String fname, String lname, String uname, String upass, String uemail, String uphone) {
-        String updateSql = "UPDATE users SET first_name=?,last_name=?,password=?,email=?,phone_number=? WHERE user_name=?";
+    public static void updateInfo(String fname, String lname, String uname, String upass, String uemail, String uphone) {
+        String updateSql = "UPDATE users SET first_name=?, last_name=?, password=?, email=?, phone_number=? WHERE user_name=?";
 
         try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(updateSql)) {
 
@@ -340,6 +207,22 @@ public class Database {
             }
         } catch (SQLException e) {
             showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در بروزرسانی رخ داد: " + e.getMessage());
+        }
+    }
+
+    private static String getColumn(int num) {
+        switch (num) {
+            case 1:
+                return "Ethereum";
+            case 2:
+                return "Dogecoin";
+            case 3:
+                return "Notcoin";
+            case 4:
+                return "Hamester";
+            default:
+                showAlert(Alert.AlertType.ERROR, "خطا", "نوع نامعتبر");
+                return null;
         }
     }
 }

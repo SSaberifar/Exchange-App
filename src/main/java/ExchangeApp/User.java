@@ -18,7 +18,7 @@ public class User {
     private Double ham;
 
 
-    public User(String userShow, String userFirstName, String userLastName, String userPassword, String userEmail, String userPhone, String userImage, String pD, String eth, String dog, String not, String ham) {
+    public User(String userShow, String userFirstName, String userLastName, String userPassword, String userEmail, String userPhone, String userImage, Double pD, String eth, String dog, String not, String ham) {
         this.setUserShow(userShow);
         this.setUserFirstName(userFirstName);
         this.setUserLastName(userLastName);
@@ -93,8 +93,8 @@ public class User {
         return pD;
     }
 
-    public void setpD(String pD) {
-        this.pD = Double.parseDouble(pD);
+    public void setpD(Double pD) {
+        this.pD = pD;
     }
 
     public Double getEth() {
