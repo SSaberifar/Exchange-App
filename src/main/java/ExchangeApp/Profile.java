@@ -42,7 +42,7 @@ public class Profile extends Menu implements Initializable {
             editbtn.setText("ثبت اطلاعات کاربری");
         } else {
             if (validator.validate()) {
-                Database.update(SignFName.getText(), SignLName.getText(), usershow.getText(), SignPass.getText(), SignEmail.getText(), SignPhone.getText());
+                Database.updateInfo(SignFName.getText(), SignLName.getText(), usershow.getText(), SignPass.getText(), SignEmail.getText(), SignPhone.getText());
                 enableEditing(false);
                 // Save updated information to the database or perform any required actions here
                 editbtn.setText("ویرایش اطلاعات کاربری");

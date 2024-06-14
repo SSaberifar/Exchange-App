@@ -43,9 +43,8 @@ public class Swap extends Menu implements Initializable {
         alert.setContentText("کارمزد عملیات شما 10 دلار می باشد! آیا مایل به ادامه هستید؟");
 
         alert.showAndWait().ifPresent(buttonType -> {
-            if (buttonType == ButtonType.OK) {
-                User.user.setpD(String.valueOf(User.user.getpD() - 10));
-                User.user.setFee(User.user.getFee() + 10);
+            if (buttonType == ButtonType.OK && User.user.getpD() >= 10) {
+                User.user.setpD(User.user.getpD() - 10);
                 switch (firstcoin) {
                     case "Ethereum":
                         User.user.setEth(String.valueOf(User.user.getEth() - Double.parseDouble(firstinput.getText())));
@@ -74,11 +73,7 @@ public class Swap extends Menu implements Initializable {
                         User.user.setHam(String.valueOf(User.user.getHam() + Double.parseDouble(secondinput.getText())));
                         break;
                 }
-                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-                alert2.setTitle("تبادل ارز");
-                alert2.setHeaderText("موفقیت عملیات");
-                alert2.setContentText("تبادل ارز با موفقیت انجام شد!");
-                alert2.show();
+                Database.showAlert(Alert.AlertType.INFORMATION, "تایید", "عملیات تبدیل با موفقیت انجام شد!");
             }
         });
 
