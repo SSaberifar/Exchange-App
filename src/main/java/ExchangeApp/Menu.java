@@ -29,6 +29,7 @@ public class Menu implements Initializable {
      * @throws IOException if the FXML file cannot be loaded.
      */
     public void exit(ActionEvent event) throws IOException {
+        Database.exitUpdate();
         Main.stageChanger(event, "Login.fxml");
     }
 

@@ -45,32 +45,41 @@ public class Swap extends Menu implements Initializable {
         alert.showAndWait().ifPresent(buttonType -> {
             if (buttonType == ButtonType.OK && User.user.getpD() >= 10) {
                 User.user.setpD(User.user.getpD() - 10);
+                Database.update("admin2024", "`profit(USD)`", 10);
                 switch (firstcoin) {
                     case "Ethereum":
-                        User.user.setEth(String.valueOf(User.user.getEth() - Double.parseDouble(firstinput.getText())));
+                        if (User.user.getEth() >= Double.parseDouble(firstinput.getText())) {
+                            User.user.setEth(User.user.getEth() - Double.parseDouble(firstinput.getText()));
+                        }
                         break;
                     case "Dogecoin":
-                        User.user.setDog(String.valueOf(User.user.getDog() - Double.parseDouble(firstinput.getText())));
+                        if (User.user.getDog() >= Double.parseDouble(firstinput.getText())) {
+                            User.user.setDog(User.user.getDog() - Double.parseDouble(firstinput.getText()));
+                        }
                         break;
                     case "Notcoin":
-                        User.user.setNot(String.valueOf(User.user.getNot() - Double.parseDouble(firstinput.getText())));
+                        if (User.user.getNot() >= Double.parseDouble(firstinput.getText())) {
+                            User.user.setNot(User.user.getNot() - Double.parseDouble(firstinput.getText()));
+                        }
                         break;
                     case "Hamester":
-                        User.user.setHam(String.valueOf(User.user.getHam() - Double.parseDouble(firstinput.getText())));
+                        if (User.user.getHam() >= Double.parseDouble(firstinput.getText())) {
+                            User.user.setHam(User.user.getHam() - Double.parseDouble(firstinput.getText()));
+                        }
                         break;
                 }
                 switch (secondcoin) {
                     case "Ethereum":
-                        User.user.setEth(String.valueOf(User.user.getEth() + Double.parseDouble(secondinput.getText())));
+                        User.user.setEth(User.user.getEth() + Double.parseDouble(secondinput.getText()));
                         break;
                     case "Dogecoin":
-                        User.user.setDog(String.valueOf(User.user.getDog() + Double.parseDouble(secondinput.getText())));
+                        User.user.setDog(User.user.getDog() + Double.parseDouble(secondinput.getText()));
                         break;
                     case "Notcoin":
-                        User.user.setNot(String.valueOf(User.user.getNot() + Double.parseDouble(secondinput.getText())));
+                        User.user.setNot(User.user.getNot() + Double.parseDouble(secondinput.getText()));
                         break;
                     case "Hamester":
-                        User.user.setHam(String.valueOf(User.user.getHam() + Double.parseDouble(secondinput.getText())));
+                        User.user.setHam(User.user.getHam() + Double.parseDouble(secondinput.getText()));
                         break;
                 }
                 Database.showAlert(Alert.AlertType.INFORMATION, "تایید", "عملیات تبدیل با موفقیت انجام شد!");

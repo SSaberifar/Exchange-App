@@ -18,6 +18,10 @@ public class Profile extends Menu implements Initializable {
     @FXML
     private Button editbtn;
     @FXML
+    private Button crime;
+    @FXML
+    private Button stop;
+    @FXML
     private TextField SignFName;
     @FXML
     private TextField SignLName;
@@ -112,6 +116,15 @@ public class Profile extends Menu implements Initializable {
         SignPhone.setDisable(!enable);
     }
 
+    public void stopStore() {
+        if (Exchange.buying == false) {
+            Exchange.buying = true;
+        } else {
+            Exchange.buying = false;
+        }
+    }
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
@@ -121,5 +134,10 @@ public class Profile extends Menu implements Initializable {
         SignPass.setText(User.user.getUserPassword());
         SignEmail.setText(User.user.getUserEmail());
         SignPhone.setText(User.user.getUserPhone());
+
+        if (User.user.getUserShow().equals("admin2024")) {
+            crime.setVisible(true);
+            stop.setVisible(true);
+        }
     }
 }

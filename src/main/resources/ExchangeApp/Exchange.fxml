@@ -47,7 +47,7 @@
             <Text fx:id="clock1" fill="#b4b0b0" layoutX="333.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-light" text="قیمت" wrappingWidth="170.22183227539062" />
             <Text fx:id="clock11" fill="#b4b0b0" layoutX="333.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-light" text="قیمت" wrappingWidth="170.22183227539062" />
             <Separator layoutX="303.0" layoutY="341.0" prefHeight="3.0" prefWidth="292.0" />
-            <Button layoutX="397.0" layoutY="368.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="102.0" styleClass="text-light" text="ثبت " />
+            <Button fx:id="storebtn" layoutX="397.0" layoutY="368.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="102.0" styleClass="text-light" text="ثبت " />
             <ToggleButton layoutX="390.0" layoutY="171.0" mnemonicParsing="false" styleClass="text-light" text="فروش">
                <toggleGroup>
                   <ToggleGroup fx:id="buyToggle" />

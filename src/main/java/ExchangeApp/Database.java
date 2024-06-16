@@ -9,8 +9,30 @@ import java.sql.*;
 
 public class Database {
 
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/fumcoin";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "";
+
+    public static void showAlert(Alert.AlertType alertType, String title, String content) {
+        Alert alert = new Alert(alertType);
+        alert.getDialogPane().setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
     private static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/fumcoin", "root", "");
+        return DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+    }
+
+    private static boolean userExists(PreparedStatement checkStmt, String uname, String uemail, String uphone) throws SQLException {
+        checkStmt.setString(1, uname);
+        checkStmt.setString(2, uemail);
+        checkStmt.setString(3, uphone);
+        try (ResultSet result = checkStmt.executeQuery()) {
+            return result.next();
+        }
     }
 
     public static void SignUpDB(ActionEvent event, String fname, String lname, String uname, String upass, String uemail, String uphone, String imgPath) throws IOException {
@@ -19,12 +41,7 @@ public class Database {
 
         try (Connection connection = getConnection(); PreparedStatement checkStmt = connection.prepareStatement(checkSQL); PreparedStatement insertStmt = connection.prepareStatement(insertSQL)) {
 
-            checkStmt.setString(1, uname);
-            checkStmt.setString(2, uemail);
-            checkStmt.setString(3, uphone);
-            ResultSet result = checkStmt.executeQuery();
-
-            if (result.next()) {
+            if (userExists(checkStmt, uname, uemail, uphone)) {
                 showAlert(Alert.AlertType.WARNING, "ثبت نام کاربر", "کاربری با این نام کاربری، ایمیل یا شماره تلفن وجود دارد!");
             } else {
                 insertStmt.setString(1, fname);
@@ -51,13 +68,27 @@ public class Database {
 
             psmt.setString(1, uname);
             psmt.setString(2, upass);
-            ResultSet result = psmt.executeQuery();
-            if (result.next()) {
-                User.user = new User(result.getString("user_name"), result.getString("first_name"), result.getString("last_name"), result.getString("password"), result.getString("email"), result.getString("phone_number"), result.getString("imagePath"), result.getDouble("profit(USD)"), result.getString("Ethereum"), result.getString("Dogecoin"), result.getString("Notcoin"), result.getString("Hamester"));
-                showAlert(Alert.AlertType.INFORMATION, "ورود کاربر", "با موفقیت وارد شدید!");
-                Main.stageChanger(event, "Profile.fxml");
-            } else {
-                showAlert(Alert.AlertType.INFORMATION, "ورود کاربر", "رمز عبور اشتباه است یا کاربری با این نام وجود ندارد!");
+            try (ResultSet result = psmt.executeQuery()) {
+                if (result.next()) {
+                    User.user = new User(
+                            result.getString("user_name"),
+                            result.getString("first_name"),
+                            result.getString("last_name"),
+                            result.getString("password"),
+                            result.getString("email"),
+                            result.getString("phone_number"),
+                            result.getString("imagePath"),
+                            result.getDouble("profit(USD)"),
+                            result.getDouble("Ethereum"),
+                            result.getDouble("Dogecoin"),
+                            result.getDouble("Notcoin"),
+                            result.getDouble("Hamester")
+                    );
+                    showAlert(Alert.AlertType.INFORMATION, "ورود کاربر", "با موفقیت وارد شدید!");
+                    Main.stageChanger(event, "Profile.fxml");
+                } else {
+                    showAlert(Alert.AlertType.INFORMATION, "ورود کاربر", "رمز عبور اشتباه است یا کاربری با این نام وجود ندارد!");
+                }
             }
         } catch (SQLException e) {
             showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در ورود رخ داد: " + e.getMessage());
@@ -70,12 +101,26 @@ public class Database {
         try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
 
             psmt.setString(1, email);
-            ResultSet result = psmt.executeQuery();
-            if (result.next()) {
-                User.user = new User(result.getString("user_name"), result.getString("first_name"), result.getString("last_name"), result.getString("password"), result.getString("email"), result.getString("phone_number"), result.getString("imagePath"), result.getDouble("profit(USD)"), result.getString("Ethereum"), result.getString("Dogecoin"), result.getString("Notcoin"), result.getString("Hamester"));
-                Main.stageChanger(event, "Profile.fxml");
-            } else {
-                showAlert(Alert.AlertType.INFORMATION, "ورود کاربر", "کاربری با این ایمیل حساب کاربری ندارد!");
+            try (ResultSet result = psmt.executeQuery()) {
+                if (result.next()) {
+                    User.user = new User(
+                            result.getString("user_name"),
+                            result.getString("first_name"),
+                            result.getString("last_name"),
+                            result.getString("password"),
+                            result.getString("email"),
+                            result.getString("phone_number"),
+                            result.getString("imagePath"),
+                            result.getDouble("profit(USD)"),
+                            result.getDouble("Ethereum"),
+                            result.getDouble("Dogecoin"),
+                            result.getDouble("Notcoin"),
+                            result.getDouble("Hamester")
+                    );
+                    Main.stageChanger(event, "Profile.fxml");
+                } else {
+                    showAlert(Alert.AlertType.INFORMATION, "ورود کاربر", "کاربری با این ایمیل حساب کاربری ندارد!");
+                }
             }
         } catch (SQLException e) {
             showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در ورود رخ داد: " + e.getMessage());
@@ -86,9 +131,7 @@ public class Database {
         Double value = 0.0;
         String query = "SELECT " + type + " FROM token_price LIMIT 1 OFFSET 1439";
 
-        try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query)) {
-
-            ResultSet result = psmt.executeQuery();
+        try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query); ResultSet result = psmt.executeQuery()) {
             if (result.next()) {
                 value = result.getDouble(type);
             }
@@ -105,9 +148,7 @@ public class Database {
 
         String query = "SELECT MAX(" + column + ") AS max_price FROM token_price";
 
-        try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query)) {
-
-            ResultSet result = psmt.executeQuery();
+        try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query); ResultSet result = psmt.executeQuery()) {
             if (result.next()) {
                 value = result.getDouble("max_price");
             }
@@ -124,9 +165,7 @@ public class Database {
 
         String query = "SELECT MIN(" + column + ") AS min_price FROM token_price";
 
-        try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query)) {
-
-            ResultSet result = psmt.executeQuery();
+        try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query); ResultSet result = psmt.executeQuery()) {
             if (result.next()) {
                 value = result.getDouble("min_price");
             }
@@ -138,25 +177,21 @@ public class Database {
 
     public static Double percent(int num) {
         Double value = 0.0;
-        Double firstRow = 0.0;
-        Double lastRow = 0.0;
         String column = getColumn(num);
         if (column == null) return value;
 
-        String query1 = "SELECT " + column + " FROM token_price ORDER BY time LIMIT 1";
-        String query2 = "SELECT " + column + " FROM token_price LIMIT 1 OFFSET 1439";
+        String queryFirstRow = "SELECT " + column + " FROM token_price ORDER BY time LIMIT 1";
+        String queryLastRow = "SELECT " + column + " FROM token_price LIMIT 1 OFFSET 1439";
 
-        try (Connection connection = getConnection(); PreparedStatement stmt1 = connection.prepareStatement(query1); PreparedStatement stmt2 = connection.prepareStatement(query2)) {
+        try (Connection connection = getConnection();
+             PreparedStatement stmtFirstRow = connection.prepareStatement(queryFirstRow);
+             PreparedStatement stmtLastRow = connection.prepareStatement(queryLastRow);
+             ResultSet resultFirstRow = stmtFirstRow.executeQuery();
+             ResultSet resultLastRow = stmtLastRow.executeQuery()) {
 
-            ResultSet result1 = stmt1.executeQuery();
-            ResultSet result2 = stmt2.executeQuery();
+            Double firstRow = resultFirstRow.next() ? resultFirstRow.getDouble(column) : 0.0;
+            Double lastRow = resultLastRow.next() ? resultLastRow.getDouble(column) : 0.0;
 
-            if (result1.next()) {
-                firstRow = result1.getDouble(column);
-            }
-            if (result2.next()) {
-                lastRow = result2.getDouble(column);
-            }
             if (firstRow != 0) {
                 value = ((lastRow - firstRow) / firstRow) * 100;
             } else {
@@ -169,24 +204,34 @@ public class Database {
         return value;
     }
 
-    public static void update(String desUser, String token, String value) {
+    public static void update(String desUser, String token, double value) {
         String query = "UPDATE users SET " + token + " = " + token + " + ? WHERE user_name = ?";
-        try (Connection connection = getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setDouble(1, Double.parseDouble(value));
+        try (Connection connection = getConnection();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setDouble(1, value);
             stmt.setString(2, desUser);
             stmt.executeUpdate();
         } catch (SQLException e) {
             showAlert(Alert.AlertType.ERROR, "خطا", "خطا در آپدیت اطلاعات: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            showAlert(Alert.AlertType.ERROR, "خطا", "مقدار وارد شده معتبر نمی‌باشد: " + e.getMessage());
         }
     }
 
-    public static void showAlert(Alert.AlertType alertType, String title, String content) {
-        Alert alert = new Alert(alertType);
-        alert.getDialogPane().setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
+
+    public static void exitUpdate() {
+        String query = "UPDATE users SET `profit(USD)` = ?, Ethereum = ?, Dogecoin = ?, Notcoin = ?, Hamester = ? WHERE user_name = ?";
+        try (Connection connection = getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setDouble(1, User.user.getpD());
+            stmt.setDouble(2, User.user.getEth());
+            stmt.setDouble(3, User.user.getDog());
+            stmt.setDouble(4, User.user.getNot());
+            stmt.setDouble(5, User.user.getHam());
+            stmt.setString(6, User.user.getUserShow());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "خطا", "خطا در آپدیت اطلاعات: " + e.getMessage());
+        }
     }
 
     public static void updateInfo(String fname, String lname, String uname, String upass, String uemail, String uphone) {

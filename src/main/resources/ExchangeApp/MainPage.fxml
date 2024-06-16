@@ -121,13 +121,13 @@
       </GridPane>
    </right>
    <center>
-      <TableView fx:id="mainTable" editable="true" nodeOrientation="RIGHT_TO_LEFT" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="mainTable" editable="true" nodeOrientation="RIGHT_TO_LEFT" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="name" prefWidth="150.0" style="-fx-alignment: CENTER;" text="بازار" />
-          <TableColumn fx:id="value" prefWidth="75.0" style="-fx-alignment: CENTER;" text="قیمت" />
-            <TableColumn fx:id="changes" prefWidth="75.0" style="-fx-alignment: CENTER;" text="تغییرات" />
-            <TableColumn fx:id="max_value" prefWidth="75.0" style="-fx-alignment: CENTER;" text="بیشترین قیمت" />
-            <TableColumn fx:id="min_value" prefWidth="75.0" style="-fx-alignment: CENTER;" text="کمترین قیمت" />
+          <TableColumn fx:id="name" editable="false" prefWidth="150.0" style="-fx-alignment: CENTER;" text="بازار" />
+          <TableColumn fx:id="value" editable="false" prefWidth="75.0" style="-fx-alignment: CENTER;" text="قیمت" />
+            <TableColumn fx:id="changes" editable="false" prefWidth="75.0" style="-fx-alignment: CENTER;" text="تغییرات" />
+            <TableColumn fx:id="max_value" editable="false" prefWidth="75.0" style="-fx-alignment: CENTER;" text="بیشترین قیمت" />
+            <TableColumn fx:id="min_value" editable="false" prefWidth="75.0" style="-fx-alignment: CENTER;" text="کمترین قیمت" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

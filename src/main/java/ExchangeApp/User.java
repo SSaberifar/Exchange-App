@@ -11,14 +11,14 @@ public class User {
     private String userEmail;
     private String userPhone;
     private String userImage;
-    private Double pD;
-    private Double eth;
-    private Double dog;
-    private Double not;
-    private Double ham;
+    private double pD;
+    private double eth;
+    private double dog;
+    private double not;
+    private double ham;
 
 
-    public User(String userShow, String userFirstName, String userLastName, String userPassword, String userEmail, String userPhone, String userImage, Double pD, String eth, String dog, String not, String ham) {
+    public User(String userShow, String userFirstName, String userLastName, String userPassword, String userEmail, String userPhone, String userImage, double pD, double eth, double dog, double not, double ham) {
         this.setUserShow(userShow);
         this.setUserFirstName(userFirstName);
         this.setUserLastName(userLastName);
@@ -89,43 +89,43 @@ public class User {
         this.userImage = userImage;
     }
 
-    public Double getpD() {
+    public double getpD() {
         return pD;
     }
 
-    public void setpD(Double pD) {
+    public void setpD(double pD) {
         this.pD = pD;
     }
 
-    public Double getEth() {
+    public double getEth() {
         return eth;
     }
 
-    public void setEth(String eth) {
-        this.eth = Double.parseDouble(eth);
+    public void setEth(double eth) {
+        this.eth = eth;
     }
 
-    public Double getDog() {
+    public double getDog() {
         return dog;
     }
 
-    public void setDog(String dog) {
-        this.dog = Double.parseDouble(dog);
+    public void setDog(double dog) {
+        this.dog = dog;
     }
 
-    public Double getNot() {
+    public double getNot() {
         return not;
     }
 
-    public void setNot(String not) {
-        this.not = Double.parseDouble(not);
+    public void setNot(double not) {
+        this.not = not;
     }
 
-    public Double getHam() {
+    public double getHam() {
         return ham;
     }
 
-    public void setHam(String ham) {
-        this.ham = Double.parseDouble(ham);
+    public void setHam(double ham) {
+        this.ham = ham;
     }
 }
