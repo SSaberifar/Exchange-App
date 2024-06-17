@@ -64,6 +64,16 @@ public class Menu implements Initializable {
     }
 
     /**
+     * Switches to the History scene.
+     *
+     * @param event the action event that triggered the method.
+     * @throws IOException if the FXML file cannot be loaded.
+     */
+    public void history(ActionEvent event) throws IOException {
+        Main.stageChanger(event, "History.fxml");
+    }
+
+    /**
      * Switches to the Profile scene.
      *
      * @param event the action event that triggered the method.

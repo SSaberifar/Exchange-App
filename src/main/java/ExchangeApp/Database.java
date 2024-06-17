@@ -6,8 +6,11 @@ import javafx.scene.control.Alert;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Database {
+
 
     private static final String DB_URL = "jdbc:mysql://localhost:3306/fumcoin";
     private static final String DB_USER = "root";
@@ -218,7 +221,6 @@ public class Database {
         }
     }
 
-
     public static void exitUpdate() {
         String query = "UPDATE users SET `profit(USD)` = ?, Ethereum = ?, Dogecoin = ?, Notcoin = ?, Hamester = ? WHERE user_name = ?";
         try (Connection connection = getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
@@ -269,5 +271,63 @@ public class Database {
                 showAlert(Alert.AlertType.ERROR, "خطا", "نوع نامعتبر");
                 return null;
         }
+    }
+
+    public static void saveBills(String status, String type, String sender, String token, double amount, double value) {
+        String insertSQL = "INSERT INTO bills (status, type, sender, token, amount, value) VALUES (?, ?, ?, ?, ?, ?)";
+
+        try (Connection connection = getConnection(); PreparedStatement insertStmt = connection.prepareStatement(insertSQL)) {
+            insertStmt.setString(1, status);
+            insertStmt.setString(2, type);
+            insertStmt.setString(3, sender);
+            insertStmt.setString(4, token);
+            insertStmt.setDouble(5, amount);
+            insertStmt.setDouble(6, value);
+            insertStmt.executeUpdate();
+            showAlert(Alert.AlertType.INFORMATION, "خرید/فروش ارز", "سفارش شما با موفقیت ثبت گردید!");
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در عملیات رخ داد: " + e.getMessage());
+        }
+    }
+
+    public static List<Object[]> showBills(String par) {
+        List<Object[]> bills = new ArrayList<>();
+        String selectSQL;
+        if (par.equals(User.user.getUserShow())) {
+            selectSQL = "SELECT * FROM bills WHERE sender = ?";
+            try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
+                psmt.setString(1, par);
+                try (ResultSet result = psmt.executeQuery()) {
+                    while (result.next()) {
+                        Object[] record = new Object[5];
+                        record[0] = result.getString("status");
+                        record[1] = result.getString("type");
+                        record[2] = result.getString("token");
+                        record[3] = result.getDouble("amount");
+                        record[4] = result.getDouble("value");
+                        bills.add(record);
+                    }
+                }
+            } catch (SQLException e) {
+                showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در اطلاعات رخ داد: " + e.getMessage());
+            }
+        } else {
+            selectSQL = "SELECT * FROM bills WHERE token = ?";
+            try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
+                psmt.setString(1, par);
+                try (ResultSet result = psmt.executeQuery()) {
+                    while (result.next()) {
+                        Object[] record = new Object[3];
+                        record[0] = result.getString("type");
+                        record[1] = result.getDouble("amount");
+                        record[2] = result.getDouble("value");
+                        bills.add(record);
+                    }
+                }
+            } catch (SQLException e) {
+                showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در اطلاعات رخ داد: " + e.getMessage());
+            }
+        }
+        return bills;
     }
 }

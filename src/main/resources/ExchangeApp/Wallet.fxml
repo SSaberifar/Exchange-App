@@ -24,7 +24,7 @@
         <URL value="@css/reset.css" />
     </stylesheets>
    <top>
-      <AnchorPane style="-fx-background-color: linear-gradient(to right, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 0 0 0 20;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="35.0" prefWidth="700.0" style="-fx-background-color: linear-gradient(to right, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 0 0 0 20;" BorderPane.alignment="CENTER">
          <Label layoutX="314.0" layoutY="6.0" text="کیف پول" textFill="#ffe500">
             <font>
                <Font name="Roboto Bold" size="20.0" />
