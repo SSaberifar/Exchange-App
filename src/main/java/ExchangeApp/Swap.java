@@ -27,16 +27,58 @@ public class Swap extends Menu implements Initializable {
     private Double firstprice = 0.0;
     private Double secondprice = 0.0;
 
-    public void convert() {
-        firstcoin = firstToken.getValue();
-        secondcoin = secondToken.getValue();
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        super.initialize(url, resourceBundle);
+        firstToken.setItems(observableArrayList("Ethereum", "Dogecoin", "Notcoin", "Hamester"));
+        secondToken.setItems(observableArrayList("Ethereum", "Dogecoin", "Notcoin", "Hamester"));
+
+        updatePrices();
+    }
+
+    private void updatePrices() {
         firstprice = Database.lastValue(firstcoin);
         secondprice = Database.lastValue(secondcoin);
         firstinput.setPromptText(String.valueOf(firstprice));
         secondinput.setPromptText(String.valueOf(secondprice));
+    }
 
-        secondinput.setText(String.valueOf((Double.parseDouble(firstinput.getText()) * firstprice) / secondprice));
+    public void convert() {
+        if (!validateInputs()) {
+            Database.showAlert(Alert.AlertType.ERROR, "خطا", "ورودی‌های نامعتبر! لطفا تمام فیلدها را به درستی پر کنید.");
+            return;
+        }
 
+        firstcoin = firstToken.getValue();
+        secondcoin = secondToken.getValue();
+        firstprice = Database.lastValue(firstcoin);
+        secondprice = Database.lastValue(secondcoin);
+
+        try {
+            double firstAmount = Double.parseDouble(firstinput.getText());
+            double secondAmount = (firstAmount * firstprice) / secondprice;
+            secondinput.setText(String.valueOf(secondAmount));
+
+            showConfirmationAlert(firstAmount, secondAmount);
+        } catch (NumberFormatException e) {
+            Database.showAlert(Alert.AlertType.ERROR, "خطا", "لطفاً مقدار معتبری را وارد کنید.");
+        }
+    }
+
+    private boolean validateInputs() {
+        return firstToken.getValue() != null && secondToken.getValue() != null && !firstinput.getText().isEmpty() && isNumeric(firstinput.getText());
+    }
+
+    private boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private void showConfirmationAlert(double firstAmount, double secondAmount) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("تبادل ارز");
         alert.setHeaderText("تایید عملیات");
@@ -44,61 +86,66 @@ public class Swap extends Menu implements Initializable {
 
         alert.showAndWait().ifPresent(buttonType -> {
             if (buttonType == ButtonType.OK && User.user.getpD() >= 10) {
-                User.user.setpD(User.user.getpD() - 10);
-                Database.update("admin2024", "`profit(USD)`", 10);
-                switch (firstcoin) {
-                    case "Ethereum":
-                        if (User.user.getEth() >= Double.parseDouble(firstinput.getText())) {
-                            User.user.setEth(User.user.getEth() - Double.parseDouble(firstinput.getText()));
-                        }
-                        break;
-                    case "Dogecoin":
-                        if (User.user.getDog() >= Double.parseDouble(firstinput.getText())) {
-                            User.user.setDog(User.user.getDog() - Double.parseDouble(firstinput.getText()));
-                        }
-                        break;
-                    case "Notcoin":
-                        if (User.user.getNot() >= Double.parseDouble(firstinput.getText())) {
-                            User.user.setNot(User.user.getNot() - Double.parseDouble(firstinput.getText()));
-                        }
-                        break;
-                    case "Hamester":
-                        if (User.user.getHam() >= Double.parseDouble(firstinput.getText())) {
-                            User.user.setHam(User.user.getHam() - Double.parseDouble(firstinput.getText()));
-                        }
-                        break;
-                }
-                switch (secondcoin) {
-                    case "Ethereum":
-                        User.user.setEth(User.user.getEth() + Double.parseDouble(secondinput.getText()));
-                        break;
-                    case "Dogecoin":
-                        User.user.setDog(User.user.getDog() + Double.parseDouble(secondinput.getText()));
-                        break;
-                    case "Notcoin":
-                        User.user.setNot(User.user.getNot() + Double.parseDouble(secondinput.getText()));
-                        break;
-                    case "Hamester":
-                        User.user.setHam(User.user.getHam() + Double.parseDouble(secondinput.getText()));
-                        break;
-                }
-                Database.showAlert(Alert.AlertType.INFORMATION, "تایید", "عملیات تبدیل با موفقیت انجام شد!");
+                performSwap(firstAmount, secondAmount);
+            } else {
+                Database.showAlert(Alert.AlertType.ERROR, "خطا", "موجودی دلار کافی نیست!");
             }
         });
-
-
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        super.initialize(url, resourceBundle);
-        firstToken.setItems(observableArrayList("Ethereum", "Dogecoin", "Notcoin", "Hamester"));
-        secondToken.setItems(observableArrayList("Ethereum", "Dogecoin", "Notcoin", "Hamester"));
-
-        firstprice = Database.lastValue(firstcoin);
-        secondprice = Database.lastValue(secondcoin);
-        firstinput.setPromptText(String.valueOf(firstprice));
-        secondinput.setPromptText(String.valueOf(secondprice));
+    private void performSwap(double firstAmount, double secondAmount) {
+        if (hasSufficientBalance(firstcoin, firstAmount)) {
+            deductFirstCoinBalance(firstAmount);
+            addSecondCoinBalance(secondAmount);
+            User.user.setpD(User.user.getpD() - 10);
+            Database.update("admin2024", "`profit(USD)`", 10);
+            Database.showAlert(Alert.AlertType.INFORMATION, "تایید", "عملیات تبدیل با موفقیت انجام شد!");
+        } else {
+            Database.showAlert(Alert.AlertType.ERROR, "خطا", "موجودی کافی نیست!");
+        }
     }
 
+    private boolean hasSufficientBalance(String coin, double amount) {
+        return switch (coin) {
+            case "Ethereum" -> User.user.getEth() >= amount;
+            case "Dogecoin" -> User.user.getDog() >= amount;
+            case "Notcoin" -> User.user.getNot() >= amount;
+            case "Hamester" -> User.user.getHam() >= amount;
+            default -> false;
+        };
+    }
+
+    private void deductFirstCoinBalance(double amount) {
+        switch (firstcoin) {
+            case "Ethereum":
+                User.user.setEth(User.user.getEth() - amount);
+                break;
+            case "Dogecoin":
+                User.user.setDog(User.user.getDog() - amount);
+                break;
+            case "Notcoin":
+                User.user.setNot(User.user.getNot() - amount);
+                break;
+            case "Hamester":
+                User.user.setHam(User.user.getHam() - amount);
+                break;
+        }
+    }
+
+    private void addSecondCoinBalance(double amount) {
+        switch (secondcoin) {
+            case "Ethereum":
+                User.user.setEth(User.user.getEth() + amount);
+                break;
+            case "Dogecoin":
+                User.user.setDog(User.user.getDog() + amount);
+                break;
+            case "Notcoin":
+                User.user.setNot(User.user.getNot() + amount);
+                break;
+            case "Hamester":
+                User.user.setHam(User.user.getHam() + amount);
+                break;
+        }
+    }
 }

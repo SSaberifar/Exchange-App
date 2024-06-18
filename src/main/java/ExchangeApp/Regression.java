@@ -5,15 +5,28 @@ import org.apache.commons.math3.stat.regression.OLSMultipleLinearRegression;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 public class Regression {
-    public static HashMap<String, Double> getPredict(int typeCoin) {
-        List<String[]> data = new ArrayList<>();
 
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/fumcoin";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "";
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+    public static HashMap<String, Double> getPredict(int typeCoin) {
+        List<String[]> data = fetchDataFromDatabase();
+        return processData(data, typeCoin);
+    }
+
+    private static List<String[]> fetchDataFromDatabase() {
+        List<String[]> data = new ArrayList<>();
         String query = "SELECT time, ethereum, dogecoin, notcoin, hamster FROM token_price";
-        try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/fumcoin", "root", "");
+
+        try (Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
              Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
 
@@ -30,52 +43,50 @@ public class Regression {
             e.printStackTrace();
         }
 
-        return processData(data, typeCoin);
+        return data;
     }
 
     private static HashMap<String, Double> processData(List<String[]> data, int typeCoin) {
-        SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date startTime;
         try {
-            startTime = sdformat.parse(data.get(0)[0]);
+            startTime = DATE_FORMAT.parse(data.get(0)[0]);
         } catch (ParseException e) {
             e.printStackTrace();
             return null;
         }
 
         List<Double> timeData = new ArrayList<>();
-        List<Double> ethereumData = new ArrayList<>();
-        List<Double> dogecoinData = new ArrayList<>();
-        List<Double> notcoinData = new ArrayList<>();
-        List<Double> hamsterData = new ArrayList<>();
+        List<Double> selectedCoinData = new ArrayList<>();
 
         for (String[] row : data) {
             try {
-                Date date = sdformat.parse(row[0]);
+                Date date = DATE_FORMAT.parse(row[0]);
                 double timeDiff = (date.getTime() - startTime.getTime()) / 1000.0; // Convert to seconds
                 timeData.add(timeDiff);
-                ethereumData.add(Double.parseDouble(row[1]));
-                dogecoinData.add(Double.parseDouble(row[2]));
-                notcoinData.add(Double.parseDouble(row[3]));
-                hamsterData.add(Double.parseDouble(row[4]));
+
+                switch (typeCoin) {
+                    case 1:
+                        selectedCoinData.add(Double.parseDouble(row[1]));
+                        break;
+                    case 2:
+                        selectedCoinData.add(Double.parseDouble(row[2]));
+                        break;
+                    case 3:
+                        selectedCoinData.add(Double.parseDouble(row[3]));
+                        break;
+                    case 4:
+                        selectedCoinData.add(Double.parseDouble(row[4]));
+                        break;
+                    default:
+                        System.out.println("Error! Coin Not Found {Regression/processData}");
+                        return null;
+                }
             } catch (ParseException | NumberFormatException e) {
                 e.printStackTrace();
             }
         }
 
-        switch (typeCoin) {
-            case 1:
-                return predict(timeData, ethereumData, startTime);
-            case 2:
-                return predict(timeData, dogecoinData, startTime);
-            case 3:
-                return predict(timeData, notcoinData, startTime);
-            case 4:
-                return predict(timeData, hamsterData, startTime);
-            default:
-                System.out.println("Error! Coin Not Found {Regression/processData}");
-                return null;
-        }
+        return predict(timeData, selectedCoinData, startTime);
     }
 
     private static HashMap<String, Double> predict(List<Double> timeData, List<Double> yData, Date startTime) {
@@ -97,8 +108,7 @@ public class Regression {
 
         double predictValue = coefficients[0] + coefficients[1] * newTime;
 
-        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        String formattedDate = outputFormat.format(currentTime);
+        String formattedDate = DATE_FORMAT.format(currentTime);
 
         HashMap<String, Double> predictionResult = new HashMap<>();
         predictionResult.put(formattedDate, predictValue);

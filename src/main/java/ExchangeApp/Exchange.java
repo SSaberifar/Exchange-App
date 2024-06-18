@@ -16,9 +16,9 @@ import static javafx.collections.FXCollections.observableArrayList;
 
 public class Exchange extends Menu implements Initializable {
     public static boolean buying = true;
+
     @FXML
     private ComboBox<String> tokencombo;
-
     @FXML
     public Button storebtn;
     @FXML
@@ -32,39 +32,79 @@ public class Exchange extends Menu implements Initializable {
     @FXML
     private TableView<Object[]> exchangeTable;
 
-    public void showPrice() {
-        finalprice.setText(String.valueOf(Double.parseDouble(tokennum.getText()) * Double.parseDouble(tokenprice.getText())));
-    }
-
-    public void createBills() {
-        ToggleButton selected = (ToggleButton) buyToggle.getSelectedToggle();
-        Database.saveBills("pending", selected.getText(), User.user.getUserShow(), tokencombo.getValue(), Double.parseDouble(tokennum.getText()), Double.parseDouble(finalprice.getText()));
-    }
-
-    public void tokenBills() {
-        List<Object[]> billRecordes = Database.showBills(tokencombo.getValue());
-        ObservableList<Object[]> data = FXCollections.observableArrayList(billRecordes);
-        exchangeTable.setItems(data);
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
         finalprice.setText("0.0");
         tokencombo.setItems(observableArrayList("Ethereum", "Dogecoin", "Notcoin", "Hamester"));
-        if (buying == false) {
+        if (!buying) {
             storebtn.setDisable(true);
         }
-        TableColumn<Object[], Double> valueColumn = new TableColumn<>("قیمت نهایی");
-        TableColumn<Object[], Double> amountColumn = new TableColumn<>("تعداد");
+        initializeTableColumns();
+    }
+
+    @FXML
+    private void showPrice() {
+        try {
+            double numTokens = Double.parseDouble(tokennum.getText());
+            double pricePerToken = Double.parseDouble(tokenprice.getText());
+            double totalPrice = numTokens * pricePerToken;
+            finalprice.setText(String.valueOf(totalPrice));
+        } catch (NumberFormatException e) {
+            Database.showAlert(Alert.AlertType.ERROR, "خطا", "لطفاً مقادیر معتبر وارد کنید.");
+        }
+    }
+
+    @FXML
+    private void createBills() {
+        if (!validateInputs()) {
+            Database.showAlert(Alert.AlertType.ERROR, "خطا", "لطفاً تمام فیلدها را به درستی پر کنید.");
+            return;
+        }
+
+        ToggleButton selected = (ToggleButton) buyToggle.getSelectedToggle();
+        String type = selected.getText();
+        String token = tokencombo.getValue();
+        double numTokens = Double.parseDouble(tokennum.getText());
+        double totalPrice = Double.parseDouble(finalprice.getText());
+
+        Database.saveBills("pending", type, User.user.getUserShow(), token, numTokens, totalPrice);
+        Database.showAlert(Alert.AlertType.INFORMATION, "تایید", "صورت‌حساب با موفقیت ایجاد شد.");
+    }
+
+    @FXML
+    private void tokenBills() {
+        List<Object[]> billRecords = Database.showBills(tokencombo.getValue());
+        ObservableList<Object[]> data = FXCollections.observableArrayList(billRecords);
+        exchangeTable.setItems(data);
+    }
+
+    private void initializeTableColumns() {
         TableColumn<Object[], String> typeColumn = new TableColumn<>("خرید/فروش");
+        TableColumn<Object[], Double> amountColumn = new TableColumn<>("تعداد");
+        TableColumn<Object[], Double> valueColumn = new TableColumn<>("قیمت نهایی");
 
         typeColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>((String) cellData.getValue()[0]));
         amountColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>((Double) cellData.getValue()[1]));
         valueColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>((Double) cellData.getValue()[2]));
 
-        exchangeTable.getColumns().add(typeColumn);
-        exchangeTable.getColumns().add(amountColumn);
-        exchangeTable.getColumns().add(valueColumn);
+        exchangeTable.getColumns().addAll(typeColumn, amountColumn, valueColumn);
+    }
+
+    private boolean validateInputs() {
+        return tokencombo.getValue() != null &&
+                !tokennum.getText().isEmpty() &&
+                !tokenprice.getText().isEmpty() &&
+                isNumeric(tokennum.getText()) &&
+                isNumeric(tokenprice.getText());
+    }
+
+    private boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }

@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -19,26 +20,34 @@ public class History extends Menu implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
-        TableColumn<Object[], String> statusColumn = new TableColumn<>("وضعیت");
-        TableColumn<Object[], String> typeColumn = new TableColumn<>("خرید/فروش");
-        TableColumn<Object[], String> tokenColumn = new TableColumn<>("ارز");
-        TableColumn<Object[], Double> amountColumn = new TableColumn<>("تعداد");
-        TableColumn<Object[], Double> valueColumn = new TableColumn<>("قیمت نهایی");
+        initializeTableColumns();
+        loadHistoryData();
+    }
 
-        statusColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>((String) cellData.getValue()[0]));
-        typeColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>((String) cellData.getValue()[1]));
-        tokenColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>((String) cellData.getValue()[2]));
-        amountColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>((Double) cellData.getValue()[3]));
-        valueColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>((Double) cellData.getValue()[4]));
+    private void initializeTableColumns() {
+        TableColumn<Object[], String> statusColumn = createTableColumn("وضعیت", 0);
+        TableColumn<Object[], String> typeColumn = createTableColumn("خرید/فروش", 1);
+        TableColumn<Object[], String> tokenColumn = createTableColumn("ارز", 2);
+        TableColumn<Object[], Double> amountColumn = createTableColumn("تعداد", 3);
+        TableColumn<Object[], Double> valueColumn = createTableColumn("قیمت نهایی", 4);
 
-        historyTable.getColumns().add(statusColumn);
-        historyTable.getColumns().add(typeColumn);
-        historyTable.getColumns().add(tokenColumn);
-        historyTable.getColumns().add(amountColumn);
-        historyTable.getColumns().add(valueColumn);
+        historyTable.getColumns().addAll(statusColumn, typeColumn, tokenColumn, amountColumn, valueColumn);
+    }
 
-        List<Object[]> billRecordes = Database.showBills(User.user.getUserShow());
-        ObservableList<Object[]> data = FXCollections.observableArrayList(billRecordes);
-        historyTable.setItems(data);
+    private <T> TableColumn<Object[], T> createTableColumn(String title, int index) {
+        TableColumn<Object[], T> column = new TableColumn<>(title);
+        column.setCellValueFactory(cellData -> new SimpleObjectProperty<>((T) cellData.getValue()[index]));
+        return column;
+    }
+
+    private void loadHistoryData() {
+        try {
+            List<Object[]> billRecords = Database.showBills(User.user.getUserShow());
+            ObservableList<Object[]> data = FXCollections.observableArrayList(billRecords);
+            historyTable.setItems(data);
+        } catch (Exception e) {
+            Database.showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در بارگذاری داده‌ها رخ داده است.");
+            e.printStackTrace();
+        }
     }
 }

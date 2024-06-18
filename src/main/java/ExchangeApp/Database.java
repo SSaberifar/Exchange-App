@@ -11,7 +11,6 @@ import java.util.List;
 
 public class Database {
 
-
     private static final String DB_URL = "jdbc:mysql://localhost:3306/fumcoin";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "";
@@ -42,7 +41,9 @@ public class Database {
         String checkSQL = "SELECT * FROM users WHERE user_name = ? OR email = ? OR phone_number = ?";
         String insertSQL = "INSERT INTO users (first_name, last_name, user_name, password, email, phone_number, imagePath) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        try (Connection connection = getConnection(); PreparedStatement checkStmt = connection.prepareStatement(checkSQL); PreparedStatement insertStmt = connection.prepareStatement(insertSQL)) {
+        try (Connection connection = getConnection();
+             PreparedStatement checkStmt = connection.prepareStatement(checkSQL);
+             PreparedStatement insertStmt = connection.prepareStatement(insertSQL)) {
 
             if (userExists(checkStmt, uname, uemail, uphone)) {
                 showAlert(Alert.AlertType.WARNING, "ثبت نام کاربر", "کاربری با این نام کاربری، ایمیل یا شماره تلفن وجود دارد!");
@@ -67,7 +68,8 @@ public class Database {
     public static void loginDB(ActionEvent event, String uname, String upass) throws IOException {
         String selectSQL = "SELECT * FROM users WHERE user_name = ? AND password = ?";
 
-        try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
+        try (Connection connection = getConnection();
+             PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
 
             psmt.setString(1, uname);
             psmt.setString(2, upass);
@@ -101,7 +103,8 @@ public class Database {
     public static void EmailLogin(ActionEvent event, String email) throws IOException {
         String selectSQL = "SELECT * FROM users WHERE email = ?";
 
-        try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
+        try (Connection connection = getConnection();
+             PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
 
             psmt.setString(1, email);
             try (ResultSet result = psmt.executeQuery()) {
@@ -134,7 +137,9 @@ public class Database {
         Double value = 0.0;
         String query = "SELECT " + type + " FROM token_price LIMIT 1 OFFSET 1439";
 
-        try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query); ResultSet result = psmt.executeQuery()) {
+        try (Connection connection = getConnection();
+             PreparedStatement psmt = connection.prepareStatement(query);
+             ResultSet result = psmt.executeQuery()) {
             if (result.next()) {
                 value = result.getDouble(type);
             }
@@ -151,7 +156,9 @@ public class Database {
 
         String query = "SELECT MAX(" + column + ") AS max_price FROM token_price";
 
-        try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query); ResultSet result = psmt.executeQuery()) {
+        try (Connection connection = getConnection();
+             PreparedStatement psmt = connection.prepareStatement(query);
+             ResultSet result = psmt.executeQuery()) {
             if (result.next()) {
                 value = result.getDouble("max_price");
             }
@@ -168,7 +175,9 @@ public class Database {
 
         String query = "SELECT MIN(" + column + ") AS min_price FROM token_price";
 
-        try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query); ResultSet result = psmt.executeQuery()) {
+        try (Connection connection = getConnection();
+             PreparedStatement psmt = connection.prepareStatement(query);
+             ResultSet result = psmt.executeQuery()) {
             if (result.next()) {
                 value = result.getDouble("min_price");
             }
@@ -295,7 +304,8 @@ public class Database {
         String selectSQL;
         if (par.equals(User.user.getUserShow())) {
             selectSQL = "SELECT * FROM bills WHERE sender = ?";
-            try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
+            try (Connection connection = getConnection();
+                 PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
                 psmt.setString(1, par);
                 try (ResultSet result = psmt.executeQuery()) {
                     while (result.next()) {
@@ -313,7 +323,8 @@ public class Database {
             }
         } else {
             selectSQL = "SELECT * FROM bills WHERE token = ?";
-            try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
+            try (Connection connection = getConnection();
+                 PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
                 psmt.setString(1, par);
                 try (ResultSet result = psmt.executeQuery()) {
                     while (result.next()) {
