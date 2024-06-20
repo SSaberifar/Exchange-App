@@ -136,10 +136,11 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="historyTable" editable="true" layoutX="49.0" layoutY="23.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="414.0" prefWidth="498.0" style="-fx-alignment: CENTER;">
+            <TableView fx:id="historyTable" editable="true" layoutX="39.0" layoutY="24.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="360.0" prefWidth="520.0" style="-fx-alignment: CENTER;">
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy></TableView>
+            <Button fx:id="printBtn" layoutX="271.0" layoutY="408.0" mnemonicParsing="false" onAction="#print" styleClass="text-light" text="چاپ" />
          </children>
       </AnchorPane>
    </center>

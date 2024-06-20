@@ -263,21 +263,40 @@ public class Database {
         String selectSQL;
         if (par.equals(User.user.getUserShow())) {
             selectSQL = "SELECT * FROM bills WHERE sender = ?";
-            try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
-                psmt.setString(1, par);
-                try (ResultSet result = psmt.executeQuery()) {
-                    while (result.next()) {
-                        Object[] record = new Object[5];
-                        record[0] = result.getString("status");
-                        record[1] = result.getString("type");
-                        record[2] = result.getString("token");
-                        record[3] = result.getDouble("amount");
-                        record[4] = result.getDouble("value");
-                        bills.add(record);
+            if (User.user.getUserShow().equals("admin2024")) {
+                selectSQL = "SELECT * FROM bills";
+                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
+                    try (ResultSet result = psmt.executeQuery()) {
+                        while (result.next()) {
+                            Object[] record = new Object[5];
+                            record[0] = result.getString("status");
+                            record[1] = result.getString("type");
+                            record[2] = result.getString("token");
+                            record[3] = result.getDouble("amount");
+                            record[4] = result.getDouble("value");
+                            bills.add(record);
+                        }
                     }
+                } catch (SQLException e) {
+                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در اطلاعات رخ داد: " + e.getMessage());
                 }
-            } catch (SQLException e) {
-                showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در اطلاعات رخ داد: " + e.getMessage());
+            } else {
+                try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
+                    psmt.setString(1, par);
+                    try (ResultSet result = psmt.executeQuery()) {
+                        while (result.next()) {
+                            Object[] record = new Object[5];
+                            record[0] = result.getString("status");
+                            record[1] = result.getString("type");
+                            record[2] = result.getString("token");
+                            record[3] = result.getDouble("amount");
+                            record[4] = result.getDouble("value");
+                            bills.add(record);
+                        }
+                    }
+                } catch (SQLException e) {
+                    showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در اطلاعات رخ داد: " + e.getMessage());
+                }
             }
         } else {
             selectSQL = "SELECT * FROM bills WHERE token = ?";

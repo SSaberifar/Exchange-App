@@ -36,6 +36,7 @@ public class Swap extends Menu implements Initializable {
         updatePrices();
     }
 
+
     private void updatePrices() {
         firstprice = Database.lastValue(firstcoin);
         secondprice = Database.lastValue(secondcoin);
