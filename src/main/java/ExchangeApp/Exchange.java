@@ -61,7 +61,6 @@ public class Exchange extends Menu implements Initializable {
             Database.showAlert(Alert.AlertType.ERROR, "خطا", "لطفاً تمام فیلدها را به درستی پر کنید.");
             return;
         }
-
         ToggleButton selected = (ToggleButton) buyToggle.getSelectedToggle();
         String type = selected.getText();
         String token = tokencombo.getValue();
@@ -69,7 +68,42 @@ public class Exchange extends Menu implements Initializable {
         double totalPrice = Double.parseDouble(finalprice.getText());
 
         Database.saveBills("pending", type, User.user.getUserShow(), token, numTokens, totalPrice);
-        Database.showAlert(Alert.AlertType.INFORMATION, "تایید", "صورت‌حساب با موفقیت ایجاد شد.");
+        double money = Database.checkBills(type, User.user.getUserShow(), token, numTokens, totalPrice);
+        if (money != 0.0) {
+            if (type.equals("خرید")) {
+                User.user.setpD(User.user.getpD() - money);
+                switch (token) {
+                    case "Ethereum":
+                        User.user.setEth(User.user.getEth() + numTokens);
+                        break;
+                    case "Dogecoin":
+                        User.user.setDog(User.user.getDog() + numTokens);
+                        break;
+                    case "Notcoin":
+                        User.user.setNot(User.user.getNot() + numTokens);
+                        break;
+                    case "Hamester":
+                        User.user.setHam(User.user.getHam() + numTokens);
+                        break;
+                }
+            } else {
+                User.user.setpD(User.user.getpD() + money);
+                switch (token) {
+                    case "Ethereum":
+                        User.user.setEth(User.user.getEth() - numTokens);
+                        break;
+                    case "Dogecoin":
+                        User.user.setDog(User.user.getDog() - numTokens);
+                        break;
+                    case "Notcoin":
+                        User.user.setNot(User.user.getNot() - numTokens);
+                        break;
+                    case "Hamester":
+                        User.user.setHam(User.user.getHam() - numTokens);
+                        break;
+                }
+            }
+        }
     }
 
     @FXML

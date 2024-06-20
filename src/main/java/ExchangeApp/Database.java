@@ -41,9 +41,7 @@ public class Database {
         String checkSQL = "SELECT * FROM users WHERE user_name = ? OR email = ? OR phone_number = ?";
         String insertSQL = "INSERT INTO users (first_name, last_name, user_name, password, email, phone_number, imagePath) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        try (Connection connection = getConnection();
-             PreparedStatement checkStmt = connection.prepareStatement(checkSQL);
-             PreparedStatement insertStmt = connection.prepareStatement(insertSQL)) {
+        try (Connection connection = getConnection(); PreparedStatement checkStmt = connection.prepareStatement(checkSQL); PreparedStatement insertStmt = connection.prepareStatement(insertSQL)) {
 
             if (userExists(checkStmt, uname, uemail, uphone)) {
                 showAlert(Alert.AlertType.WARNING, "ثبت نام کاربر", "کاربری با این نام کاربری، ایمیل یا شماره تلفن وجود دارد!");
@@ -68,27 +66,13 @@ public class Database {
     public static void loginDB(ActionEvent event, String uname, String upass) throws IOException {
         String selectSQL = "SELECT * FROM users WHERE user_name = ? AND password = ?";
 
-        try (Connection connection = getConnection();
-             PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
+        try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
 
             psmt.setString(1, uname);
             psmt.setString(2, upass);
             try (ResultSet result = psmt.executeQuery()) {
                 if (result.next()) {
-                    User.user = new User(
-                            result.getString("user_name"),
-                            result.getString("first_name"),
-                            result.getString("last_name"),
-                            result.getString("password"),
-                            result.getString("email"),
-                            result.getString("phone_number"),
-                            result.getString("imagePath"),
-                            result.getDouble("profit(USD)"),
-                            result.getDouble("Ethereum"),
-                            result.getDouble("Dogecoin"),
-                            result.getDouble("Notcoin"),
-                            result.getDouble("Hamester")
-                    );
+                    User.user = new User(result.getString("user_name"), result.getString("first_name"), result.getString("last_name"), result.getString("password"), result.getString("email"), result.getString("phone_number"), result.getString("imagePath"), result.getDouble("profit(USD)"), result.getDouble("Ethereum"), result.getDouble("Dogecoin"), result.getDouble("Notcoin"), result.getDouble("Hamester"));
                     showAlert(Alert.AlertType.INFORMATION, "ورود کاربر", "با موفقیت وارد شدید!");
                     Main.stageChanger(event, "Profile.fxml");
                 } else {
@@ -103,26 +87,12 @@ public class Database {
     public static void EmailLogin(ActionEvent event, String email) throws IOException {
         String selectSQL = "SELECT * FROM users WHERE email = ?";
 
-        try (Connection connection = getConnection();
-             PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
+        try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
 
             psmt.setString(1, email);
             try (ResultSet result = psmt.executeQuery()) {
                 if (result.next()) {
-                    User.user = new User(
-                            result.getString("user_name"),
-                            result.getString("first_name"),
-                            result.getString("last_name"),
-                            result.getString("password"),
-                            result.getString("email"),
-                            result.getString("phone_number"),
-                            result.getString("imagePath"),
-                            result.getDouble("profit(USD)"),
-                            result.getDouble("Ethereum"),
-                            result.getDouble("Dogecoin"),
-                            result.getDouble("Notcoin"),
-                            result.getDouble("Hamester")
-                    );
+                    User.user = new User(result.getString("user_name"), result.getString("first_name"), result.getString("last_name"), result.getString("password"), result.getString("email"), result.getString("phone_number"), result.getString("imagePath"), result.getDouble("profit(USD)"), result.getDouble("Ethereum"), result.getDouble("Dogecoin"), result.getDouble("Notcoin"), result.getDouble("Hamester"));
                     Main.stageChanger(event, "Profile.fxml");
                 } else {
                     showAlert(Alert.AlertType.INFORMATION, "ورود کاربر", "کاربری با این ایمیل حساب کاربری ندارد!");
@@ -137,9 +107,7 @@ public class Database {
         Double value = 0.0;
         String query = "SELECT " + type + " FROM token_price LIMIT 1 OFFSET 1439";
 
-        try (Connection connection = getConnection();
-             PreparedStatement psmt = connection.prepareStatement(query);
-             ResultSet result = psmt.executeQuery()) {
+        try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query); ResultSet result = psmt.executeQuery()) {
             if (result.next()) {
                 value = result.getDouble(type);
             }
@@ -156,9 +124,7 @@ public class Database {
 
         String query = "SELECT MAX(" + column + ") AS max_price FROM token_price";
 
-        try (Connection connection = getConnection();
-             PreparedStatement psmt = connection.prepareStatement(query);
-             ResultSet result = psmt.executeQuery()) {
+        try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query); ResultSet result = psmt.executeQuery()) {
             if (result.next()) {
                 value = result.getDouble("max_price");
             }
@@ -175,9 +141,7 @@ public class Database {
 
         String query = "SELECT MIN(" + column + ") AS min_price FROM token_price";
 
-        try (Connection connection = getConnection();
-             PreparedStatement psmt = connection.prepareStatement(query);
-             ResultSet result = psmt.executeQuery()) {
+        try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(query); ResultSet result = psmt.executeQuery()) {
             if (result.next()) {
                 value = result.getDouble("min_price");
             }
@@ -195,11 +159,7 @@ public class Database {
         String queryFirstRow = "SELECT " + column + " FROM token_price ORDER BY time LIMIT 1";
         String queryLastRow = "SELECT " + column + " FROM token_price LIMIT 1 OFFSET 1439";
 
-        try (Connection connection = getConnection();
-             PreparedStatement stmtFirstRow = connection.prepareStatement(queryFirstRow);
-             PreparedStatement stmtLastRow = connection.prepareStatement(queryLastRow);
-             ResultSet resultFirstRow = stmtFirstRow.executeQuery();
-             ResultSet resultLastRow = stmtLastRow.executeQuery()) {
+        try (Connection connection = getConnection(); PreparedStatement stmtFirstRow = connection.prepareStatement(queryFirstRow); PreparedStatement stmtLastRow = connection.prepareStatement(queryLastRow); ResultSet resultFirstRow = stmtFirstRow.executeQuery(); ResultSet resultLastRow = stmtLastRow.executeQuery()) {
 
             Double firstRow = resultFirstRow.next() ? resultFirstRow.getDouble(column) : 0.0;
             Double lastRow = resultLastRow.next() ? resultLastRow.getDouble(column) : 0.0;
@@ -218,8 +178,7 @@ public class Database {
 
     public static void update(String desUser, String token, double value) {
         String query = "UPDATE users SET " + token + " = " + token + " + ? WHERE user_name = ?";
-        try (Connection connection = getConnection();
-             PreparedStatement stmt = connection.prepareStatement(query)) {
+        try (Connection connection = getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setDouble(1, value);
             stmt.setString(2, desUser);
             stmt.executeUpdate();
@@ -304,8 +263,7 @@ public class Database {
         String selectSQL;
         if (par.equals(User.user.getUserShow())) {
             selectSQL = "SELECT * FROM bills WHERE sender = ?";
-            try (Connection connection = getConnection();
-                 PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
+            try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
                 psmt.setString(1, par);
                 try (ResultSet result = psmt.executeQuery()) {
                     while (result.next()) {
@@ -323,8 +281,7 @@ public class Database {
             }
         } else {
             selectSQL = "SELECT * FROM bills WHERE token = ?";
-            try (Connection connection = getConnection();
-                 PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
+            try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
                 psmt.setString(1, par);
                 try (ResultSet result = psmt.executeQuery()) {
                     while (result.next()) {
@@ -340,5 +297,63 @@ public class Database {
             }
         }
         return bills;
+    }
+
+    public static double checkBills(String type, String sender, String token, double num, double value) {
+        double money = 0.0;
+        String opposit = type.equals("فروش") ? "خرید" : "فروش";
+        String matchSQL;
+        if (type.equals("فروش")) {
+            matchSQL = "SELECT * FROM bills WHERE type = ? AND token = ? AND `value` >= ? AND amount = ? AND sender <> ? AND status = 'pending' ORDER BY id ASC";
+        } else {
+            matchSQL = "SELECT * FROM bills WHERE type = ? AND token = ? AND `value` <= ? AND amount = ? AND sender <> ? AND status = 'pending' ORDER BY id ASC";
+        }
+        try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(matchSQL)) {
+            psmt.setString(1, opposit);
+            psmt.setString(2, token);
+            psmt.setDouble(3, value);
+            psmt.setDouble(4, num);
+            psmt.setString(5, sender);
+            try (ResultSet result = psmt.executeQuery()) {
+                if (result.next()) {
+                    String buyerBalance;
+                    String buyer = result.getString("sender");
+                    money = result.getDouble("value");
+                    if (opposit.equals("خرید")) {
+                        buyerBalance = "UPDATE users SET `profit(USD)` = `profit(USD)` - ?, " + token + " = " + token + " + ? WHERE user_name = ?";
+                    } else {
+                        buyerBalance = "UPDATE users SET `profit(USD)` = `profit(USD)` + ?, " + token + " = " + token + " - ? WHERE user_name = ?";
+                    }
+                    try (PreparedStatement buyerBalanceStmt = connection.prepareStatement(buyerBalance)) {
+                        buyerBalanceStmt.setDouble(1, ((double) 99 / 100) * money);
+                        buyerBalanceStmt.setDouble(2, num);
+                        buyerBalanceStmt.setString(3, buyer);
+                        buyerBalanceStmt.executeUpdate();
+                    } catch (SQLException e) {
+                        showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در بروزرسانی رخ داد: " + e.getMessage());
+                    }
+                    Database.update("admin2024", "`profit(USD)`", ((double) 1 / 100) * money);
+                    updateBillStatus(sender, token, num, value);
+                    updateBillStatus(buyer, token, num, money);
+                    return money;
+                }
+            }
+        } catch (SQLException e) {
+            showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در اطلاعات رخ داد: " + e.getMessage());
+        }
+        return money;
+    }
+
+    public static void updateBillStatus(String man, String token, double num, double value) {
+        String update = "UPDATE bills SET status = 'success' WHERE sender = ? AND token = ? AND amount = ? AND `value` = ?";
+        try (PreparedStatement smt = getConnection().prepareStatement(update)) {
+            smt.setString(1, man);
+            smt.setString(2, token);
+            smt.setDouble(3, num);
+            smt.setDouble(4, value);
+            smt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
