@@ -2,15 +2,19 @@ package ExchangeApp;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 
 public class MainPage extends Menu implements Initializable {
 
@@ -34,7 +38,6 @@ public class MainPage extends Menu implements Initializable {
             new Coin("همستر (HAM)", Database.lastValue("Hamester"), Database.percent(4), Database.largeValue(4), Database.smallValue(4), 0.0)
     );
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
@@ -45,5 +48,32 @@ public class MainPage extends Menu implements Initializable {
         min_value.setCellValueFactory(new PropertyValueFactory<>("min_value"));
 
         mainTable.setItems(coinList);
+
+        EventHandler<ActionEvent> actionEventHandler = this::handleAction;
+
+        mainTable.setRowFactory(tv -> {
+            TableRow<Coin> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 1) {
+                    Coin clickedCoin = row.getItem();
+                    handleRowClick(clickedCoin);
+                    ActionEvent actionEvent = new ActionEvent(row, null);
+                    actionEventHandler.handle(actionEvent);
+                }
+            });
+            return row;
+        });
+    }
+
+    private void handleRowClick(Coin coin) {
+        System.out.println("Clicked coin: " + coin.getName() + ", Value: " + coin.getValue());
+    }
+
+    private void handleAction(ActionEvent event) {
+        try {
+            Token(event);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

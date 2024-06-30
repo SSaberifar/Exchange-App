@@ -28,8 +28,6 @@ public class Wallet extends Menu implements Initializable {
     private TableView<Coin> walletCoins;
     @FXML
     private Label profit_d;
-    @FXML
-    private Label profit_b;
 
     ObservableList<Coin> walletCoin = FXCollections.observableArrayList(
             new Coin("اتریوم(ETH)", Database.lastValue("Ethereum"), 0, 0, 0, User.user.getEth()),

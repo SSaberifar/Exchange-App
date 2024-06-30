@@ -22,6 +22,8 @@ public class Profile extends Menu implements Initializable {
     @FXML
     private Button stop;
     @FXML
+    private Button demo;
+    @FXML
     private TextField SignFName;
     @FXML
     private TextField SignLName;
@@ -117,11 +119,7 @@ public class Profile extends Menu implements Initializable {
     }
 
     public void stopStore() {
-        if (Exchange.buying == false) {
-            Exchange.buying = true;
-        } else {
-            Exchange.buying = false;
-        }
+        Exchange.buying = !Exchange.buying;
     }
 
 
@@ -138,6 +136,9 @@ public class Profile extends Menu implements Initializable {
         if (User.user.getUserShow().equals("admin2024")) {
             crime.setVisible(true);
             stop.setVisible(true);
+        }
+        if (!User.user.getUserShow().equals("admin2024")) {
+            demo.setVisible(true);
         }
     }
 }

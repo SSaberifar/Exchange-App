@@ -39,6 +39,16 @@ public class Menu implements Initializable {
      * @param event the action event that triggered the method.
      * @throws IOException if the FXML file cannot be loaded.
      */
+    public void Token(ActionEvent event) throws IOException {
+        Main.stageChanger(event, "Token.fxml");
+    }
+
+    /**
+     * Switches to the swap scene.
+     *
+     * @param event the action event that triggered the method.
+     * @throws IOException if the FXML file cannot be loaded.
+     */
     public void Swap(ActionEvent event) throws IOException {
         Main.stageChanger(event, "Swap.fxml");
     }
