@@ -24,7 +24,7 @@ public class Transfer extends Menu implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
-        tokens.setItems(observableArrayList("Ethereum", "Dogecoin", "Notcoin", "Hamester"));
+        tokens.setItems(observableArrayList("Ethereum", "Dogecoin", "Notcoin", "Hamester", "$"));
         Comment.setText(User.user.getUserShow());
     }
 
@@ -40,7 +40,7 @@ public class Transfer extends Menu implements Initializable {
         confirmationAlert.setContentText("کارمزد عملیات شما 10 دلار می باشد! آیا مایل به ادامه هستید؟");
 
         confirmationAlert.showAndWait().ifPresent(buttonType -> {
-            if (User.user.getpD() >= 10) {
+            if (User.user.getpD() >= 10 || tokens.getValue().equals("$")) {
                 performTransfer();
             } else {
                 Database.showAlert(Alert.AlertType.ERROR, "خطا", "موجودی دلار کافی نیست!");
@@ -68,7 +68,7 @@ public class Transfer extends Menu implements Initializable {
         if (hasSufficientBalance(selectedToken, tokenAmount)) {
             updateDatabase(selectedToken, tokenAmount);
             deductBalance(selectedToken, tokenAmount);
-            Database.update("admin2024", "`profit(USD)`", 10);
+            Database.update("admin2024", "profit", 10);
             Database.showAlert(Alert.AlertType.INFORMATION, "تایید", "انتقال با موفقیت انجام شد");
         } else {
             Database.showAlert(Alert.AlertType.ERROR, "خطا", "موجودی کافی نیست!");
@@ -76,39 +76,49 @@ public class Transfer extends Menu implements Initializable {
     }
 
     private boolean hasSufficientBalance(String token, double amount) {
-        switch (token) {
-            case "Ethereum":
-                return User.user.getEth() >= amount;
-            case "Dogecoin":
-                return User.user.getDog() >= amount;
-            case "Notcoin":
-                return User.user.getNot() >= amount;
-            case "Hamester":
-                return User.user.getHam() >= amount;
-            default:
-                return false;
-        }
+        return switch (token) {
+            case "Ethereum" -> User.user.getEth() >= amount;
+            case "Dogecoin" -> User.user.getDog() >= amount;
+            case "Notcoin" -> User.user.getNot() >= amount;
+            case "Hamester" -> User.user.getHam() >= amount;
+            case "$" -> true;
+            default -> false;
+        };
     }
 
     private void updateDatabase(String token, double amount) {
-        Database.update(destinationId.getText(), token, amount);
+        if (token.equals("$")) {
+            Database.update(destinationId.getText(), "profit", amount - 10.0);
+        } else {
+            Database.update(destinationId.getText(), token, amount);
+        }
     }
 
     private void deductBalance(String token, double amount) {
         switch (token) {
             case "Ethereum":
                 User.user.setEth(User.user.getEth() - amount);
+                User.user.setpD(User.user.getpD() - 10);
                 break;
             case "Dogecoin":
                 User.user.setDog(User.user.getDog() - amount);
+                User.user.setpD(User.user.getpD() - 10);
                 break;
             case "Notcoin":
                 User.user.setNot(User.user.getNot() - amount);
+                User.user.setpD(User.user.getpD() - 10);
                 break;
             case "Hamester":
                 User.user.setHam(User.user.getHam() - amount);
+                User.user.setpD(User.user.getpD() - 10);
+                break;
+            case "$":
+                if (User.user.getpD() == 0) {
+                    User.user.setpD(User.user.getpD() + amount - 10.0);
+                } else {
+                    User.user.setpD(User.user.getpD() - amount);
+                }
                 break;
         }
-        User.user.setpD(User.user.getpD() - 10);
     }
 }

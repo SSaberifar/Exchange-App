@@ -72,7 +72,7 @@ public class Database {
             psmt.setString(2, upass);
             try (ResultSet result = psmt.executeQuery()) {
                 if (result.next()) {
-                    User.user = new User(result.getString("user_name"), result.getString("first_name"), result.getString("last_name"), result.getString("password"), result.getString("email"), result.getString("phone_number"), result.getString("imagePath"), result.getDouble("profit(USD)"), result.getDouble("Ethereum"), result.getDouble("Dogecoin"), result.getDouble("Notcoin"), result.getDouble("Hamester"));
+                    User.user = new User(result.getString("user_name"), result.getString("first_name"), result.getString("last_name"), result.getString("password"), result.getString("email"), result.getString("phone_number"), result.getString("imagePath"), result.getDouble("profit"), result.getDouble("Ethereum"), result.getDouble("Dogecoin"), result.getDouble("Notcoin"), result.getDouble("Hamester"));
                     showAlert(Alert.AlertType.INFORMATION, "ورود کاربر", "با موفقیت وارد شدید!");
                     Main.stageChanger(event, "Profile.fxml");
                 } else {
@@ -92,7 +92,7 @@ public class Database {
             psmt.setString(1, email);
             try (ResultSet result = psmt.executeQuery()) {
                 if (result.next()) {
-                    User.user = new User(result.getString("user_name"), result.getString("first_name"), result.getString("last_name"), result.getString("password"), result.getString("email"), result.getString("phone_number"), result.getString("imagePath"), result.getDouble("profit(USD)"), result.getDouble("Ethereum"), result.getDouble("Dogecoin"), result.getDouble("Notcoin"), result.getDouble("Hamester"));
+                    User.user = new User(result.getString("user_name"), result.getString("first_name"), result.getString("last_name"), result.getString("password"), result.getString("email"), result.getString("phone_number"), result.getString("imagePath"), result.getDouble("profit"), result.getDouble("Ethereum"), result.getDouble("Dogecoin"), result.getDouble("Notcoin"), result.getDouble("Hamester"));
                     Main.stageChanger(event, "Profile.fxml");
                 } else {
                     showAlert(Alert.AlertType.INFORMATION, "ورود کاربر", "کاربری با این ایمیل حساب کاربری ندارد!");
@@ -190,7 +190,7 @@ public class Database {
     }
 
     public static void exitUpdate() {
-        String query = "UPDATE users SET `profit(USD)` = ?, Ethereum = ?, Dogecoin = ?, Notcoin = ?, Hamester = ? WHERE user_name = ?";
+        String query = "UPDATE users SET profit = ?, Ethereum = ?, Dogecoin = ?, Notcoin = ?, Hamester = ? WHERE user_name = ?";
         try (Connection connection = getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setDouble(1, User.user.getpD());
             stmt.setDouble(2, User.user.getEth());
@@ -339,9 +339,9 @@ public class Database {
                     String buyer = result.getString("sender");
                     money = result.getDouble("value");
                     if (opposit.equals("خرید")) {
-                        buyerBalance = "UPDATE users SET `profit(USD)` = `profit(USD)` - ?, " + token + " = " + token + " + ? WHERE user_name = ?";
+                        buyerBalance = "UPDATE users SET profit = profit - ?, " + token + " = " + token + " + ? WHERE user_name = ?";
                     } else {
-                        buyerBalance = "UPDATE users SET `profit(USD)` = `profit(USD)` + ?, " + token + " = " + token + " - ? WHERE user_name = ?";
+                        buyerBalance = "UPDATE users SET profit = profit + ?, " + token + " = " + token + " - ? WHERE user_name = ?";
                     }
                     try (PreparedStatement buyerBalanceStmt = connection.prepareStatement(buyerBalance)) {
                         buyerBalanceStmt.setDouble(1, ((double) 99 / 100) * money);
@@ -351,7 +351,7 @@ public class Database {
                     } catch (SQLException e) {
                         showAlert(Alert.AlertType.ERROR, "خطا", "خطایی در بروزرسانی رخ داد: " + e.getMessage());
                     }
-                    Database.update("admin2024", "`profit(USD)`", ((double) 1 / 100) * money);
+                    Database.update("admin2024", "profit", ((double) 1 / 100) * money);
                     updateBillStatus(sender, token, num, value);
                     updateBillStatus(buyer, token, num, money);
                     return money;

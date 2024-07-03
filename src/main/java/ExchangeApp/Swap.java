@@ -99,7 +99,7 @@ public class Swap extends Menu implements Initializable {
             deductFirstCoinBalance(firstAmount);
             addSecondCoinBalance(secondAmount);
             User.user.setpD(User.user.getpD() - 10);
-            Database.update("admin2024", "`profit(USD)`", 10);
+            Database.update("admin2024", "profit", 10);
             Database.showAlert(Alert.AlertType.INFORMATION, "تایید", "عملیات تبدیل با موفقیت انجام شد!");
         } else {
             Database.showAlert(Alert.AlertType.ERROR, "خطا", "موجودی کافی نیست!");

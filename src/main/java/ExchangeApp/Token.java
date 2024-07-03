@@ -1,5 +1,6 @@
 package ExchangeApp;
 
+<<<<<<< HEAD
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
@@ -122,5 +123,15 @@ public class Token extends Menu implements Initializable {
             case 6: return resultSet.getString("time").split(" ")[0];
             default: return resultSet.getString("time").split(" ")[1].split(":")[1];
         }
+=======
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class Token extends Menu {
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        
+>>>>>>> bc00b1e066f3aa6b403679c1840dc9996313345e
     }
 }
