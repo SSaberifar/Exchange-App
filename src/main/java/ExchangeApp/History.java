@@ -67,7 +67,7 @@ public class History extends Menu implements Initializable {
 
     private void loadHistoryData() {
         try {
-            billRecords = Database.showBills(User.user.getUserShow());
+            billRecords = Database.showBills(Database.user.getUserShow());
             ObservableList<Object[]> data = FXCollections.observableArrayList(billRecords);
             historyTable.setItems(data);
         } catch (Exception e) {

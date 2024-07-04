@@ -67,39 +67,39 @@ public class Exchange extends Menu implements Initializable {
         double numTokens = Double.parseDouble(tokennum.getText());
         double totalPrice = Double.parseDouble(finalprice.getText());
 
-        Database.saveBills("pending", type, User.user.getUserShow(), token, numTokens, totalPrice);
-        double money = Database.checkBills(type, User.user.getUserShow(), token, numTokens, totalPrice);
+        Database.saveBills("pending", type, Database.user.getUserShow(), token, numTokens, totalPrice);
+        double money = Database.checkBills(type, Database.user.getUserShow(), token, numTokens, totalPrice);
         if (money != 0.0) {
             if (type.equals("خرید")) {
-                User.user.setpD(User.user.getpD() - money);
+                Database.user.setpD(Database.user.getpD() - money);
                 switch (token) {
                     case "Ethereum":
-                        User.user.setEth(User.user.getEth() + numTokens);
+                        Database.user.setEth(Database.user.getEth() + numTokens);
                         break;
                     case "Dogecoin":
-                        User.user.setDog(User.user.getDog() + numTokens);
+                        Database.user.setDog(Database.user.getDog() + numTokens);
                         break;
                     case "Notcoin":
-                        User.user.setNot(User.user.getNot() + numTokens);
+                        Database.user.setNot(Database.user.getNot() + numTokens);
                         break;
                     case "Hamester":
-                        User.user.setHam(User.user.getHam() + numTokens);
+                        Database.user.setHam(Database.user.getHam() + numTokens);
                         break;
                 }
             } else {
-                User.user.setpD(User.user.getpD() + money);
+                Database.user.setpD(Database.user.getpD() + money);
                 switch (token) {
                     case "Ethereum":
-                        User.user.setEth(User.user.getEth() - numTokens);
+                        Database.user.setEth(Database.user.getEth() - numTokens);
                         break;
                     case "Dogecoin":
-                        User.user.setDog(User.user.getDog() - numTokens);
+                        Database.user.setDog(Database.user.getDog() - numTokens);
                         break;
                     case "Notcoin":
-                        User.user.setNot(User.user.getNot() - numTokens);
+                        Database.user.setNot(Database.user.getNot() - numTokens);
                         break;
                     case "Hamester":
-                        User.user.setHam(User.user.getHam() - numTokens);
+                        Database.user.setHam(Database.user.getHam() - numTokens);
                         break;
                 }
             }

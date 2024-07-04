@@ -86,7 +86,7 @@ public class Swap extends Menu implements Initializable {
         alert.setContentText("کارمزد عملیات شما 10 دلار می باشد! آیا مایل به ادامه هستید؟");
 
         alert.showAndWait().ifPresent(buttonType -> {
-            if (buttonType == ButtonType.OK && User.user.getpD() >= 10) {
+            if (buttonType == ButtonType.OK && Database.user.getpD() >= 10) {
                 performSwap(firstAmount, secondAmount);
             } else {
                 Database.showAlert(Alert.AlertType.ERROR, "خطا", "موجودی دلار کافی نیست!");
@@ -98,7 +98,7 @@ public class Swap extends Menu implements Initializable {
         if (hasSufficientBalance(firstcoin, firstAmount)) {
             deductFirstCoinBalance(firstAmount);
             addSecondCoinBalance(secondAmount);
-            User.user.setpD(User.user.getpD() - 10);
+            Database.user.setpD(Database.user.getpD() - 10);
             Database.update("admin2024", "profit", 10);
             Database.showAlert(Alert.AlertType.INFORMATION, "تایید", "عملیات تبدیل با موفقیت انجام شد!");
         } else {
@@ -108,10 +108,10 @@ public class Swap extends Menu implements Initializable {
 
     private boolean hasSufficientBalance(String coin, double amount) {
         return switch (coin) {
-            case "Ethereum" -> User.user.getEth() >= amount;
-            case "Dogecoin" -> User.user.getDog() >= amount;
-            case "Notcoin" -> User.user.getNot() >= amount;
-            case "Hamester" -> User.user.getHam() >= amount;
+            case "Ethereum" -> Database.user.getEth() >= amount;
+            case "Dogecoin" -> Database.user.getDog() >= amount;
+            case "Notcoin" -> Database.user.getNot() >= amount;
+            case "Hamester" -> Database.user.getHam() >= amount;
             default -> false;
         };
     }
@@ -119,16 +119,16 @@ public class Swap extends Menu implements Initializable {
     private void deductFirstCoinBalance(double amount) {
         switch (firstcoin) {
             case "Ethereum":
-                User.user.setEth(User.user.getEth() - amount);
+                Database.user.setEth(Database.user.getEth() - amount);
                 break;
             case "Dogecoin":
-                User.user.setDog(User.user.getDog() - amount);
+                Database.user.setDog(Database.user.getDog() - amount);
                 break;
             case "Notcoin":
-                User.user.setNot(User.user.getNot() - amount);
+                Database.user.setNot(Database.user.getNot() - amount);
                 break;
             case "Hamester":
-                User.user.setHam(User.user.getHam() - amount);
+                Database.user.setHam(Database.user.getHam() - amount);
                 break;
         }
     }
@@ -136,16 +136,16 @@ public class Swap extends Menu implements Initializable {
     private void addSecondCoinBalance(double amount) {
         switch (secondcoin) {
             case "Ethereum":
-                User.user.setEth(User.user.getEth() + amount);
+                Database.user.setEth(Database.user.getEth() + amount);
                 break;
             case "Dogecoin":
-                User.user.setDog(User.user.getDog() + amount);
+                Database.user.setDog(Database.user.getDog() + amount);
                 break;
             case "Notcoin":
-                User.user.setNot(User.user.getNot() + amount);
+                Database.user.setNot(Database.user.getNot() + amount);
                 break;
             case "Hamester":
-                User.user.setHam(User.user.getHam() + amount);
+                Database.user.setHam(Database.user.getHam() + amount);
                 break;
         }
     }

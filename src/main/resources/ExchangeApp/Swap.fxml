@@ -21,150 +21,122 @@
       <URL value="@css/reset.css" />
    </stylesheets>
    <top>
-      <AnchorPane
-              style="-fx-background-color: linear-gradient(to right, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 0 0 0 20;"
-              BorderPane.alignment="CENTER">
+      <AnchorPane style="-fx-background-color: linear-gradient(to right, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 0 0 0 20;" BorderPane.alignment="CENTER">
          <Label layoutX="310.0" layoutY="6.0" text="تبادل ارز" textFill="#ffe500">
             <font>
-               <Font name="Roboto Bold" size="20.0"/>
+               <Font name="Roboto Bold" size="20.0" />
             </font>
          </Label>
-         <Text fx:id="clock" fill="WHITE" layoutX="598.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0"
-               styleClass="text-light" text="ساعت"/>
-         <Button fx:id="usershow" alignment="CENTER" mnemonicParsing="false" onAction="#profile"
-                 style="-fx-background-color: transparent;" styleClass="text-light" text="نام کاربری"
-                 textAlignment="CENTER" textFill="WHITE">
+         <Text fx:id="clock" fill="WHITE" layoutX="598.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-light" text="ساعت" />
+         <Button fx:id="usershow" alignment="CENTER" mnemonicParsing="false" onAction="#profile" style="-fx-background-color: transparent;" styleClass="text-light" text="نام کاربری" textAlignment="CENTER" textFill="WHITE">
             <font>
-               <Font size="20.0"/>
+               <Font size="20.0" />
             </font>
             <cursor>
-               <Cursor fx:constant="HAND"/>
+               <Cursor fx:constant="HAND" />
             </cursor>
          </Button>
       </AnchorPane>
    </top>
    <right>
-      <GridPane alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT"
-                style="-fx-background-color: linear-gradient(to top, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 0 0 20 0;"
-                BorderPane.alignment="CENTER">
+      <GridPane alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT" style="-fx-background-color: linear-gradient(to top, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 0 0 20 0;" BorderPane.alignment="CENTER">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.60003662109375" minWidth="10.0" percentWidth="100"
-                               prefWidth="101.60003662109375"/>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="101.60003662109375" minWidth="10.0" percentWidth="100" prefWidth="101.60003662109375" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
          </cursor>
-         <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#mainPage" prefHeight="42.0"
-                 prefWidth="102.4" style="-fx-background-color: transparent;" styleClass="text-light" text="ارزها"
-                 textAlignment="CENTER" textFill="#ffe500">
+         <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#mainPage" prefHeight="42.0" prefWidth="102.4" style="-fx-background-color: transparent;" styleClass="text-light" text="ارزها" textAlignment="CENTER" textFill="#ffe500">
             <graphic>
                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@images/home-icon.png"/>
+                  <Image url="@images/home-icon.png" />
                </ImageView>
             </graphic>
             <font>
-               <Font size="20.0"/>
+               <Font size="20.0" />
             </font>
             <cursor>
-               <Cursor fx:constant="HAND"/>
+               <Cursor fx:constant="HAND" />
             </cursor>
          </Button>
-         <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#Exchange" prefHeight="42.0"
-                 prefWidth="102.4" style="-fx-background-color: transparent;" styleClass="text-light" text="خرید"
-                 textAlignment="CENTER" textFill="#ffe500" GridPane.rowIndex="2">
+         <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#Exchange" prefHeight="42.0" prefWidth="102.4" style="-fx-background-color: transparent;" styleClass="text-light" text="خرید" textAlignment="CENTER" textFill="#ffe500" GridPane.rowIndex="2">
             <graphic>
                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@images/exchange-icon.png"/>
+                  <Image url="@images/exchange-icon.png" />
                </ImageView>
             </graphic>
             <font>
-               <Font size="20.0"/>
+               <Font size="20.0" />
             </font>
             <cursor>
-               <Cursor fx:constant="HAND"/>
+               <Cursor fx:constant="HAND" />
             </cursor>
          </Button>
-         <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#Swap" prefHeight="42.0"
-                 prefWidth="102.4" style="-fx-background-color: transparent;" styleClass="text-light" text="تبادل"
-                 textAlignment="CENTER" textFill="#ffe500" GridPane.rowIndex="1">
+         <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#Swap" prefHeight="42.0" prefWidth="102.4" style="-fx-background-color: transparent;" styleClass="text-light" text="تبادل" textAlignment="CENTER" textFill="#ffe500" GridPane.rowIndex="1">
             <graphic>
                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@images/swap.png"/>
+                  <Image url="@images/swap.png" />
                </ImageView>
             </graphic>
             <font>
-               <Font size="20.0"/>
+               <Font size="20.0" />
             </font>
             <cursor>
-               <Cursor fx:constant="HAND"/>
+               <Cursor fx:constant="HAND" />
             </cursor>
          </Button>
-         <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#transfer" prefHeight="42.0"
-                 prefWidth="102.4" style="-fx-background-color: transparent;" styleClass="text-light" text="انتقال"
-                 textAlignment="CENTER" textFill="#ffe500" GridPane.rowIndex="3">
+         <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#transfer" prefHeight="42.0" prefWidth="102.4" style="-fx-background-color: transparent;" styleClass="text-light" text="انتقال" textAlignment="CENTER" textFill="#ffe500" GridPane.rowIndex="3">
             <graphic>
                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@images/transfer.png"/>
+                  <Image url="@images/transfer.png" />
                </ImageView>
             </graphic>
             <font>
-               <Font size="20.0"/>
+               <Font size="20.0" />
             </font>
             <cursor>
-               <Cursor fx:constant="HAND"/>
+               <Cursor fx:constant="HAND" />
             </cursor>
          </Button>
-         <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#exit" prefWidth="102.4"
-                 style="-fx-background-color: transparent;" styleClass="text-light" text="خروج" textAlignment="CENTER"
-                 textFill="#ffe500" GridPane.rowIndex="4">
+         <Button alignment="CENTER" graphicTextGap="5.0" mnemonicParsing="false" onAction="#exit" prefWidth="102.4" style="-fx-background-color: transparent;" styleClass="text-light" text="خروج" textAlignment="CENTER" textFill="#ffe500" GridPane.rowIndex="4">
             <graphic>
                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@images/exit.png"/>
+                  <Image url="@images/exit.png" />
                </ImageView>
             </graphic>
             <font>
-               <Font size="20.0"/>
+               <Font size="20.0" />
             </font>
             <cursor>
-               <Cursor fx:constant="HAND"/>
+               <Cursor fx:constant="HAND" />
             </cursor>
          </Button>
       </GridPane>
    </right>
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <ComboBox fx:id="firstToken" layoutX="91.0" layoutY="167.0" nodeOrientation="RIGHT_TO_LEFT" prefWidth="150.0"
-                   promptText="ارز مبدا"/>
-         <ComboBox fx:id="secondToken" layoutX="356.0" layoutY="167.0" nodeOrientation="RIGHT_TO_LEFT" prefWidth="150.0"
-                   promptText="ارز مقصد"/>
-         <ImageView fitHeight="50.0" fitWidth="100.0" layoutX="274.0" layoutY="193.0" pickOnBounds="true"
-                    preserveRatio="true">
-            <Image url="@images/exchange.png"/>
+         <ComboBox fx:id="firstToken" layoutX="91.0" layoutY="167.0" nodeOrientation="RIGHT_TO_LEFT" prefWidth="150.0" promptText="ارز مبدا" />
+         <ComboBox fx:id="secondToken" layoutX="356.0" layoutY="167.0" nodeOrientation="RIGHT_TO_LEFT" prefWidth="150.0" promptText="ارز مقصد" />
+         <ImageView fitHeight="50.0" fitWidth="100.0" layoutX="274.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@images/exchange.png" />
          </ImageView>
-         <TextField fx:id="firstinput" layoutX="91.0" layoutY="233.0" promptText="حجم ارز"
-                    style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-style: solid; -fx-border-radius: 5;"/>
-         <TextField fx:id="secondinput" disable="true" layoutX="356.0" layoutY="233.0" promptText="0"
-                    style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-style: solid; -fx-border-radius: 5;"/>
-         <Button graphicTextGap="0.0" layoutX="224.0" layoutY="332.0" mnemonicParsing="false" onAction="#convert"
-                 prefHeight="40.0" prefWidth="150.0"
-                 style="-fx-background-color: linear-gradient(to right bottom, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 20;"
-                 styleClass="text-light" text="تبدیل" textFill="WHITE">
+         <TextField fx:id="firstinput" layoutX="91.0" layoutY="233.0" promptText="حجم ارز" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-style: solid; -fx-border-radius: 5;" />
+         <TextField fx:id="secondinput" disable="true" layoutX="356.0" layoutY="233.0" promptText="0" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-style: solid; -fx-border-radius: 5;" />
+         <Button graphicTextGap="0.0" layoutX="224.0" layoutY="332.0" mnemonicParsing="false" onAction="#convert" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right bottom, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 20;" styleClass="text-light" text="تبدیل" textFill="WHITE">
             <cursor>
-               <Cursor fx:constant="HAND"/>
+               <Cursor fx:constant="HAND" />
             </cursor>
          </Button>
-         <Text fill="RED" layoutX="107.0" layoutY="55.0" lineSpacing="10.0" strokeType="OUTSIDE" strokeWidth="0.0"
-               text="ارز مبدا و مقصد خود را انتخاب و حجم ارز مورد نظر خود را وارد کنید." textAlignment="CENTER"
-               wrappingWidth="383.7811584472656">
+         <Text fill="RED" layoutX="107.0" layoutY="55.0" lineSpacing="10.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ارز مبدا و مقصد خود را انتخاب و حجم ارز مورد نظر خود را وارد کنید." textAlignment="CENTER" wrappingWidth="383.7811584472656">
             <font>
-               <Font name="System Bold" size="22.0"/>
+               <Font name="System Bold" size="22.0" />
             </font>
          </Text>
       </AnchorPane>

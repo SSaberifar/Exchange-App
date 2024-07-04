@@ -40,30 +40,16 @@
     </top>
     <center>
         <AnchorPane BorderPane.alignment="CENTER">
-            <TextField fx:id="tokenValue" layoutX="174.0" layoutY="137.0" nodeOrientation="RIGHT_TO_LEFT"
-                       prefHeight="40.0" prefWidth="250.0" promptText="حجم ارز/پول"
-                       style="-fx-background-radius: 10; -fx-border-style: dashed; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-width: 1; -fx-border-color: black;"
-                       styleClass="text-light"/>
-            <ComboBox fx:id="tokens" layoutX="174.0" layoutY="137.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0"
-                      prefWidth="91.0" promptText="ارز" style="-fx-background-radius: 10;" styleClass="text-light"/>
-            <TextField fx:id="destinationId" layoutX="174.0" layoutY="67.0" nodeOrientation="RIGHT_TO_LEFT"
-                       prefHeight="40.0" prefWidth="250.0" promptText="کیف پول مقصد"
-                       style="-fx-background-radius: 10; -fx-border-style: dashed; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-width: 1; -fx-border-color: black;"
-                       styleClass="text-light"/>
-            <Button layoutX="224.0" layoutY="277.0" mnemonicParsing="false" onAction="#transferToken" prefHeight="20.0"
-                    prefWidth="150.0"
-                    style="-fx-background-color: linear-gradient(to right bottom, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 20;"
-                    styleClass="text-light" text="انتقال" textFill="WHITE">
+            <TextField fx:id="tokenValue" layoutX="174.0" layoutY="137.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="250.0" promptText="حجم ارز/پول" style="-fx-background-radius: 10; -fx-border-style: dashed; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-width: 1; -fx-border-color: black;" styleClass="text-light" />
+            <ComboBox fx:id="tokens" layoutX="174.0" layoutY="137.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="91.0" promptText="ارز" style="-fx-background-radius: 10;" styleClass="text-light" />
+            <TextField fx:id="destinationId" layoutX="174.0" layoutY="67.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="250.0" promptText="کیف پول مقصد" style="-fx-background-radius: 10; -fx-border-style: dashed; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-width: 1; -fx-border-color: black;" styleClass="text-light" />
+            <Button layoutX="224.0" layoutY="277.0" mnemonicParsing="false" onAction="#transferToken" prefHeight="20.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right bottom, #00d2ff 0%, #3a47d5 100%); -fx-background-radius: 20;" styleClass="text-light" text="انتقال" textFill="WHITE">
                 <cursor>
-                    <Cursor fx:constant="HAND"/>
+                    <Cursor fx:constant="HAND" />
                 </cursor>
             </Button>
-            <TextField fx:id="Comment" layoutX="174.0" layoutY="204.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0"
-                       prefWidth="250.0" promptText="پیام"
-                       style="-fx-background-radius: 10; -fx-border-style: dashed; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-width: 1; -fx-border-color: black;"
-                       styleClass="text-light"/>
-            <Text fill="RED" layoutX="140.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                  styleClass="text-light" text="*پیام: به صورت دیفالت نام کاربری شما می باشد!"/>
+            <TextField fx:id="Comment" layoutX="174.0" layoutY="204.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="250.0" promptText="پیام" style="-fx-background-radius: 10; -fx-border-style: dashed; -fx-border-radius: 10; -fx-background-color: transparent; -fx-border-width: 1; -fx-border-color: black;" styleClass="text-light" />
+            <Text fill="RED" layoutX="140.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-light" text="*پیام: به صورت دیفالت نام کاربری شما می باشد!" />
         </AnchorPane>
     </center>
     <right>

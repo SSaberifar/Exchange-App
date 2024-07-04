@@ -15,6 +15,8 @@ public class Database {
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "";
 
+    public static User user;
+
     public static void showAlert(Alert.AlertType alertType, String title, String content) {
         Alert alert = new Alert(alertType);
         alert.getDialogPane().setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
@@ -72,7 +74,7 @@ public class Database {
             psmt.setString(2, upass);
             try (ResultSet result = psmt.executeQuery()) {
                 if (result.next()) {
-                    User.user = new User(result.getString("user_name"), result.getString("first_name"), result.getString("last_name"), result.getString("password"), result.getString("email"), result.getString("phone_number"), result.getString("imagePath"), result.getDouble("profit"), result.getDouble("Ethereum"), result.getDouble("Dogecoin"), result.getDouble("Notcoin"), result.getDouble("Hamester"));
+                    user = new User(result.getString("user_name"), result.getString("first_name"), result.getString("last_name"), result.getString("password"), result.getString("email"), result.getString("phone_number"), result.getString("imagePath"), result.getDouble("profit"), result.getDouble("Ethereum"), result.getDouble("Dogecoin"), result.getDouble("Notcoin"), result.getDouble("Hamester"));
                     showAlert(Alert.AlertType.INFORMATION, "ورود کاربر", "با موفقیت وارد شدید!");
                     Main.stageChanger(event, "Profile.fxml");
                 } else {
@@ -92,7 +94,7 @@ public class Database {
             psmt.setString(1, email);
             try (ResultSet result = psmt.executeQuery()) {
                 if (result.next()) {
-                    User.user = new User(result.getString("user_name"), result.getString("first_name"), result.getString("last_name"), result.getString("password"), result.getString("email"), result.getString("phone_number"), result.getString("imagePath"), result.getDouble("profit"), result.getDouble("Ethereum"), result.getDouble("Dogecoin"), result.getDouble("Notcoin"), result.getDouble("Hamester"));
+                    user = new User(result.getString("user_name"), result.getString("first_name"), result.getString("last_name"), result.getString("password"), result.getString("email"), result.getString("phone_number"), result.getString("imagePath"), result.getDouble("profit"), result.getDouble("Ethereum"), result.getDouble("Dogecoin"), result.getDouble("Notcoin"), result.getDouble("Hamester"));
                     Main.stageChanger(event, "Profile.fxml");
                 } else {
                     showAlert(Alert.AlertType.INFORMATION, "ورود کاربر", "کاربری با این ایمیل حساب کاربری ندارد!");
@@ -192,12 +194,12 @@ public class Database {
     public static void exitUpdate() {
         String query = "UPDATE users SET profit = ?, Ethereum = ?, Dogecoin = ?, Notcoin = ?, Hamester = ? WHERE user_name = ?";
         try (Connection connection = getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setDouble(1, User.user.getpD());
-            stmt.setDouble(2, User.user.getEth());
-            stmt.setDouble(3, User.user.getDog());
-            stmt.setDouble(4, User.user.getNot());
-            stmt.setDouble(5, User.user.getHam());
-            stmt.setString(6, User.user.getUserShow());
+            stmt.setDouble(1, user.getpD());
+            stmt.setDouble(2, user.getEth());
+            stmt.setDouble(3, user.getDog());
+            stmt.setDouble(4, user.getNot());
+            stmt.setDouble(5, user.getHam());
+            stmt.setString(6, user.getUserShow());
             stmt.executeUpdate();
         } catch (SQLException e) {
             showAlert(Alert.AlertType.ERROR, "خطا", "خطا در آپدیت اطلاعات: " + e.getMessage());
@@ -261,9 +263,9 @@ public class Database {
     public static List<Object[]> showBills(String par) {
         List<Object[]> bills = new ArrayList<>();
         String selectSQL;
-        if (par.equals(User.user.getUserShow())) {
+        if (par.equals(user.getUserShow())) {
             selectSQL = "SELECT * FROM bills WHERE sender = ?";
-            if (User.user.getUserShow().equals("admin2024")) {
+            if (user.getUserShow().equals("admin2024")) {
                 selectSQL = "SELECT * FROM bills";
                 try (Connection connection = getConnection(); PreparedStatement psmt = connection.prepareStatement(selectSQL)) {
                     try (ResultSet result = psmt.executeQuery()) {

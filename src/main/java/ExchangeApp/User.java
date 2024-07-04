@@ -2,8 +2,6 @@ package ExchangeApp;
 
 public class User {
 
-    public static User user;
-
     private String userShow;
     private String userFirstName;
     private String userLastName;

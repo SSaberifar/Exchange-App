@@ -25,7 +25,7 @@ public class Transfer extends Menu implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
         tokens.setItems(observableArrayList("Ethereum", "Dogecoin", "Notcoin", "Hamester", "$"));
-        Comment.setText(User.user.getUserShow());
+        Comment.setText(Database.user.getUserShow());
     }
 
     public void transferToken() {
@@ -40,7 +40,7 @@ public class Transfer extends Menu implements Initializable {
         confirmationAlert.setContentText("کارمزد عملیات شما 10 دلار می باشد! آیا مایل به ادامه هستید؟");
 
         confirmationAlert.showAndWait().ifPresent(buttonType -> {
-            if (User.user.getpD() >= 10 || tokens.getValue().equals("$")) {
+            if (Database.user.getpD() >= 10 || tokens.getValue().equals("$")) {
                 performTransfer();
             } else {
                 Database.showAlert(Alert.AlertType.ERROR, "خطا", "موجودی دلار کافی نیست!");
@@ -77,10 +77,10 @@ public class Transfer extends Menu implements Initializable {
 
     private boolean hasSufficientBalance(String token, double amount) {
         return switch (token) {
-            case "Ethereum" -> User.user.getEth() >= amount;
-            case "Dogecoin" -> User.user.getDog() >= amount;
-            case "Notcoin" -> User.user.getNot() >= amount;
-            case "Hamester" -> User.user.getHam() >= amount;
+            case "Ethereum" -> Database.user.getEth() >= amount;
+            case "Dogecoin" -> Database.user.getDog() >= amount;
+            case "Notcoin" -> Database.user.getNot() >= amount;
+            case "Hamester" -> Database.user.getHam() >= amount;
             case "$" -> true;
             default -> false;
         };
@@ -97,26 +97,26 @@ public class Transfer extends Menu implements Initializable {
     private void deductBalance(String token, double amount) {
         switch (token) {
             case "Ethereum":
-                User.user.setEth(User.user.getEth() - amount);
-                User.user.setpD(User.user.getpD() - 10);
+                Database.user.setEth(Database.user.getEth() - amount);
+                Database.user.setpD(Database.user.getpD() - 10);
                 break;
             case "Dogecoin":
-                User.user.setDog(User.user.getDog() - amount);
-                User.user.setpD(User.user.getpD() - 10);
+                Database.user.setDog(Database.user.getDog() - amount);
+                Database.user.setpD(Database.user.getpD() - 10);
                 break;
             case "Notcoin":
-                User.user.setNot(User.user.getNot() - amount);
-                User.user.setpD(User.user.getpD() - 10);
+                Database.user.setNot(Database.user.getNot() - amount);
+                Database.user.setpD(Database.user.getpD() - 10);
                 break;
             case "Hamester":
-                User.user.setHam(User.user.getHam() - amount);
-                User.user.setpD(User.user.getpD() - 10);
+                Database.user.setHam(Database.user.getHam() - amount);
+                Database.user.setpD(Database.user.getpD() - 10);
                 break;
             case "$":
-                if (User.user.getpD() == 0) {
-                    User.user.setpD(User.user.getpD() + amount - 10.0);
+                if (Database.user.getpD() == 0) {
+                    Database.user.setpD(Database.user.getpD() + amount - 10.0);
                 } else {
-                    User.user.setpD(User.user.getpD() - amount);
+                    Database.user.setpD(Database.user.getpD() - amount);
                 }
                 break;
         }

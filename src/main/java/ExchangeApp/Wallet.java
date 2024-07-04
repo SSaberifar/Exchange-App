@@ -30,10 +30,10 @@ public class Wallet extends Menu implements Initializable {
     private Label profit_d;
 
     ObservableList<Coin> walletCoin = FXCollections.observableArrayList(
-            new Coin("اتریوم(ETH)", Database.lastValue("Ethereum"), 0, 0, 0, User.user.getEth()),
-            new Coin("دوج کوین(DOGE)", Database.lastValue("Dogecoin"), 0, 0, 0, User.user.getDog()),
-            new Coin("نات کوین(NOT)", Database.lastValue("Notcoin"), 0, 0, 0, User.user.getNot()),
-            new Coin("همستر(HAM)", Database.lastValue("Hamester"), 0, 0, 0, User.user.getHam())
+            new Coin("اتریوم(ETH)", Database.lastValue("Ethereum"), 0, 0, 0, Database.user.getEth()),
+            new Coin("دوج کوین(DOGE)", Database.lastValue("Dogecoin"), 0, 0, 0, Database.user.getDog()),
+            new Coin("نات کوین(NOT)", Database.lastValue("Notcoin"), 0, 0, 0, Database.user.getNot()),
+            new Coin("همستر(HAM)", Database.lastValue("Hamester"), 0, 0, 0, Database.user.getHam())
     );
 
     @Override
@@ -42,7 +42,7 @@ public class Wallet extends Menu implements Initializable {
         Coins.setCellValueFactory(new PropertyValueFactory<>("name"));
         Count.setCellValueFactory(new PropertyValueFactory<>("Count"));
         Price.setCellValueFactory(new PropertyValueFactory<>("value"));
-        profit_d.setText(User.user.getpD() + " USD");
+        profit_d.setText(Database.user.getpD() + " USD");
         walletCoins.setItems(walletCoin);
     }
 
